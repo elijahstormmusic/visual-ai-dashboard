@@ -6,7 +6,7 @@ class UserState {
 }
 
 class AppDebugLogin {
-  static bool bypass = false;
+  static bool bypass = true;
   static String username = 'email@gmail.com';
   static String password = 'password';
   static String picture = 'assets/images/profile_pic.png';

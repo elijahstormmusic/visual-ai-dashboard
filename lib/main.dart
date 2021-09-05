@@ -61,7 +61,9 @@ class DashboardApp extends StatelessWidget {
 
       UserState.User = AppDebugLogin.username;
       UserState.Auth = AppDebugLogin.password;
-      UserState.Pic = AppDebugLogin.picture;
+      UserState.Pic = '''https://avatars.dicebear.com/api/human/${
+        AppDebugLogin.username.substring(0, AppDebugLogin.username.indexOf('@'))
+      }.svg''';
     }
 
     PartnerCache.load_mock_data();

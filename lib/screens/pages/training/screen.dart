@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:visual_ai/responsive.dart';
 
 import 'package:visual_ai/screens/components/header.dart';
+import 'package:visual_ai/screens/components/training_module.dart';
 import 'package:visual_ai/screens/components/no_content_placeholder.dart';
 import 'package:visual_ai/constants.dart';
 
@@ -23,9 +24,8 @@ class TrainingScreen extends StatelessWidget {
                   flex: 5,
                   child: Column(
                     children: [
-                      NoContentPlaceholder(),
+                      TrainingModule(),
                       SizedBox(height: defaultPadding),
-                      NoContentPlaceholder(),
                       if (Responsive.isMobile(context))
                         SizedBox(height: defaultPadding),
                       if (Responsive.isMobile(context)) NoContentPlaceholder(),

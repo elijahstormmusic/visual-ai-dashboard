@@ -1,8 +1,9 @@
-import 'package:visual_ai/models/MyFiles.dart';
 import 'package:flutter/material.dart';
+import 'package:visual_ai/models/MyFiles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:visual_ai/constants.dart';
+
 
 class FileInfoCard extends StatelessWidget {
   const FileInfoCard({
@@ -56,7 +57,7 @@ class FileInfoCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '${info.numOfFiles} Files',
+                "${info.numOfFiles} Files",
                 style: Theme.of(context)
                     .textTheme
                     .caption!

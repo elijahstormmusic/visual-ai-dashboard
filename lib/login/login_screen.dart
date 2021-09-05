@@ -27,7 +27,9 @@ class LoginScreen extends StatelessWidget {
 
       UserState.User = data.name;
       UserState.Auth = data.password;
-      UserState.Pic = AppDebugLogin.picture;
+      UserState.Pic = '''https://avatars.dicebear.com/api/human/${
+        data.name.substring(0, data.name.indexOf('@'))
+      }.svg''';
 
       return null;
     });

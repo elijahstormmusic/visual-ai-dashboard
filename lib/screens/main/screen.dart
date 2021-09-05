@@ -1,7 +1,8 @@
-import 'package:visual_ai/controllers/MenuController.dart';
-import 'package:visual_ai/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'package:visual_ai/controllers/MenuController.dart';
+import 'package:visual_ai/responsive.dart';
 import 'components/side_menu.dart';
 
 import 'package:visual_ai/screens/pages/dashboard/screen.dart';
@@ -15,62 +16,40 @@ import 'package:visual_ai/screens/pages/settings/screen.dart';
 
 
 class MainScreen extends StatefulWidget {
-
-  static _ScreenManagerState state = _ScreenManagerState();
-
-  static void Dashboard() =>
-    MainScreen.state.selectedTab(0);
-  static void Performance() =>
-    MainScreen.state.selectedTab(1);
-  static void Training() =>
-    MainScreen.state.selectedTab(2);
-  static void Database() =>
-    MainScreen.state.selectedTab(3);
-  static void Store() =>
-    MainScreen.state.selectedTab(4);
-  static void Notification() =>
-    MainScreen.state.selectedTab(5);
-  static void Profile() =>
-    MainScreen.state.selectedTab(6);
-  static void Settings() =>
-    MainScreen.state.selectedTab(7);
-
   @override
-  _ScreenManagerState createState() => MainScreen.state;
+  _ScreenManagerState createState() => _ScreenManagerState();
 }
 
 class _ScreenManagerState extends State<MainScreen> {
 
-  int _selectedIndex = 0;
-  void selectedTab(index) {
-    setState(() => _selectedIndex = index);
-  }
+  ValueNotifier<String> _stateIndexNotifier = ValueNotifier('Dashboard');
+
   Widget _decideInteriorBody() {
     var choice;
 
-    switch (_selectedIndex) {
-      case 0:
+    switch (_stateIndexNotifier.value) {
+      case 'Dashboard':
         choice = DashboardScreen();
         break;
-      case 1:
+      case 'Performance':
         choice = PerformanceScreen();
         break;
-      case 2:
+      case 'Training':
         choice = TrainingScreen();
         break;
-      case 3:
+      case 'Database':
         choice = DatabaseScreen();
         break;
-      case 4:
+      case 'Store':
         choice = StoreScreen();
         break;
-      case 5:
+      case 'Notification':
         choice = NotificationScreen();
         break;
-      case 6:
+      case 'Profile':
         choice = ProfileScreen();
         break;
-      case 7:
+      case 'Settings':
         choice = SettingsScreen();
         break;
       default:
@@ -85,18 +64,23 @@ class _ScreenManagerState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: context.read<MenuController>().scaffoldKey,
-      drawer: SideMenu(),
+      drawer: Responsive.isDesktop(context) ? null : SideMenu(_stateIndexNotifier),
       body: SafeArea(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (Responsive.isDesktop(context))
               Expanded(
-                child: SideMenu(),
+                child: SideMenu(_stateIndexNotifier),
               ),
             Expanded(
               flex: 5,
-              child: _decideInteriorBody(),
+              child: ValueListenableBuilder<String>(
+                valueListenable: _stateIndexNotifier,
+                builder: (context, value, child) {
+                  return _decideInteriorBody();
+                },
+              ),
             ),
           ],
         ),

@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:visual_ai/responsive.dart';
 import 'package:visual_ai/ui_manager.dart';
 import 'package:visual_ai/screens/main/screen.dart';
 
 
 class SideMenu extends StatelessWidget {
-  const SideMenu({
+
+  ValueNotifier stateIndex;
+
+  SideMenu(
+    this.stateIndex, {
     Key? key,
   }) : super(key: key);
 
@@ -22,56 +27,56 @@ class SideMenu extends StatelessWidget {
             title: 'Dashboard',
             svgSrc: 'assets/icons/menu_dashbord.svg',
             press: () {
-              MainScreen.Dashboard();
+              stateIndex.value = 'Dashboard';
             },
           ),
           DrawerListTile(
             title: 'Performance',
             svgSrc: 'assets/icons/menu_tran.svg',
             press: () {
-              MainScreen.Performance();
+              stateIndex.value = 'Performance';
             },
           ),
           DrawerListTile(
             title: 'Training',
             svgSrc: 'assets/icons/menu_task.svg',
             press: () {
-              MainScreen.Training();
+              stateIndex.value = 'Training';
             },
           ),
           DrawerListTile(
             title: 'Database',
             svgSrc: 'assets/icons/menu_doc.svg',
             press: () {
-              MainScreen.Database();
+              stateIndex.value = 'Database';
             },
           ),
           DrawerListTile(
             title: 'Store',
             svgSrc: 'assets/icons/menu_store.svg',
             press: () {
-              MainScreen.Store();
+              stateIndex.value = 'Store';
             },
           ),
           DrawerListTile(
             title: 'Notification',
             svgSrc: 'assets/icons/menu_notification.svg',
             press: () {
-              MainScreen.Notification();
+              stateIndex.value = 'Notification';
             },
           ),
           DrawerListTile(
             title: 'Profile',
             svgSrc: 'assets/icons/menu_profile.svg',
             press: () {
-              MainScreen.Profile();
+              stateIndex.value = 'Profile';
             },
           ),
           DrawerListTile(
             title: 'Settings',
             svgSrc: 'assets/icons/menu_setting.svg',
             press: () {
-              MainScreen.Settings();
+              stateIndex.value = 'Settings';
             },
           ),
         ],
@@ -95,8 +100,9 @@ class DrawerListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
+        if (!Responsive.isDesktop(context))
+          Navigator.pop(context);
         press();
-        Navigator.pop(context);
       },
       horizontalTitleGap: 0.0,
       leading: SvgPicture.asset(

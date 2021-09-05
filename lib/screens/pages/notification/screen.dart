@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:visual_ai/responsive.dart';
 
 import 'package:visual_ai/screens/components/header.dart';
-import 'package:visual_ai/screens/components/no_content_placeholder.dart';
+import 'package:visual_ai/screens/components/recommended_friends.dart';
+import 'package:visual_ai/screens/components/recent_friend_activity.dart';
+import 'package:visual_ai/screens/components/recent_notifications.dart';
 import 'package:visual_ai/constants.dart';
 
 
@@ -23,12 +25,12 @@ class NotificationScreen extends StatelessWidget {
                   flex: 5,
                   child: Column(
                     children: [
-                      NoContentPlaceholder(),
+                      RecentNotifications(),
                       SizedBox(height: defaultPadding),
-                      NoContentPlaceholder(),
+                      RecentFriendActivities(),
                       if (Responsive.isMobile(context))
                         SizedBox(height: defaultPadding),
-                      if (Responsive.isMobile(context)) NoContentPlaceholder(),
+                      if (Responsive.isMobile(context)) RecommendedFriends(),
                     ],
                   ),
                 ),
@@ -38,7 +40,7 @@ class NotificationScreen extends StatelessWidget {
                 if (!Responsive.isMobile(context))
                   Expanded(
                     flex: 2,
-                    child: NoContentPlaceholder(),
+                    child: RecommendedFriends(),
                   ),
               ],
             )

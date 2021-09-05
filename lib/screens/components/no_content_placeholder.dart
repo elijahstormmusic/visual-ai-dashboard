@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:visual_ai/responsive.dart';
 import 'package:visual_ai/constants.dart';
 import 'file_info_card.dart';
+import 'blinking_content.dart';
 
 
 class NoContentPlaceholder extends StatelessWidget {
@@ -15,7 +16,6 @@ class NoContentPlaceholder extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size _size = MediaQuery.of(context).size;
     return Container(
-      // color: Colors.red,
       child: Column(
         children: [
           Row(
@@ -27,18 +27,6 @@ class NoContentPlaceholder extends StatelessWidget {
                   style: Theme.of(context).textTheme.subtitle1,
                 ),
               ),
-              // ElevatedButton.icon(
-              //   style: TextButton.styleFrom(
-              //     padding: EdgeInsets.symmetric(
-              //       horizontal: defaultPadding * 1.5,
-              //       vertical:
-              //           defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
-              //     ),
-              //   ),
-              //   onPressed: () {},
-              //   icon: Icon(Icons.add),
-              //   label: Text('Add New'),
-              // ),
             ],
           ),
           SizedBox(height: defaultPadding),
@@ -82,10 +70,6 @@ class NoContentFunSquare extends StatelessWidget {
       ),
       itemBuilder: (context, index) => Container(
         decoration: BoxDecoration(
-          // border: Border.all(color: Colors.white),
-          // borderRadius: BorderRadius.all(
-          //   Radius.circular(5.0),
-          // ),
           color: secondaryColor,
           borderRadius: const BorderRadius.all(Radius.circular(10)),
         ),
@@ -94,49 +78,6 @@ class NoContentFunSquare extends StatelessWidget {
           size: 50.0,
         ),
       ),
-    );
-  }
-}
-
-class BlinkingContent extends StatefulWidget {
-
-  Widget child;
-
-  BlinkingContent({
-    required this.child,
-  });
-
-  @override
-  _BlinkingContentState createState() => _BlinkingContentState();
-}
-
-class _BlinkingContentState extends State<BlinkingContent>
-    with SingleTickerProviderStateMixin {
-  AnimationController? _animationController;
-
-  @override
-  void initState() {
-    _animationController =
-        new AnimationController(
-          vsync: this,
-          duration: Duration(milliseconds: 1400),
-          lowerBound: .3,
-        );
-    _animationController!.repeat(reverse: true);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _animationController!.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return FadeTransition(
-      opacity: _animationController!,
-      child: widget.child,
     );
   }
 }

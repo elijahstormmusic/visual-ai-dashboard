@@ -1,5 +1,5 @@
 class Constants {
-  static const String appName = 'Coffee House';
-  static const String logoTag = 'swipe.logo';
-  static const String titleTag = 'swipe.title';
+  static const String appName = 'Visual AI Dashboard';
+  static const String logoTag = 'vaidash.logo';
+  static const String titleTag = 'vaidash.title';
 }
