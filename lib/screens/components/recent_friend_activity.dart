@@ -22,7 +22,7 @@ class RecentFriendActivities extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Recent Notifications',
+            'Friend Activity',
             style: Theme.of(context).textTheme.subtitle1,
           ),
           SizedBox(
@@ -64,9 +64,9 @@ DataRow recentNotoDataRow(RecentFriendActivity friendInfo) {
       MaterialState.focused,
     };
     if (states.any(interactiveStates.contains)) {
-      return Colors.blue.withOpacity(0.2);
+      return Colors.blue.withOpacity(0.1);
     }
-    return Colors.red.withOpacity(0.2);
+    return Colors.red.withOpacity(0.1);
   }
 
   return DataRow(
@@ -75,13 +75,17 @@ DataRow recentNotoDataRow(RecentFriendActivity friendInfo) {
       DataCell(
         Row(
           children: [
-            Container(
-              height: 30,
-              width: 30,
-              color: friendInfo.color!.withOpacity(0.3),
-              child: SvgPicture.asset(
-                friendInfo.icon!,
-                color: friendInfo.color!.withOpacity(0.7),
+            ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              child: Container(
+                height: 30,
+                width: 30,
+                color: friendInfo.color!.withOpacity(0.3),
+                padding: EdgeInsets.all(6),
+                child: SvgPicture.asset(
+                  friendInfo.icon!,
+                  color: friendInfo.color!.withOpacity(0.7),
+                ),
               ),
             ),
             Padding(

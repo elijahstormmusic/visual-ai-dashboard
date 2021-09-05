@@ -64,9 +64,9 @@ DataRow recentNotoDataRow(RecentNotification notoInfo) {
       MaterialState.focused,
     };
     if (states.any(interactiveStates.contains)) {
-      return Colors.blue.withOpacity(0.2);
+      return Colors.blue.withOpacity(0.1);
     }
-    return Colors.red.withOpacity(0.2);
+    return Colors.red.withOpacity(0.1);
   }
 
   return DataRow(

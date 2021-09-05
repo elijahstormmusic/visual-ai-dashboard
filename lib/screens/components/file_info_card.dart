@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:visual_ai/models/MyFiles.dart';
+import 'package:visual_ai/models/DashboardFiles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:visual_ai/constants.dart';

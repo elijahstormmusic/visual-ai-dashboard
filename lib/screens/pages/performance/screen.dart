@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:visual_ai/responsive.dart';
 
 import 'package:visual_ai/screens/components/header.dart';
-import 'package:visual_ai/screens/components/no_content_placeholder.dart';
+import 'package:visual_ai/screens/components/panel_left_page.dart';
+import 'package:visual_ai/screens/components/panel_right_page.dart';
+import 'package:visual_ai/screens/components/panel_center_page.dart';
 import 'package:visual_ai/constants.dart';
+
 
 
 class PerformanceScreen extends StatelessWidget {
@@ -16,32 +19,38 @@ class PerformanceScreen extends StatelessWidget {
           children: [
             Header('Performance'),
             SizedBox(height: defaultPadding),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  flex: 5,
-                  child: Column(
-                    children: [
-                      NoContentPlaceholder(),
-                      SizedBox(height: defaultPadding),
-                      NoContentPlaceholder(),
-                      if (Responsive.isMobile(context))
-                        SizedBox(height: defaultPadding),
-                      if (Responsive.isMobile(context)) NoContentPlaceholder(),
-                    ],
-                  ),
-                ),
-                if (!Responsive.isMobile(context))
-                  SizedBox(width: defaultPadding),
-                // On Mobile means if the screen is less than 850 we dont want to show it
-                if (!Responsive.isMobile(context))
+            
+            if (Responsive.isMobile(context))
+              Column(
+                children: [
+                  PanelCenterPage(),
+                  SizedBox(height: defaultPadding),
+                  PanelLeftPage(),
+                  SizedBox(height: defaultPadding),
+                  PanelRightPage(),
+                ],
+              ),
+
+            if (!Responsive.isMobile(context))
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                   Expanded(
-                    flex: 2,
-                    child: NoContentPlaceholder(),
+                    flex: 3,
+                    child: PanelCenterPage(),
                   ),
-              ],
-            )
+                  SizedBox(width: defaultPadding),
+                  Expanded(
+                    flex: 3,
+                    child: PanelLeftPage(),
+                  ),
+                  SizedBox(width: defaultPadding),
+                  Expanded(
+                    flex: 3,
+                    child: PanelRightPage(),
+                  ),
+                ],
+              ),
           ],
         ),
       ),

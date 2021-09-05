@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:visual_ai/responsive.dart';
-import 'package:visual_ai/models/Persons.dart';
+import 'package:visual_ai/content/users/cache.dart';
 import 'package:visual_ai/constants.dart';
 
 import 'person_card_info.dart';
@@ -40,7 +40,7 @@ class RecommendedFriends extends StatelessWidget {
         SizedBox(height: defaultPadding),
         Responsive(
           mobile: PersonCardInfoGridView(
-            crossAxisCount: _size.width < 650 ? 2 : 4,
+            crossAxisCount: _size.width < 650 ? 2 : 2,
             childAspectRatio: _size.width < 650 ? 1.3 : 1,
           ),
           tablet: PersonCardInfoGridView(),
@@ -56,7 +56,7 @@ class RecommendedFriends extends StatelessWidget {
 class PersonCardInfoGridView extends StatelessWidget {
   const PersonCardInfoGridView({
     Key? key,
-    this.crossAxisCount = 4,
+    this.crossAxisCount = 2,
     this.childAspectRatio = 1,
   }) : super(key: key);
 
@@ -68,14 +68,14 @@ class PersonCardInfoGridView extends StatelessWidget {
     return GridView.builder(
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: demoPeople.length,
+      itemCount: UserCache.all.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxisCount,
         crossAxisSpacing: defaultPadding,
         mainAxisSpacing: defaultPadding,
         childAspectRatio: childAspectRatio,
       ),
-      itemBuilder: (context, index) => PersonCardInfo(info: demoPeople[index]),
+      itemBuilder: (context, index) => PersonCardInfo(info: UserCache.all[index]),
     );
   }
 }

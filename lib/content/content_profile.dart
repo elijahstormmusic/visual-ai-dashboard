@@ -6,12 +6,12 @@ import 'users/cache.dart';
 import 'content.dart';
 
 
-class ContentProfile extends SwipeableContent {
+class ContentProfile extends DashboardContent {
   ContentProfile(Map<String, dynamic> input)
     : super(
       text: input['text'],
       caption: input['caption'],
-      pictures: input['pictures'],
+      // pictures: input['pictures'],
       sex: input['sex'],
       online: input['online'],
       verified: input['verified'],

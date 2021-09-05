@@ -1,7 +1,9 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-import 'package:visual_ai/friendly/constants.dart';
+
+import 'package:visual_ai/constants.dart';
+
 
 class Chart extends StatelessWidget {
   @override
@@ -22,7 +24,7 @@ class Chart extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: Constants.kPadding),
+                SizedBox(height: defaultPadding),
                 Text(
                   '29.1',
                   style: Theme.of(context).textTheme.headline4!.copyWith(
@@ -43,7 +45,7 @@ class Chart extends StatelessWidget {
 
 List<PieChartSectionData> paiChartSelectionDatas = [
   PieChartSectionData(
-    color: Constants.purpleLight,
+    color: Colors.purple,
     value: 25,
     showTitle: false,
     radius: 25,
@@ -67,7 +69,7 @@ List<PieChartSectionData> paiChartSelectionDatas = [
     radius: 16,
   ),
   PieChartSectionData(
-    color: Constants.orange,
+    color: Colors.orange,
     value: 25,
     showTitle: false,
     radius: 13,
@@ -84,95 +86,89 @@ class PieChart2State extends State {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-          left: Constants.kPadding / 2,
-          bottom: Constants.kPadding,
-          right: Constants.kPadding / 2),
-      child: Card(
-        color: Constants.purpleLight,
-        elevation: 3,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Row(
-          children: <Widget>[
-            const SizedBox(
-              height: 18,
-            ),
-            Expanded(
-              child: AspectRatio(
-                aspectRatio: 1,
-                child: PieChart(
-                  PieChartData(
-                      pieTouchData:
-                          PieTouchData(touchCallback: (pieTouchResponse) {
-                        setState(() {
-                          final desiredTouch = pieTouchResponse.touchInput
-                                  is! PointerExitEvent &&
-                              pieTouchResponse.touchInput is! PointerUpEvent;
-                          if (desiredTouch &&
-                              pieTouchResponse.touchedSection != null) {
-                            touchedIndex = pieTouchResponse
-                                .touchedSection!.touchedSectionIndex;
-                          } else {
-                            touchedIndex = -1;
-                          }
-                        });
-                      }),
-                      borderData: FlBorderData(
-                        show: false,
-                      ),
-                      sectionsSpace: 0,
-                      centerSpaceRadius: 40,
-                      sections: showingSections()),
-                ),
+    return Container(
+      padding: const EdgeInsets.all(defaultPadding / 2),
+      decoration: BoxDecoration(
+        color: secondaryColor,
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+      ),
+      child: Row(
+        children: <Widget>[
+          const SizedBox(
+            height: 18,
+          ),
+          Expanded(
+            child: AspectRatio(
+              aspectRatio: 1,
+              child: PieChart(
+                PieChartData(
+                    pieTouchData:
+                        PieTouchData(touchCallback: (pieTouchResponse) {
+                      setState(() {
+                        final desiredTouch = pieTouchResponse.touchInput
+                                is! PointerExitEvent &&
+                            pieTouchResponse.touchInput is! PointerUpEvent;
+                        if (desiredTouch &&
+                            pieTouchResponse.touchedSection != null) {
+                          touchedIndex = pieTouchResponse
+                              .touchedSection!.touchedSectionIndex;
+                        } else {
+                          touchedIndex = -1;
+                        }
+                      });
+                    }),
+                    borderData: FlBorderData(
+                      show: false,
+                    ),
+                    sectionsSpace: 0,
+                    centerSpaceRadius: 40,
+                    sections: showingSections()),
               ),
             ),
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const <Widget>[
-                Indicator(
-                  color: Color(0xff0293ee),
-                  text: 'First',
-                  isSquare: true,
-                ),
-                SizedBox(
-                  height: 4,
-                ),
-                Indicator(
-                  color: Color(0xfff8b250),
-                  text: 'Second',
-                  isSquare: true,
-                ),
-                SizedBox(
-                  height: 4,
-                ),
-                Indicator(
-                  color: Color(0xffff5182),
-                  text: 'Third',
-                  isSquare: true,
-                ),
-                SizedBox(
-                  height: 4,
-                ),
-                Indicator(
-                  color: Color(0xff13d38e),
-                  text: 'Fourth',
-                  isSquare: true,
-                ),
-                SizedBox(
-                  height: 18,
-                ),
-              ],
-            ),
-            const SizedBox(
-              width: 28,
-            ),
-          ],
-        ),
+          ),
+          Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const <Widget>[
+              Indicator(
+                color: Color(0xff0293ee),
+                text: 'First',
+                isSquare: true,
+              ),
+              SizedBox(
+                height: 4,
+              ),
+              Indicator(
+                color: Color(0xfff8b250),
+                text: 'Second',
+                isSquare: true,
+              ),
+              SizedBox(
+                height: 4,
+              ),
+              Indicator(
+                color: Color(0xffff5182),
+                text: 'Third',
+                isSquare: true,
+              ),
+              SizedBox(
+                height: 4,
+              ),
+              Indicator(
+                color: Color(0xff13d38e),
+                text: 'Fourth',
+                isSquare: true,
+              ),
+              SizedBox(
+                height: 18,
+              ),
+            ],
+          ),
+          const SizedBox(
+            width: 28,
+          ),
+        ],
       ),
     );
   }
@@ -290,56 +286,51 @@ class _LineChartSample2State extends State<LineChartSample2> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-          left: Constants.kPadding / 2,
-          top: Constants.kPadding,
-          bottom: Constants.kPadding,
-          right: Constants.kPadding / 2),
-      child: Card(
-        color: Constants.purpleLight,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        elevation: 3,
-        child: Stack(
-          children: <Widget>[
-            AspectRatio(
-              aspectRatio: 1,
-              child: Container(
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(18),
-                  ),
+    return Container(
+      padding: const EdgeInsets.all(defaultPadding / 2),
+      decoration: BoxDecoration(
+        color: secondaryColor,
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+      ),
+      child: Stack(
+        children: <Widget>[
+          AspectRatio(
+            aspectRatio: 1,
+            child: Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(18),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      right: 18.0, left: 12.0, top: 24, bottom: 12),
-                  child: LineChart(
-                    showAvg ? avgData() : mainData(),
-                  ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    right: 18.0, left: 12.0, top: 24, bottom: 12),
+                child: LineChart(
+                  showAvg ? avgData() : mainData(),
                 ),
               ),
             ),
-            SizedBox(
-              width: 60,
-              height: 34,
-              child: TextButton(
-                onPressed: () {
-                  setState(() {
-                    showAvg = !showAvg;
-                  });
-                },
-                child: Text(
-                  'avg',
-                  style: TextStyle(
-                      fontSize: 12,
-                      color: showAvg
-                          ? Colors.white.withOpacity(0.5)
-                          : Colors.white),
-                ),
+          ),
+          SizedBox(
+            width: 60,
+            height: 34,
+            child: TextButton(
+              onPressed: () {
+                setState(() {
+                  showAvg = !showAvg;
+                });
+              },
+              child: Text(
+                'avg',
+                style: TextStyle(
+                    fontSize: 12,
+                    color: showAvg
+                        ? Colors.white.withOpacity(0.5)
+                        : Colors.white),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -564,78 +555,73 @@ class LineChartSample1State extends State<LineChartSample1> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-          right: Constants.kPadding / 2,
-          top: Constants.kPadding,
-          left: Constants.kPadding / 2),
+    return Container(
+      padding: const EdgeInsets.all(defaultPadding / 2),
+      decoration: BoxDecoration(
+        color: secondaryColor,
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+      ),
       child: AspectRatio(
         aspectRatio: 1,
-        child: Card(
-          color: Constants.purpleLight,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          elevation: 3,
-          child: Stack(
-            children: <Widget>[
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  const SizedBox(
-                    height: 37,
-                  ),
-                  const Text(
-                    'Unfold Shop 2021',
-                    style: TextStyle(
-                      color: Color(0xff827daa),
-                      fontSize: 16,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(
-                    height: 4,
-                  ),
-                  const Text(
-                    'Monthly Sales',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 2),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(
-                    height: 37,
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 16.0, left: 6.0),
-                      child: LineChart(
-                        isShowingMainData ? sampleData1() : sampleData2(),
-                        swapAnimationDuration:
-                            const Duration(milliseconds: 250),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                ],
-              ),
-              IconButton(
-                icon: Icon(
-                  Icons.refresh,
-                  color:
-                      Colors.white.withOpacity(isShowingMainData ? 1.0 : 0.5),
+        child: Stack(
+          children: <Widget>[
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                const SizedBox(
+                  height: 37,
                 ),
-                onPressed: () {
-                  setState(() {
-                    isShowingMainData = !isShowingMainData;
-                  });
-                },
-              )
-            ],
-          ),
+                const Text(
+                  'Unfold Shop 2021',
+                  style: TextStyle(
+                    color: Color(0xff827daa),
+                    fontSize: 16,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                const Text(
+                  'Monthly Sales',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 2),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(
+                  height: 37,
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 16.0, left: 6.0),
+                    child: LineChart(
+                      isShowingMainData ? sampleData1() : sampleData2(),
+                      swapAnimationDuration:
+                          const Duration(milliseconds: 250),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+              ],
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.refresh,
+                color:
+                    Colors.white.withOpacity(isShowingMainData ? 1.0 : 0.5),
+              ),
+              onPressed: () {
+                setState(() {
+                  isShowingMainData = !isShowingMainData;
+                });
+              },
+            )
+          ],
         ),
       ),
     );
@@ -993,193 +979,186 @@ class BarChartSample2State extends State<BarChartSample2> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-          top: Constants.kPadding,
-          left: Constants.kPadding / 2,
-          right: Constants.kPadding / 2),
+    return Container(
+      padding: const EdgeInsets.all(defaultPadding / 2),
+      decoration: BoxDecoration(
+        color: secondaryColor,
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+      ),
       child: AspectRatio(
         aspectRatio: 1,
-        child: Card(
-          color: Constants.purpleLight,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          elevation: 3,
-          //Color(0xff232d37), //const Color(0xff2c4260),),
-
-          child: Padding(
-            padding: const EdgeInsets.all(Constants.kPadding),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    //makeTransactionsIcon(),
-                    const Text(
-                      'Monthly Profits',
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+        child: Padding(
+          padding: const EdgeInsets.all(defaultPadding),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  //makeTransactionsIcon(),
+                  const Text(
+                    'Monthly Profits',
+                    style: TextStyle(color: Colors.white, fontSize: 18),
+                  ),
+                  const Text(
+                    r'$345,462',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
                     ),
-                    const Text(
-                      r'$345,462',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    const Text(
-                      'Of ',
-                      style: TextStyle(color: Color(0xff77839a), fontSize: 16),
-                    ),
-                    Text(
-                      'Sales ',
-                      style: TextStyle(color: leftBarColor, fontSize: 16),
-                    ),
-                    const Text(
-                      'And ',
-                      style: TextStyle(color: Color(0xff77839a), fontSize: 16),
-                    ),
-                    Text(
-                      'Orders',
-                      style: TextStyle(color: rightBarColor, fontSize: 16),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 38,
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: BarChart(
-                      BarChartData(
-                        maxY: 20,
-                        barTouchData: BarTouchData(
-                            touchTooltipData: BarTouchTooltipData(
-                              tooltipBgColor: Colors.grey,
-                              getTooltipItem: (_a, _b, _c, _d) => null,
-                            ),
-                            touchCallback: (response) {
-                              if (response.spot == null) {
-                                setState(() {
-                                  touchedGroupIndex = -1;
-                                  showingBarGroups = List.of(rawBarGroups);
-                                });
-                                return;
-                              }
-
-                              touchedGroupIndex =
-                                  response.spot!.touchedBarGroupIndex;
-
+                  ),
+                ],
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  const Text(
+                    'Of ',
+                    style: TextStyle(color: Color(0xff77839a), fontSize: 16),
+                  ),
+                  Text(
+                    'Sales ',
+                    style: TextStyle(color: leftBarColor, fontSize: 16),
+                  ),
+                  const Text(
+                    'And ',
+                    style: TextStyle(color: Color(0xff77839a), fontSize: 16),
+                  ),
+                  Text(
+                    'Orders',
+                    style: TextStyle(color: rightBarColor, fontSize: 16),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 38,
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: BarChart(
+                    BarChartData(
+                      maxY: 20,
+                      barTouchData: BarTouchData(
+                          touchTooltipData: BarTouchTooltipData(
+                            tooltipBgColor: Colors.grey,
+                            getTooltipItem: (_a, _b, _c, _d) => null,
+                          ),
+                          touchCallback: (response) {
+                            if (response.spot == null) {
                               setState(() {
-                                if (response.touchInput is PointerExitEvent ||
-                                    response.touchInput is PointerUpEvent) {
-                                  touchedGroupIndex = -1;
-                                  showingBarGroups = List.of(rawBarGroups);
-                                } else {
-                                  showingBarGroups = List.of(rawBarGroups);
-                                  if (touchedGroupIndex != -1) {
-                                    var sum = 0.0;
-                                    for (var rod
-                                        in showingBarGroups[touchedGroupIndex]
-                                            .barRods) {
-                                      sum += rod.y;
-                                    }
-                                    final avg = sum /
+                                touchedGroupIndex = -1;
+                                showingBarGroups = List.of(rawBarGroups);
+                              });
+                              return;
+                            }
+
+                            touchedGroupIndex =
+                                response.spot!.touchedBarGroupIndex;
+
+                            setState(() {
+                              if (response.touchInput is PointerExitEvent ||
+                                  response.touchInput is PointerUpEvent) {
+                                touchedGroupIndex = -1;
+                                showingBarGroups = List.of(rawBarGroups);
+                              } else {
+                                showingBarGroups = List.of(rawBarGroups);
+                                if (touchedGroupIndex != -1) {
+                                  var sum = 0.0;
+                                  for (var rod
+                                      in showingBarGroups[touchedGroupIndex]
+                                          .barRods) {
+                                    sum += rod.y;
+                                  }
+                                  final avg = sum /
+                                      showingBarGroups[touchedGroupIndex]
+                                          .barRods
+                                          .length;
+
+                                  showingBarGroups[touchedGroupIndex] =
+                                      showingBarGroups[touchedGroupIndex]
+                                          .copyWith(
+                                    barRods:
                                         showingBarGroups[touchedGroupIndex]
                                             .barRods
-                                            .length;
-
-                                    showingBarGroups[touchedGroupIndex] =
-                                        showingBarGroups[touchedGroupIndex]
-                                            .copyWith(
-                                      barRods:
-                                          showingBarGroups[touchedGroupIndex]
-                                              .barRods
-                                              .map((rod) {
-                                        return rod.copyWith(y: avg);
-                                      }).toList(),
-                                    );
-                                  }
+                                            .map((rod) {
+                                      return rod.copyWith(y: avg);
+                                    }).toList(),
+                                  );
                                 }
-                              });
-                            }),
-                        titlesData: FlTitlesData(
-                          show: true,
-                          bottomTitles: SideTitles(
-                            showTitles: true,
-                            getTextStyles: (value, dbl) => const TextStyle(
-                                color: Color(0xff7589a2),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14),
-                            margin: 20,
-                            getTitles: (double value) {
-                              switch (value.toInt()) {
-                                case 0:
-                                  return 'Mn';
-                                case 1:
-                                  return 'Te';
-                                case 2:
-                                  return 'Wd';
-                                case 3:
-                                  return 'Tu';
-                                case 4:
-                                  return 'Fr';
-                                case 5:
-                                  return 'St';
-                                case 6:
-                                  return 'Sn';
-                                default:
-                                  return '';
                               }
-                            },
-                          ),
-                          leftTitles: SideTitles(
-                            showTitles: true,
-                            getTextStyles: (value, dbl) => const TextStyle(
-                                color: Color(0xff7589a2),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14),
-                            margin: 32,
-                            reservedSize: 14,
-                            getTitles: (value) {
-                              if (value == 0) {
-                                return '1K';
-                              } else if (value == 10) {
-                                return '5K';
-                              } else if (value == 19) {
-                                return '10K';
-                              } else {
+                            });
+                          }),
+                      titlesData: FlTitlesData(
+                        show: true,
+                        bottomTitles: SideTitles(
+                          showTitles: true,
+                          getTextStyles: (value, dbl) => const TextStyle(
+                              color: Color(0xff7589a2),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14),
+                          margin: 20,
+                          getTitles: (double value) {
+                            switch (value.toInt()) {
+                              case 0:
+                                return 'Mn';
+                              case 1:
+                                return 'Te';
+                              case 2:
+                                return 'Wd';
+                              case 3:
+                                return 'Tu';
+                              case 4:
+                                return 'Fr';
+                              case 5:
+                                return 'St';
+                              case 6:
+                                return 'Sn';
+                              default:
                                 return '';
-                              }
-                            },
-                          ),
+                            }
+                          },
                         ),
-                        borderData: FlBorderData(
-                          show: false,
+                        leftTitles: SideTitles(
+                          showTitles: true,
+                          getTextStyles: (value, dbl) => const TextStyle(
+                              color: Color(0xff7589a2),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14),
+                          margin: 32,
+                          reservedSize: 14,
+                          getTitles: (value) {
+                            if (value == 0) {
+                              return '1K';
+                            } else if (value == 10) {
+                              return '5K';
+                            } else if (value == 19) {
+                              return '10K';
+                            } else {
+                              return '';
+                            }
+                          },
                         ),
-                        barGroups: showingBarGroups,
                       ),
+                      borderData: FlBorderData(
+                        show: false,
+                      ),
+                      barGroups: showingBarGroups,
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 12,
-                ),
-              ],
-            ),
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+            ],
           ),
         ),
       ),

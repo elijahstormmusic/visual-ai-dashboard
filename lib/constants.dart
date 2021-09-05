@@ -10,5 +10,7 @@ class Constants {
   static String demo_source = 'assets/demo/';
   static String media_source = 'assets/demo/';
 
+  static String live_svgs = 'https://avatars.dicebear.com/api/human/';
+
   static String loading_placeholder = 'assets/images/loading.jpg';
 }

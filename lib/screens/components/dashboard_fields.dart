@@ -1,12 +1,12 @@
-
+import 'package:visual_ai/models/DashboardFiles.dart';
 import 'package:visual_ai/responsive.dart';
 import 'package:flutter/material.dart';
-import 'package:visual_ai/models/MyFiles.dart';
+
 import 'package:visual_ai/constants.dart';
 import 'file_info_card.dart';
 
-class MyFiles extends StatelessWidget {
-  const MyFiles({
+class DashboardFiles extends StatelessWidget {
+  const DashboardFiles({
     Key? key,
   }) : super(key: key);
 
@@ -40,7 +40,7 @@ class MyFiles extends StatelessWidget {
         Responsive(
           mobile: FileInfoCardGridView(
             crossAxisCount: _size.width < 650 ? 2 : 4,
-            childAspectRatio: _size.width < 650 ? 1.3 : 1,
+            childAspectRatio: _size.width < 650 && _size.width > 350 ? 1.3 : 1,
           ),
           tablet: FileInfoCardGridView(),
           desktop: FileInfoCardGridView(
@@ -67,14 +67,14 @@ class FileInfoCardGridView extends StatelessWidget {
     return GridView.builder(
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: demoMyFiles.length,
+      itemCount: demoDashboardFiles.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxisCount,
         crossAxisSpacing: defaultPadding,
         mainAxisSpacing: defaultPadding,
         childAspectRatio: childAspectRatio,
       ),
-      itemBuilder: (context, index) => FileInfoCard(info: demoMyFiles[index]),
+      itemBuilder: (context, index) => FileInfoCard(info: demoDashboardFiles[index]),
     );
   }
 }

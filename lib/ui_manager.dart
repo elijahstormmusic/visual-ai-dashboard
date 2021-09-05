@@ -4,8 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:visual_ai/controllers/MenuController.dart';
 import 'package:visual_ai/screens/main/screen.dart';
 
-import 'package:visual_ai/friendly/widget_tree.dart';
-
 
 class UI_Manager extends StatefulWidget {
   static const routeName = '/dash_main';
@@ -31,14 +29,12 @@ class _UI_State extends State<UI_Manager> {
     setState(() => _friendlyDisplay = friendly);
 
   @override
-  Widget build(BuildContext context) => _friendlyDisplay
-    ? WidgetTree()
-    : MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => MenuController(),
-        ),
-      ],
-      child: MainScreen(),
-    );
+  Widget build(BuildContext context) => MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+        create: (context) => MenuController(),
+      ),
+    ],
+    child: MainScreen(),
+  );
 }
