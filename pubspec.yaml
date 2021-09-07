@@ -24,6 +24,7 @@ dependencies:
   redux: ^5.0.0
   flutter_redux: ^0.8.2
   flutter_login: ^2.2.1
+  # upgrader: ^3.5.13
 
     # firebase
   firebase_auth: ^1.3.0

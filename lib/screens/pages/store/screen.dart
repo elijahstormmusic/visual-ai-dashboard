@@ -5,6 +5,8 @@ import 'package:visual_ai/screens/components/header.dart';
 import 'package:visual_ai/screens/components/no_content_placeholder.dart';
 import 'package:visual_ai/constants.dart';
 
+import 'components/popular_items_display.dart';
+
 
 class StoreScreen extends StatelessWidget {
   @override
@@ -23,7 +25,7 @@ class StoreScreen extends StatelessWidget {
                   flex: 5,
                   child: Column(
                     children: [
-                      NoContentPlaceholder(),
+                      PopularItems(),
                       SizedBox(height: defaultPadding),
                       NoContentPlaceholder(),
                       if (Responsive.isMobile(context))

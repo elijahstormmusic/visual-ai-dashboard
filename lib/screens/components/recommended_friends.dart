@@ -1,10 +1,13 @@
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'package:visual_ai/responsive.dart';
 import 'package:visual_ai/content/users/cache.dart';
 import 'package:visual_ai/constants.dart';
 
 import 'person_card_info.dart';
+
 
 class RecommendedFriends extends StatelessWidget {
   const RecommendedFriends({
@@ -65,17 +68,21 @@ class PersonCardInfoGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      physics: NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: UserCache.all.length,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: crossAxisCount,
-        crossAxisSpacing: defaultPadding,
-        mainAxisSpacing: defaultPadding,
-        childAspectRatio: childAspectRatio,
-      ),
-      itemBuilder: (context, index) => PersonCardInfo(info: UserCache.all[index]),
+    return Consumer<UserCache>(
+      builder: (context, cache, child) {
+        return GridView.builder(
+          physics: NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: cache.items.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: crossAxisCount,
+            crossAxisSpacing: defaultPadding,
+            mainAxisSpacing: defaultPadding,
+            childAspectRatio: childAspectRatio,
+          ),
+          itemBuilder: (context, index) => PersonCardInfo(info: cache.items[index]),
+        );
+      },
     );
   }
 }

@@ -3,15 +3,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-// import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
 import 'package:visual_ai/login/login_screen.dart';
 import 'package:visual_ai/login/transition_route_observer.dart';
 import 'package:visual_ai/login/user_state.dart';
-import 'package:visual_ai/content/users/cache.dart';
-import 'package:visual_ai/content/partners/cache.dart';
 import 'package:visual_ai/theme.dart';
 
 import 'package:visual_ai/constants.dart';
@@ -65,9 +62,6 @@ class DashboardApp extends StatelessWidget {
         AppDebugLogin.username.substring(0, AppDebugLogin.username.indexOf('@'))
       }.svg''';
     }
-
-    PartnerCache.load_mock_data();
-    UserCache.load_mock_data();
 
     return StoreConnector<AppState, bool>(
       distinct: true,

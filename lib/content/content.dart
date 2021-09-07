@@ -1,39 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
-import 'package:visual_ai/constants.dart';
 
 
 enum CONTENT {
   NONE,
   PROFILE,
+  STORE_ITEM,
+  TRAINING_DATA,
+  NOTIFICATION,
   AD,
 }
 
 class DashboardContent {
 
-  final String text, caption, sex, cryptlink;
-  // final List<String> pictures;
-  final bool online, verified;
+  final String text, caption, cryptlink;
+  final Map<String, dynamic> details;
 
   DashboardContent({
     required this.text,
     required this.caption,
-    // required this.picture,
-    required this.sex,
-    required this.online,
-    required this.verified,
+    required this.details,
     required this.cryptlink,
   });
 
-  Widget get icon => Container(
-    child: SvgPicture.network(
-      Constants.live_svgs + cryptlink + '.svg',
-      fit: BoxFit.fill,
-    ),
-    // child: Image.asset(
-    //   Constants.demo_source + pictures[0],
-    //   fit: BoxFit.fill,
-    // ),
-  );
+  Widget get icon => Container();
 }

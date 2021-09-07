@@ -4,7 +4,7 @@ import 'content.dart';
 import 'mock_content.dart';
 
 
-class UserCache extends ContentCache {
+class TrainingDataCache extends ContentCache {
   Map<String, dynamic> empty_shell(String cryptlink) {
     var data = MockContent.all[0];
 
@@ -13,13 +13,13 @@ class UserCache extends ContentCache {
     return data;
   }
 
-  UserCache() {
+  TrainingDataCache() {
     if (!ContentCache.Load_Mock_Data) return;
 
     var list = MockContent.all;
 
     for (int i=0;i<list.length;i++) {
-      add(ProfileContent(list[i]));
+      add(TrainingDataContent(list[i]));
     }
   }
 }

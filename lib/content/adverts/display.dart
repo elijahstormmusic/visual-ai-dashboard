@@ -4,19 +4,19 @@ import 'package:flutter_redux/flutter_redux.dart';
 
 import 'package:visual_ai/theme.dart';
 
-import 'partner.dart';
+import 'content.dart';
 
 
-class PartnerDisplayPage extends StatefulWidget {
+class AdvertisementContentDisplayPage extends StatefulWidget {
   final String cryptlink;
 
-  PartnerDisplayPage(this.cryptlink);
+  AdvertisementContentDisplayPage(this.cryptlink);
 
   @override
-  _PartnerDisplayPageState createState() => _PartnerDisplayPageState();
+  _UserContentDisplayPageState createState() => _UserContentDisplayPageState();
 }
 
-class _PartnerDisplayPageState extends State<PartnerDisplayPage> {
+class _UserContentDisplayPageState extends State<AdvertisementContentDisplayPage> {
 
   @override
   Widget build(BuildContext context) {

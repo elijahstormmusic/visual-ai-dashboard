@@ -7,16 +7,16 @@ import 'package:visual_ai/theme.dart';
 import 'content.dart';
 
 
-class UserContentDisplayPage extends StatefulWidget {
+class TrainingDataContentDisplayPage extends StatefulWidget {
   final String cryptlink;
 
-  UserContentDisplayPage(this.cryptlink);
+  TrainingDataContentDisplayPage(this.cryptlink);
 
   @override
   _UserContentDisplayPageState createState() => _UserContentDisplayPageState();
 }
 
-class _UserContentDisplayPageState extends State<UserContentDisplayPage> {
+class _UserContentDisplayPageState extends State<TrainingDataContentDisplayPage> {
 
   @override
   Widget build(BuildContext context) {

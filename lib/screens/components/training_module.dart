@@ -23,7 +23,7 @@ class TrainingModule extends StatelessWidget {
             children: [
               BlinkingContent(
                 child: Text(
-                  'Awaiting Content...',
+                  'Loading Training API...',
                   style: Theme.of(context).textTheme.subtitle1,
                 ),
               ),
