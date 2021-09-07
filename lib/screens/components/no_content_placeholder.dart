@@ -3,8 +3,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'package:visual_ai/responsive.dart';
 import 'package:visual_ai/constants.dart';
-import 'file_info_card.dart';
-import 'blinking_content.dart';
+import 'package:visual_ai/screens/components/blinking_content.dart';
 
 
 class NoContentPlaceholder extends StatelessWidget {

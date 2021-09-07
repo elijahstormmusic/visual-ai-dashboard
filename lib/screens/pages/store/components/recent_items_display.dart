@@ -9,8 +9,8 @@ import 'package:visual_ai/screens/components/store/store_item.dart';
 import 'package:visual_ai/content/store/cache.dart';
 
 
-class PopularItems extends StatelessWidget {
-  const PopularItems({
+class RecentItems extends StatelessWidget {
+  const RecentItems({
     Key? key,
   }) : super(key: key);
 
@@ -24,7 +24,7 @@ class PopularItems extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Popular Store Items',
+                'New Items',
                 style: Theme.of(context).textTheme.subtitle1,
               ),
               ElevatedButton.icon(
@@ -77,7 +77,7 @@ class NoContentFunSquare extends StatelessWidget {
         var items = cache.items;
 
         for (int i=0;i<items.length;i++) {
-          if (items[i].details['popular']) {
+          if (items[i].details['recent']) {
             filter.add(items[i]);
           }
         }

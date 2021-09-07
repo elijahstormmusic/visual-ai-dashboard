@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:visual_ai/responsive.dart';
 
 import 'package:visual_ai/screens/components/header.dart';
-import 'package:visual_ai/screens/components/recommended_friends.dart';
-import 'package:visual_ai/screens/components/recent_friend_activity.dart';
-import 'package:visual_ai/screens/components/recent_notifications.dart';
+import 'package:visual_ai/screens/components/team/recommended_friends.dart';
+import 'package:visual_ai/screens/components/notifications/recent_friend_activity.dart';
+import 'package:visual_ai/screens/components/notifications/recent_notifications.dart';
 import 'package:visual_ai/constants.dart';
 
 
@@ -36,7 +36,6 @@ class NotificationScreen extends StatelessWidget {
                 ),
                 if (!Responsive.isMobile(context))
                   SizedBox(width: defaultPadding),
-                // On Mobile means if the screen is less than 850 we dont want to show it
                 if (!Responsive.isMobile(context))
                   Expanded(
                     flex: 2,

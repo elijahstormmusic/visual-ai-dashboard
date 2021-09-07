@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:visual_ai/responsive.dart';
 
 import 'package:visual_ai/screens/components/header.dart';
-import 'package:visual_ai/screens/components/no_content_placeholder.dart';
 import 'package:visual_ai/constants.dart';
+
+import 'package:visual_ai/screens/components/team/profile_dash.dart';
+import 'package:visual_ai/screens/components/team/our_team_members.dart';
 
 
 class ProfileScreen extends StatelessWidget {
@@ -20,25 +22,20 @@ class ProfileScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  flex: 5,
+                  flex: 2,
                   child: Column(
                     children: [
-                      NoContentPlaceholder(),
-                      SizedBox(height: defaultPadding),
-                      NoContentPlaceholder(),
-                      if (Responsive.isMobile(context))
-                        SizedBox(height: defaultPadding),
-                      if (Responsive.isMobile(context)) NoContentPlaceholder(),
+                      DashboardProfileDisplay(),
+                      if (Responsive.isMobile(context)) SizedBox(height: defaultPadding),
+                      if (Responsive.isMobile(context)) OurTeamMembers(),
                     ],
                   ),
                 ),
                 if (!Responsive.isMobile(context))
                   SizedBox(width: defaultPadding),
-                // On Mobile means if the screen is less than 850 we dont want to show it
                 if (!Responsive.isMobile(context))
                   Expanded(
-                    flex: 2,
-                    child: NoContentPlaceholder(),
+                    child: OurTeamMembers(),
                   ),
               ],
             )

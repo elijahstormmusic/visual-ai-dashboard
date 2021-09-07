@@ -2,13 +2,13 @@ import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 
-import 'constants.dart';
 import 'custom_route.dart';
 import 'user_state.dart';
 import 'users.dart';
 
 import 'package:visual_ai/ui_manager.dart';
 import 'package:visual_ai/theme.dart';
+import 'package:visual_ai/constants.dart';
 
 
 class LoginScreen extends StatelessWidget {
@@ -27,7 +27,7 @@ class LoginScreen extends StatelessWidget {
 
       UserState.User = data.name;
       UserState.Auth = data.password;
-      UserState.Pic = '''https://avatars.dicebear.com/api/human/${
+      UserState.Pic = '''${Constants.live_svgs}${
         data.name.substring(0, data.name.indexOf('@'))
       }.svg''';
 

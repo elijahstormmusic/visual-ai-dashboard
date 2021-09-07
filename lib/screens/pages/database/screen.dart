@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:visual_ai/responsive.dart';
 
 import 'package:visual_ai/screens/components/header.dart';
-import 'package:visual_ai/screens/components/no_content_placeholder.dart';
 import 'package:visual_ai/constants.dart';
+
+import 'package:visual_ai/screens/components/training_data/recent.dart';
+import 'package:visual_ai/screens/components/training_data/other.dart';
+import 'package:visual_ai/screens/components/training_data/important.dart';
 
 
 class DatabaseScreen extends StatelessWidget {
@@ -23,22 +26,21 @@ class DatabaseScreen extends StatelessWidget {
                   flex: 5,
                   child: Column(
                     children: [
-                      NoContentPlaceholder(),
+                      MostImportantTrainingData(),
                       SizedBox(height: defaultPadding),
-                      NoContentPlaceholder(),
+                      RecentTrainingData(),
                       if (Responsive.isMobile(context))
                         SizedBox(height: defaultPadding),
-                      if (Responsive.isMobile(context)) NoContentPlaceholder(),
+                      if (Responsive.isMobile(context)) OtherTrainingData(),
                     ],
                   ),
                 ),
                 if (!Responsive.isMobile(context))
                   SizedBox(width: defaultPadding),
-                // On Mobile means if the screen is less than 850 we dont want to show it
                 if (!Responsive.isMobile(context))
                   Expanded(
                     flex: 2,
-                    child: NoContentPlaceholder(),
+                    child: OtherTrainingData(),
                   ),
               ],
             )

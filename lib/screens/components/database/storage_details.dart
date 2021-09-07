@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:visual_ai/constants.dart';
-import 'chart.dart';
+import 'package:visual_ai/screens/components/charts/chart.dart';
 import 'storage_info_card.dart';
 
 class StarageDetails extends StatelessWidget {

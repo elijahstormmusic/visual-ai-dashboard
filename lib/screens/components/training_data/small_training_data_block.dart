@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:visual_ai/content/content.dart';
 import 'package:visual_ai/constants.dart';
 
 
-class PersonCardInfo extends StatelessWidget {
-  const PersonCardInfo({
-    Key? key,
-    required this.info,
-  }) : super(key: key);
-
+class SmallTrainingDataBlock extends StatelessWidget {
   final DashboardContent info;
+
+  const SmallTrainingDataBlock(
+    this.info, {
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

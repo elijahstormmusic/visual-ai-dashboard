@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:visual_ai/responsive.dart';
 
 import 'package:visual_ai/screens/components/header.dart';
-import 'package:visual_ai/screens/components/no_content_placeholder.dart';
 import 'package:visual_ai/constants.dart';
+
+import 'components/settings_side.dart';
+import 'components/settings_main.dart';
+import 'components/settings_team.dart';
 
 
 class SettingsScreen extends StatelessWidget {
@@ -20,25 +23,24 @@ class SettingsScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  flex: 5,
+                  flex: 3,
                   child: Column(
                     children: [
-                      NoContentPlaceholder(),
+                      DashSettingsMain(),
                       SizedBox(height: defaultPadding),
-                      NoContentPlaceholder(),
+                      DashSettingsTeam(),
                       if (Responsive.isMobile(context))
                         SizedBox(height: defaultPadding),
-                      if (Responsive.isMobile(context)) NoContentPlaceholder(),
+                      if (Responsive.isMobile(context)) DashSettingsSide(),
                     ],
                   ),
                 ),
                 if (!Responsive.isMobile(context))
                   SizedBox(width: defaultPadding),
-                // On Mobile means if the screen is less than 850 we dont want to show it
                 if (!Responsive.isMobile(context))
                   Expanded(
                     flex: 2,
-                    child: NoContentPlaceholder(),
+                    child: DashSettingsSide(),
                   ),
               ],
             )

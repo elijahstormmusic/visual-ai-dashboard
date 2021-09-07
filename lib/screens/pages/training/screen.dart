@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:visual_ai/responsive.dart';
 
 import 'package:visual_ai/screens/components/header.dart';
-import 'package:visual_ai/screens/components/training_module.dart';
-import 'package:visual_ai/screens/components/recent_training_data.dart';
+import 'package:visual_ai/screens/components/training_data/training_module.dart';
+import 'package:visual_ai/screens/components/training_data/recent.dart';
 import 'package:visual_ai/constants.dart';
 
 
@@ -34,11 +34,12 @@ class TrainingScreen extends StatelessWidget {
                 ),
                 if (!Responsive.isMobile(context))
                   SizedBox(width: defaultPadding),
-                // On Mobile means if the screen is less than 850 we dont want to show it
                 if (!Responsive.isMobile(context))
                   Expanded(
                     flex: 2,
-                    child: RecentTrainingData(),
+                    child: RecentTrainingData(
+                      force_width: 2,
+                    ),
                   ),
               ],
             ),

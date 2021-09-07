@@ -58,7 +58,7 @@ class DashboardApp extends StatelessWidget {
 
       UserState.User = AppDebugLogin.username;
       UserState.Auth = AppDebugLogin.password;
-      UserState.Pic = '''https://avatars.dicebear.com/api/human/${
+      UserState.Pic = '''${Constants.live_svgs}${
         AppDebugLogin.username.substring(0, AppDebugLogin.username.indexOf('@'))
       }.svg''';
     }

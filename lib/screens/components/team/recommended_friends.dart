@@ -1,4 +1,4 @@
-
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -70,17 +70,27 @@ class PersonCardInfoGridView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<UserCache>(
       builder: (context, cache, child) {
+
+        List filter = [];
+        var items = cache.items;
+
+        for (int i=0;i<items.length;i++) {
+          if (!items[i].details['friend']) {
+            filter.add(items[i]);
+          }
+        }
+
         return GridView.builder(
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
-          itemCount: cache.items.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: crossAxisCount,
             crossAxisSpacing: defaultPadding,
             mainAxisSpacing: defaultPadding,
             childAspectRatio: childAspectRatio,
           ),
-          itemBuilder: (context, index) => PersonCardInfo(info: cache.items[index]),
+          itemCount: min(8, filter.length),
+          itemBuilder: (context, index) => PersonCardInfo(filter[index]),
         );
       },
     );

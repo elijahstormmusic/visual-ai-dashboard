@@ -12,7 +12,7 @@ class RecentNotifications extends StatelessWidget {
   const RecentNotifications({
     Key? key,
   }) : super(key: key);
-  
+
   DataRow recentNotoDataRow(DashboardContent notoInfo) {
     Color getColor(Set<MaterialState> states) {
       const Set<MaterialState> interactiveStates = <MaterialState>{
@@ -26,49 +26,6 @@ class RecentNotifications extends StatelessWidget {
       return Colors.red.withOpacity(0.1);
     }
 
-    Widget buildNotoIcon(String type) {
-      Color color = Colors.blue;
-      String asset = 'assets/icons/google-docs.svg';
-
-      switch (type) {
-        case 'account':
-        asset = 'assets/icons/user.svg';
-        color = Colors.yellow;
-        break;
-        case 'message':
-        asset = 'assets/icons/email.svg';
-        color = Colors.purple;
-        break;
-        case 'important':
-        asset = 'assets/icons/danger.svg';
-        color = Colors.red;
-        break;
-        case 'success':
-        asset = 'assets/icons/checked.svg';
-        color = Colors.green;
-        break;
-        case 'document':
-        asset = 'assets/icons/google-docs.svg';
-        color = Colors.blue;
-        break;
-        default:
-        asset = 'assets/icons/google-docs.svg';
-        color = Colors.blue;
-        break;
-      }
-
-      return Container(
-        height: 30,
-        width: 30,
-        color: color.withOpacity(0.3),
-        padding: EdgeInsets.all(6),
-        child: SvgPicture.asset(
-          asset,
-          color: color.withOpacity(0.7),
-        ),
-      );
-    }
-
     return DataRow(
       color: notoInfo.details['status'] == 'unread' ? MaterialStateProperty.resolveWith(getColor) : null,
       cells: [
@@ -77,7 +34,11 @@ class RecentNotifications extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
-                child: buildNotoIcon(notoInfo.details['type']),
+                child: Container(
+                  height: 30,
+                  width: 30,
+                  child: notoInfo.icon,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: defaultPadding),

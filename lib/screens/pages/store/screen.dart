@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:visual_ai/responsive.dart';
 
 import 'package:visual_ai/screens/components/header.dart';
-import 'package:visual_ai/screens/components/no_content_placeholder.dart';
 import 'package:visual_ai/constants.dart';
 
 import 'components/popular_items_display.dart';
+import 'components/recent_items_display.dart';
+import 'components/purchased_items_display.dart';
 
 
 class StoreScreen extends StatelessWidget {
@@ -27,20 +28,19 @@ class StoreScreen extends StatelessWidget {
                     children: [
                       PopularItems(),
                       SizedBox(height: defaultPadding),
-                      NoContentPlaceholder(),
+                      RecentItems(),
                       if (Responsive.isMobile(context))
                         SizedBox(height: defaultPadding),
-                      if (Responsive.isMobile(context)) NoContentPlaceholder(),
+                      if (Responsive.isMobile(context)) PurchasedStoreItems(),
                     ],
                   ),
                 ),
                 if (!Responsive.isMobile(context))
                   SizedBox(width: defaultPadding),
-                // On Mobile means if the screen is less than 850 we dont want to show it
                 if (!Responsive.isMobile(context))
                   Expanded(
                     flex: 2,
-                    child: NoContentPlaceholder(),
+                    child: PurchasedStoreItems(),
                   ),
               ],
             )

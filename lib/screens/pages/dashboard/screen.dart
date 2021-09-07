@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:visual_ai/responsive.dart';
 
 import 'package:visual_ai/screens/components/header.dart';
-import 'package:visual_ai/screens/components/dashboard_fields.dart';
-import 'package:visual_ai/screens/components/recent_files.dart';
-import 'package:visual_ai/screens/components/storage_details.dart';
+import 'package:visual_ai/screens/components/database/dashboard_fields.dart';
+import 'package:visual_ai/screens/components/database/recent_files.dart';
+import 'package:visual_ai/screens/components/database/storage_details.dart';
 import 'package:visual_ai/constants.dart';
 
 
@@ -36,7 +36,6 @@ class DashboardScreen extends StatelessWidget {
                 ),
                 if (!Responsive.isMobile(context))
                   SizedBox(width: defaultPadding),
-                // On Mobile means if the screen is less than 850 we dont want to show it
                 if (!Responsive.isMobile(context))
                   Expanded(
                     flex: 2,

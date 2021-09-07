@@ -1,16 +1,21 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:visual_ai/responsive.dart';
 import 'package:visual_ai/constants.dart';
-import 'package:visual_ai/content/content.dart';
 import 'package:visual_ai/content/training_data/cache.dart';
+
+import 'small_training_data_block.dart';
 
 
 class RecentTrainingData extends StatelessWidget {
   const RecentTrainingData({
     Key? key,
+    this.force_width = 4,
   }) : super(key: key);
+
+  final int force_width;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +27,7 @@ class RecentTrainingData extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Training Data',
+                'Recent Training Data',
                 style: Theme.of(context).textTheme.subtitle1,
               ),
               ElevatedButton.icon(
@@ -42,12 +47,15 @@ class RecentTrainingData extends StatelessWidget {
           SizedBox(height: defaultPadding),
           Responsive(
             mobile: TrainingDataBlock(
-              crossAxisCount: _size.width < 650 ? 2 : 4,
+              crossAxisCount: _size.width < 650 ? 2 : 2,
               childAspectRatio: _size.width < 650 ? 1.3 : 1,
             ),
-            tablet: TrainingDataBlock(),
+            tablet: TrainingDataBlock(
+              crossAxisCount: force_width,
+            ),
             desktop: TrainingDataBlock(
               childAspectRatio: _size.width < 1400 ? 1.1 : 1.4,
+              crossAxisCount: force_width,
             ),
           ),
         ],
@@ -70,6 +78,16 @@ class TrainingDataBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<TrainingDataCache>(
       builder: (context, cache, child) {
+
+        List filter = [];
+        var items = cache.items;
+
+        for (int i=0;i<items.length;i++) {
+          if (items[i].details['recent']) {
+            filter.add(items[i]);
+          }
+        }
+
         return GridView.builder(
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
@@ -79,38 +97,18 @@ class TrainingDataBlock extends StatelessWidget {
             mainAxisSpacing: defaultPadding,
             childAspectRatio: childAspectRatio,
           ),
-          itemCount: cache.items.length,
+          itemCount: min(8, filter.length),
           itemBuilder: (context, index) => Container(
             decoration: BoxDecoration(
               color: secondaryColor,
               borderRadius: const BorderRadius.all(Radius.circular(10)),
             ),
             child: SmallTrainingDataBlock(
-              cache.items[index],
+              filter[index],
             ),
           ),
         );
       },
-    );
-  }
-}
-
-class SmallTrainingDataBlock extends StatelessWidget {
-  final DashboardContent item;
-
-  const SmallTrainingDataBlock(
-    this.item, {
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: secondaryColor,
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
-      ),
-      child: Text(item.text),
     );
   }
 }
