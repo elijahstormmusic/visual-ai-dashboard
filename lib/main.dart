@@ -1,18 +1,22 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
+import 'package:visual_ai/firestore/firestore.dart';
 import 'package:visual_ai/login/login_screen.dart';
 import 'package:visual_ai/login/transition_route_observer.dart';
 import 'package:visual_ai/login/user_state.dart';
 import 'package:visual_ai/theme.dart';
+import 'package:visual_ai/pages/404/error.dart';
 
 import 'package:visual_ai/constants.dart';
 import 'package:visual_ai/ui_manager.dart';
+import 'package:visual_ai/content/cache.dart';
 
 
 void main() async {
@@ -23,6 +27,7 @@ void main() async {
   //   ),
   // );
   //
+  await Firebase.initializeApp();
 
   final store = Store<AppState>(
     reducer,
@@ -41,26 +46,13 @@ class DashboardApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    dynamic launchState = LoginScreen();
-    String _initialRoute = LoginScreen.routeName;
-
-    if (UserState.User != '') {
-      launchState = UI_Manager();
-      _initialRoute = UI_Manager.routeName;
-    }
-
     if (
       !kReleaseMode &&
       AppDebugLogin.bypass
-    ) {
-      launchState = UI_Manager();
-      _initialRoute = UI_Manager.routeName;
-
-      UserState.User = AppDebugLogin.username;
-      UserState.Auth = AppDebugLogin.password;
-      UserState.Pic = '''${Constants.live_svgs}${
-        AppDebugLogin.username.substring(0, AppDebugLogin.username.indexOf('@'))
-      }.svg''';
+    ) { // lanching in debug mode
+      ContentCache.Load_Mock_Data = true;
+      UserState.Load_Mock_Data = true;
+      FirestoreApi.Disabled = true;
     }
 
     return StoreConnector<AppState, bool>(
@@ -68,22 +60,26 @@ class DashboardApp extends StatelessWidget {
       converter: (store) => store.state.enableDarkMode,
       builder: (_, bool enableDarkMode) {
         return MaterialApp(
+          // unknownRoute: GetPage(name: '/not-found', page: () => PageNotFound(), transition: Transition.fadeIn),
           debugShowCheckedModeBanner: false,
-          title: 'V.AI Admin Panel',
-          // theme: MainAppTheme.light,
-          // darkTheme: MainAppTheme.dark,
-          // themeMode: enableDarkMode ? ThemeMode.dark : ThemeMode.light,
-          theme: ThemeData.dark().copyWith(
-            scaffoldBackgroundColor: bgColor,
+          title: '${Constants.appName} | ${Constants.appTitleDesc}',
+          theme: ThemeData.light().copyWith(
             textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
-                .apply(bodyColor: Colors.white),
-            canvasColor: secondaryColor,
+              .apply(bodyColor: Colors.black),
+            cardColor: cardColorLight,
+            scaffoldBackgroundColor: bgColorLight,
+            primaryColor: primaryColorLight,
           ),
-          home: launchState,
-          initialRoute: _initialRoute,
-          navigatorObservers: [TransitionRouteObserver()],
+          darkTheme: ThemeData.dark().copyWith(
+            textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
+              .apply(bodyColor: Colors.white),
+            cardColor: cardColorDark,
+            scaffoldBackgroundColor: bgColorDark,
+            primaryColor: primaryColorDark,
+          ),
+          themeMode: enableDarkMode ? ThemeMode.dark : ThemeMode.light,
+          initialRoute: UI_Manager.routeName,
           routes: {
-            LoginScreen.routeName: (context) => LoginScreen(),
             UI_Manager.routeName: (context) => UI_Manager(),
           },
         );

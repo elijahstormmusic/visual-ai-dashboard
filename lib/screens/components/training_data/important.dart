@@ -32,7 +32,7 @@ class MostImportantTrainingData extends StatelessWidget {
                   padding: EdgeInsets.symmetric(
                     horizontal: defaultPadding * 1.5,
                     vertical:
-                    defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
+                      defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
                   ),
                 ),
                 onPressed: () {},
@@ -94,7 +94,7 @@ class TrainingDataBlock extends StatelessWidget {
           itemCount: min(8, filter.length),
           itemBuilder: (context, index) => Container(
             decoration: BoxDecoration(
-              color: secondaryColor,
+              color: Theme.of(context).cardColor,
               borderRadius: const BorderRadius.all(Radius.circular(10)),
             ),
             child: SmallTrainingDataBlock(

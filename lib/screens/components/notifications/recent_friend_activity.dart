@@ -64,7 +64,7 @@ class RecentFriendActivities extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
-        color: secondaryColor,
+        color: Theme.of(context).cardColor,
         borderRadius: const BorderRadius.all(Radius.circular(6)),
       ),
       child: Column(

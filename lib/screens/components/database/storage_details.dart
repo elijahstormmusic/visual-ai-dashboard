@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:visual_ai/constants.dart';
-import 'package:visual_ai/screens/components/charts/chart.dart';
+import 'package:visual_ai/screens/components/charts/charts.dart';
 import 'storage_info_card.dart';
 
 class StarageDetails extends StatelessWidget {
@@ -14,7 +14,7 @@ class StarageDetails extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
-        color: secondaryColor,
+        color: Theme.of(context).cardColor,
         borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: Column(

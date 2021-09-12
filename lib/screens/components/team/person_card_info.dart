@@ -19,7 +19,7 @@ class PersonCardInfo extends StatelessWidget {
       borderRadius: const BorderRadius.all(Radius.circular(10)),
       child: Container(
         decoration: BoxDecoration(
-          color: secondaryColor,
+          color: Theme.of(context).cardColor,
           borderRadius: const BorderRadius.all(Radius.circular(10)),
         ),
         child: Column(

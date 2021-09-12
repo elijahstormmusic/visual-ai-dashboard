@@ -6,6 +6,10 @@ import 'package:visual_ai/constants.dart';
 
 
 class Chart extends StatelessWidget {
+  const Chart({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -28,9 +32,9 @@ class Chart extends StatelessWidget {
                 Text(
                   '29.1',
                   style: Theme.of(context).textTheme.headline4!.copyWith(
-                        color: Colors.white,
                         fontWeight: FontWeight.w600,
                         height: 0.5,
+                        color: Theme.of(context).iconTheme.color!,
                       ),
                 ),
                 Text('of 128GB')
@@ -45,7 +49,7 @@ class Chart extends StatelessWidget {
 
 List<PieChartSectionData> paiChartSelectionDatas = [
   PieChartSectionData(
-    color: Colors.purple,
+    color: primaryColorDark,
     value: 25,
     showTitle: false,
     radius: 25,
@@ -69,12 +73,13 @@ List<PieChartSectionData> paiChartSelectionDatas = [
     radius: 16,
   ),
   PieChartSectionData(
-    color: Colors.orange,
+    color: primaryColorDark.withOpacity(0.1),
     value: 25,
     showTitle: false,
     radius: 13,
   ),
 ];
+
 
 class PieChartSample2 extends StatefulWidget {
   @override
@@ -89,7 +94,7 @@ class PieChart2State extends State {
     return Container(
       padding: const EdgeInsets.all(defaultPadding / 2),
       decoration: BoxDecoration(
-        color: secondaryColor,
+        color: Theme.of(context).cardColor,
         borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: Row(
@@ -235,7 +240,6 @@ class Indicator extends StatelessWidget {
   final String text;
   final bool isSquare;
   final double size;
-  final Color textColor;
 
   const Indicator({
     Key? key,
@@ -243,7 +247,6 @@ class Indicator extends StatelessWidget {
     required this.text,
     required this.isSquare,
     this.size = 16,
-    this.textColor = Colors.white70,
   }) : super(key: key);
 
   @override
@@ -264,8 +267,8 @@ class Indicator extends StatelessWidget {
         Text(
           text,
           style: TextStyle(
-              fontSize: 16, fontWeight: FontWeight.bold, color: textColor),
-        )
+              fontSize: 16, fontWeight: FontWeight.bold),
+        ),
       ],
     );
   }
@@ -289,7 +292,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
     return Container(
       padding: const EdgeInsets.all(defaultPadding / 2),
       decoration: BoxDecoration(
-        color: secondaryColor,
+        color: Theme.of(context).cardColor,
         borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: Stack(
@@ -320,13 +323,14 @@ class _LineChartSample2State extends State<LineChartSample2> {
                   showAvg = !showAvg;
                 });
               },
-              child: Text(
-                'avg',
-                style: TextStyle(
+              child: Opacity(
+                opacity: showAvg ? 0.5 : 1,
+                child: Text(
+                  'avg',
+                  style: TextStyle(
                     fontSize: 12,
-                    color: showAvg
-                        ? Colors.white.withOpacity(0.5)
-                        : Colors.white),
+                  ),
+                ),
               ),
             ),
           ),
@@ -558,7 +562,7 @@ class LineChartSample1State extends State<LineChartSample1> {
     return Container(
       padding: const EdgeInsets.all(defaultPadding / 2),
       decoration: BoxDecoration(
-        color: secondaryColor,
+        color: Theme.of(context).cardColor,
         borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: AspectRatio(
@@ -585,7 +589,6 @@ class LineChartSample1State extends State<LineChartSample1> {
                 const Text(
                   'Monthly Sales',
                   style: TextStyle(
-                      color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 2),
@@ -609,18 +612,19 @@ class LineChartSample1State extends State<LineChartSample1> {
                 ),
               ],
             ),
-            IconButton(
-              icon: Icon(
-                Icons.refresh,
-                color:
-                    Colors.white.withOpacity(isShowingMainData ? 1.0 : 0.5),
+            Opacity(
+              opacity: isShowingMainData ? 1.0 : 0.5,
+              child: IconButton(
+                icon: Icon(
+                  Icons.refresh,
+                ),
+                onPressed: () {
+                  setState(() {
+                    isShowingMainData = !isShowingMainData;
+                  });
+                },
               ),
-              onPressed: () {
-                setState(() {
-                  isShowingMainData = !isShowingMainData;
-                });
-              },
-            )
+            ),
           ],
         ),
       ),
@@ -982,7 +986,7 @@ class BarChartSample2State extends State<BarChartSample2> {
     return Container(
       padding: const EdgeInsets.all(defaultPadding / 2),
       decoration: BoxDecoration(
-        color: secondaryColor,
+        color: Theme.of(context).cardColor,
         borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: AspectRatio(
@@ -999,15 +1003,14 @@ class BarChartSample2State extends State<BarChartSample2> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  //makeTransactionsIcon(),
+                  // makeTransactionsIcon(),
                   const Text(
                     'Monthly Profits',
-                    style: TextStyle(color: Colors.white, fontSize: 18),
+                    style: TextStyle(fontSize: 18),
                   ),
                   const Text(
                     r'$345,462',
                     style: TextStyle(
-                      color: Colors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -1187,42 +1190,57 @@ class BarChartSample2State extends State<BarChartSample2> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        Container(
-          width: width,
-          height: 10,
-          color: Colors.white.withOpacity(0.4),
+        Opacity(
+          opacity: 0.4,
+          child: Container(
+            width: width,
+            height: 10,
+            color: Theme.of(context).accentColor,
+          ),
         ),
         const SizedBox(
           width: space,
         ),
-        Container(
-          width: width,
-          height: 28,
-          color: Colors.white.withOpacity(0.8),
+        Opacity(
+          opacity: 0.8,
+          child: Container(
+            width: width,
+            height: 28,
+            color: Theme.of(context).accentColor,
+          ),
         ),
         const SizedBox(
           width: space,
         ),
-        Container(
-          width: width,
-          height: 42,
-          color: Colors.white.withOpacity(1),
+        Opacity(
+          opacity: 1,
+          child: Container(
+            width: width,
+            height: 42,
+            color: Theme.of(context).accentColor,
+          ),
         ),
         const SizedBox(
           width: space,
         ),
-        Container(
-          width: width,
-          height: 28,
-          color: Colors.white.withOpacity(0.8),
+        Opacity(
+          opacity: 0.8,
+          child: Container(
+            width: width,
+            height: 28,
+            color: Theme.of(context).accentColor,
+          ),
         ),
         const SizedBox(
           width: space,
         ),
-        Container(
-          width: width,
-          height: 10,
-          color: Colors.white.withOpacity(0.4),
+        Opacity(
+          opacity: 0.4,
+          child: Container(
+            width: width,
+            height: 10,
+            color: Theme.of(context).accentColor,
+          ),
         ),
       ],
     );

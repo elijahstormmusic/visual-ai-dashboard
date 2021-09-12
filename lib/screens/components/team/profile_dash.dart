@@ -23,7 +23,7 @@ class DashboardProfileDisplay extends StatelessWidget {
         Container(
           height: 500.0,
           decoration: BoxDecoration(
-            color: secondaryColor,
+            color: Theme.of(context).cardColor,
             borderRadius: const BorderRadius.all(Radius.circular(10)),
           ),
           padding: EdgeInsets.all(defaultPadding),

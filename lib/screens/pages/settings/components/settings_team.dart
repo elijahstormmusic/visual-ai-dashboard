@@ -27,7 +27,18 @@ class DashSettingsTeam extends StatelessWidget {
             ],
           ),
           SizedBox(height: defaultPadding),
-          CheckBoxSettings(),
+          Container(
+            padding: EdgeInsets.all(defaultPadding),
+            decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
+            ),
+            child: Column(
+              children: [
+                CheckBoxSettings(),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -64,7 +75,6 @@ class _StateCheckBoxSettings extends State<CheckBoxSettings> {
         (index) => CheckboxListTile(
           title: Text(
             _todos[index].name,
-            style: TextStyle(color: Colors.white),
           ),
           value: _todos[index].enable,
           onChanged: (newValue) {

@@ -61,7 +61,7 @@ class RecentItems extends StatelessWidget {
 class NoContentFunSquare extends StatelessWidget {
   const NoContentFunSquare({
     Key? key,
-    this.crossAxisCount = 4,
+    this.crossAxisCount = 3,
     this.childAspectRatio = 1,
   }) : super(key: key);
 
@@ -91,7 +91,7 @@ class NoContentFunSquare extends StatelessWidget {
             mainAxisSpacing: defaultPadding,
             childAspectRatio: childAspectRatio,
           ),
-          itemCount: min(8, filter.length),
+          itemCount: min(9, filter.length),
           itemBuilder: (context, index) => StoreItem(
               filter[index],
           ),

@@ -222,7 +222,7 @@ class MockContent {
         'purchased': false,
       },
       'cryptlink': 'newitem7',
-    },
+      },
     {
       'type': CONTENT.STORE_ITEM,
       'text': 'popular7',

@@ -54,7 +54,7 @@ class _HeaderState extends State<Header> with TickerProviderStateMixin {
                     defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
                   ),
                   decoration: BoxDecoration(
-                    color: secondaryColor,
+                    color: Theme.of(context).cardColor,
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
                   ),
                   child: Row(
@@ -76,7 +76,7 @@ class _HeaderState extends State<Header> with TickerProviderStateMixin {
                     defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
                   ),
                   decoration: BoxDecoration(
-                    color: secondaryColor,
+                    color: Theme.of(context).cardColor,
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
                   ),
                   child: Row(
@@ -98,7 +98,7 @@ class _HeaderState extends State<Header> with TickerProviderStateMixin {
                     defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
                   ),
                   decoration: BoxDecoration(
-                    color: secondaryColor,
+                    color: Theme.of(context).cardColor,
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
                   ),
                   child: Row(
@@ -113,23 +113,31 @@ class _HeaderState extends State<Header> with TickerProviderStateMixin {
 
                 SizedBox(height: defaultPadding),
 
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: defaultPadding * 1.5,
-                    vertical:
-                    defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
-                  ),
-                  decoration: BoxDecoration(
-                    color: secondaryColor,
-                    borderRadius: const BorderRadius.all(Radius.circular(10)),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text('Log Out'),
-                      SizedBox(width: defaultPadding),
-                      Icon(Icons.exit_to_app),
-                    ],
+                Consumer<UserState>(
+                  builder: (context, userstate, child) {
+                    return GestureDetector(
+                      child: child,
+                      onTap: () => userstate.logout(),
+                    );
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: defaultPadding * 1.5,
+                      vertical:
+                      defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
+                    ),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text('Log Out'),
+                        SizedBox(width: defaultPadding),
+                        Icon(Icons.exit_to_app),
+                      ],
+                    ),
                   ),
                 ),
 
@@ -190,24 +198,28 @@ class ProfileCard extends StatelessWidget {
           vertical: defaultPadding / 2,
         ),
         decoration: BoxDecoration(
-          color: secondaryColor,
+          color: Theme.of(context).cardColor,
           borderRadius: const BorderRadius.all(Radius.circular(10)),
           border: Border.all(color: Colors.white10),
         ),
-        child: Row(
-          children: [
-            SvgPicture.network(
-              UserState.Pic,
-              height: 38,
-            ),
-            if (!Responsive.isMobile(context))
-            Padding(
-              padding:
-              const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-              child: Text(UserState.User),
-            ),
-            Icon(Icons.keyboard_arrow_down),
-          ],
+        child: Consumer<UserState>(
+          builder: (context, userstate, child) {
+            return Row(
+              children: [
+                SvgPicture.network(
+                  userstate.data.icon,
+                  height: 38,
+                ),
+                if (!Responsive.isMobile(context))
+                Padding(
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
+                  child: Text(userstate.data.name),
+                ),
+                Icon(Icons.keyboard_arrow_down),
+              ],
+            );
+          },
         ),
       ),
     );
@@ -224,7 +236,7 @@ class SearchField extends StatelessWidget {
     return TextField(
       decoration: InputDecoration(
         hintText: 'Search',
-        fillColor: secondaryColor,
+        fillColor: Theme.of(context).cardColor,
         filled: true,
         border: OutlineInputBorder(
           borderSide: BorderSide.none,
@@ -236,7 +248,7 @@ class SearchField extends StatelessWidget {
             padding: EdgeInsets.all(defaultPadding * 0.75),
             margin: EdgeInsets.symmetric(horizontal: defaultPadding / 2),
             decoration: BoxDecoration(
-              color: primaryColor,
+              color: Theme.of(context).primaryColor,
               borderRadius: const BorderRadius.all(Radius.circular(10)),
             ),
             child: SvgPicture.asset('assets/icons/Search.svg'),

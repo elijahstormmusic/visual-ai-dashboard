@@ -36,23 +36,23 @@ class _PanelRightPageState extends State<PanelRightPage> {
         Container(
           padding: const EdgeInsets.all(defaultPadding / 2),
           decoration: BoxDecoration(
-            color: secondaryColor,
+            color: Theme.of(context).cardColor,
             borderRadius: const BorderRadius.all(Radius.circular(10)),
           ),
           child: ListTile(
             leading: Icon(Icons.monetization_on),
             title: Text(
               'Net Revenue',
-              style: TextStyle(color: Colors.white),
             ),
             subtitle: Text(
               '7% of Sales Avg.',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(
+                color: Theme.of(context).accentColor,
+              ),
             ),
             trailing: Chip(
               label: Text(
                 r'$46,450',
-                style: TextStyle(color: Colors.white),
               ),
             ),
           ),
@@ -67,7 +67,7 @@ class _PanelRightPageState extends State<PanelRightPage> {
         Container(
           padding: const EdgeInsets.all(defaultPadding / 2),
           decoration: BoxDecoration(
-            color: secondaryColor,
+            color: Theme.of(context).cardColor,
             borderRadius: const BorderRadius.all(Radius.circular(10)),
           ),
           child: Column(
@@ -76,7 +76,6 @@ class _PanelRightPageState extends State<PanelRightPage> {
               (index) => SwitchListTile.adaptive(
                 title: Text(
                   _products[index].name,
-                  style: TextStyle(color: Colors.white),
                 ),
                 value: _products[index].enable,
                 onChanged: (newValue) {

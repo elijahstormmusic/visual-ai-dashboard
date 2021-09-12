@@ -34,23 +34,23 @@ class _PanelCenterPageState extends State<PanelCenterPage> {
         Container(
           padding: const EdgeInsets.all(defaultPadding / 2),
           decoration: BoxDecoration(
-            color: secondaryColor,
+            color: Theme.of(context).cardColor,
             borderRadius: const BorderRadius.all(Radius.circular(10)),
           ),
           child: ListTile(
             leading: Icon(Icons.sell),
             title: Text(
               'Products Available',
-              style: TextStyle(color: Colors.white),
             ),
             subtitle: Text(
               '82% of Products Avail.',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(
+                color: Theme.of(context).accentColor,
+              ),
             ),
             trailing: Chip(
               label: Text(
                 '20,500',
-                style: TextStyle(color: Colors.white),
               ),
             ),
           ),
@@ -65,7 +65,7 @@ class _PanelCenterPageState extends State<PanelCenterPage> {
         Container(
           padding: const EdgeInsets.all(defaultPadding / 2),
           decoration: BoxDecoration(
-            color: secondaryColor,
+            color: Theme.of(context).cardColor,
             borderRadius: const BorderRadius.all(Radius.circular(10)),
           ),
           child: Column(
@@ -74,7 +74,6 @@ class _PanelCenterPageState extends State<PanelCenterPage> {
               (index) => CheckboxListTile(
                 title: Text(
                   _todos[index].name,
-                  style: TextStyle(color: Colors.white),
                 ),
                 value: _todos[index].enable,
                 onChanged: (newValue) {

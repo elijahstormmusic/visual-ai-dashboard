@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:visual_ai/responsive.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 
 import 'package:visual_ai/screens/components/header.dart';
 import 'package:visual_ai/constants.dart';

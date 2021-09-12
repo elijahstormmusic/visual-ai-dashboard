@@ -69,11 +69,10 @@ class NoContentFunSquare extends StatelessWidget {
       ),
       itemBuilder: (context, index) => Container(
         decoration: BoxDecoration(
-          color: secondaryColor,
+          color: Theme.of(context).cardColor,
           borderRadius: const BorderRadius.all(Radius.circular(10)),
         ),
         child: SpinKitDancingSquare(
-          color: Colors.white,
           size: 50.0,
         ),
       ),

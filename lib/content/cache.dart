@@ -1,10 +1,10 @@
-
 import 'package:flutter/foundation.dart';
 
 import 'content.dart';
 
+
 class ContentCache extends ChangeNotifier {
-  static bool Load_Mock_Data = true;
+  static bool Load_Mock_Data = false;
 
   List<DashboardContent> _items = [];
 

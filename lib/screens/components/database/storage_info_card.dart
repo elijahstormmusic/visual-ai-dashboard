@@ -21,7 +21,7 @@ class StorageInfoCard extends StatelessWidget {
       margin: EdgeInsets.only(top: defaultPadding),
       padding: EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
-        border: Border.all(width: 2, color: primaryColor.withOpacity(0.15)),
+        border: Border.all(width: 2, color: Theme.of(context).accentColor.withOpacity(0.15)),
         borderRadius: const BorderRadius.all(
           Radius.circular(defaultPadding),
         ),
@@ -44,18 +44,17 @@ class StorageInfoCard extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  Text(
-                    '$numOfFiles Files',
-                    style: Theme.of(context)
-                        .textTheme
-                        .caption!
-                        .copyWith(color: Colors.white70),
-                  ),
+                  Opacity(
+                    opacity: 0.8,
+                    child: Text(
+                      '$numOfFiles Files',
+                    ),
+                  )
                 ],
               ),
             ),
           ),
-          Text(amountOfFiles)
+          Text(amountOfFiles),
         ],
       ),
     );

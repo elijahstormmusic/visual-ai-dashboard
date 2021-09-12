@@ -56,7 +56,7 @@ class MockContent {
         'type': 'message',
         'status': 'unread',
       },
-      'cryptlink': 'linkMessage',
+      'cryptlink': 'linkMessage2',
     },
     {
       'type': CONTENT.NOTIFICATION,

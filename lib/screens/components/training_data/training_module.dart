@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'package:visual_ai/responsive.dart';
 import 'package:visual_ai/constants.dart';
 import 'package:visual_ai/screens/components/blinking_content.dart';
+
+import 'package:visual_ai/screens/components/loading.dart';
 
 
 class TrainingModule extends StatelessWidget {
@@ -43,14 +44,11 @@ class TrainingModule extends StatelessWidget {
           SizedBox(height: defaultPadding),
           Container(
             decoration: BoxDecoration(
-              color: secondaryColor,
+              color: Theme.of(context).cardColor,
               borderRadius: const BorderRadius.all(Radius.circular(10)),
             ),
             height: 500.0,
-            child: SpinKitDancingSquare(
-              color: Colors.white,
-              size: 50.0,
-            ),
+            child: Loading(),
           ),
         ],
       ),

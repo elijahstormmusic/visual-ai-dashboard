@@ -1,40 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'package:visual_ai/controllers/MenuController.dart';
 import 'package:visual_ai/screens/main/screen.dart';
+import 'package:visual_ai/screens/components/loading.dart';
+import 'package:visual_ai/login/user_state.dart';
+import 'package:visual_ai/login/login_screen.dart';
 
 
 class UI_Manager extends StatefulWidget {
   static const routeName = '/dash_main';
 
-  static _UI_State state = _UI_State();
-
-  static void friendly() {
-    state.changeDisplay(true);
-  }
-  static void normal() {
-    state.changeDisplay(false);
-  }
-
   @override
-  _UI_State createState() => UI_Manager.state;
+  _UI_ManagerState createState() => _UI_ManagerState();
 }
 
-class _UI_State extends State<UI_Manager> {
+class _UI_ManagerState extends State<UI_Manager> {
 
-  bool _friendlyDisplay = false;
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
-  void changeDisplay(bool friendly) =>
-    setState(() => _friendlyDisplay = friendly);
+  Widget mainScreen(BuildContext context) => MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => MenuController()),
+      ChangeNotifierProvider(create: (context) => UserState()),
+    ],
+    child: Consumer<UserState>(
+      builder: (context, userstate, child) {
+
+        return userstate.data.name == ''
+          ? LoginScreen()
+          : MainScreen();
+      },
+    ),
+  );
 
   @override
-  Widget build(BuildContext context) => MultiProvider(
-    providers: [
-      ChangeNotifierProvider(
-        create: (context) => MenuController(),
-      ),
-    ],
-    child: MainScreen(),
+  Widget build(BuildContext context) => FutureBuilder(
+    future: _initialization,
+    builder: (context, snapshot) {
+      if (snapshot.hasError) {
+        return Container(
+          child: Text('''
+          Something went wrong.
+
+          ${snapshot.error.toString()}
+          '''),
+        );
+      }
+
+      if (snapshot.connectionState == ConnectionState.done) {
+        return mainScreen(context);
+      }
+
+      return Loading();
+    },
   );
 }

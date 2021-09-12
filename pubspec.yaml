@@ -14,7 +14,6 @@ dependencies:
 
     # dash shell
   cupertino_icons: ^1.0.3
-  curved_navigation_bar: ^1.0.1 # friendly UI
   google_fonts: ^2.1.0
   flutter_svg: ^0.22.0
   fl_chart: ^0.36.2

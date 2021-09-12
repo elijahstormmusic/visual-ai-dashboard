@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:visual_ai/responsive.dart';
 import 'package:visual_ai/ui_manager.dart';
 import 'package:visual_ai/screens/main/screen.dart';
+import 'package:visual_ai/constants.dart';
 
 
 class SideMenu extends StatelessWidget {
@@ -21,7 +22,19 @@ class SideMenu extends StatelessWidget {
       child: ListView(
         children: [
           DrawerHeader(
-            child: Image.asset('assets/images/logo.png'),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(Constants.logo_asset),
+                SizedBox(width: defaultPadding * 0.5),
+                Text(
+                  Constants.appName,
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+              ],
+            ),
           ),
           DrawerListTile(
             title: 'Dashboard',
@@ -107,12 +120,14 @@ class DrawerListTile extends StatelessWidget {
       horizontalTitleGap: 0.0,
       leading: SvgPicture.asset(
         svgSrc,
-        color: Colors.white54,
         height: 16,
+        color: Theme.of(context).iconTheme.color!,
       ),
-      title: Text(
-        title,
-        style: TextStyle(color: Colors.white54),
+      title: Opacity(
+        opacity: 0.8,
+        child: Text(
+          title,
+        ),
       ),
     );
   }

@@ -94,7 +94,7 @@ class TrainingDataBlock extends StatelessWidget {
           itemCount: min(8, filter.length),
           itemBuilder: (context, index) => Container(
             decoration: BoxDecoration(
-              color: secondaryColor,
+              color: Theme.of(context).cardColor,
               borderRadius: const BorderRadius.all(Radius.circular(10)),
             ),
             child: SmallTrainingDataBlock(
