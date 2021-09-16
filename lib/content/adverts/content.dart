@@ -8,7 +8,7 @@ import '../content.dart';
 class AdvertisementContent extends DashboardContent {
   AdvertisementContent(Map<String, dynamic> input)
     : super(
-      text: input['text'],
+      title: input['title'],
       caption: input['caption'],
       details: input['details'],
       cryptlink: input['cryptlink'],

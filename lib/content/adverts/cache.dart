@@ -3,6 +3,8 @@ import '../cache.dart';
 import 'content.dart';
 import 'mock_content.dart';
 
+import 'package:visual_ai/firestore/firestore.dart';
+
 
 class AdvertisementCache extends ContentCache {
   Map<String, dynamic> empty_shell(String cryptlink) {
@@ -14,12 +16,28 @@ class AdvertisementCache extends ContentCache {
   }
 
   AdvertisementCache() {
-    if (!ContentCache.Load_Mock_Data) return;
+    if (ContentCache.Load_Mock_Data) {
+      var list = MockContent.all;
 
-    var list = MockContent.all;
+      for (int i=0;i<list.length;i++) {
+        add(AdvertisementContent(list[i]));
+      }
 
-    for (int i=0;i<list.length;i++) {
-      add(AdvertisementContent(list[i]));
+      return;
     }
+
+    FirestoreApi.download('adverts', {
+      'limit': 10,
+      'group': null,
+      'userId': '4ctc1i9v3NUbebM1iNzNs10hDci1',
+    }, (dynamic data) {
+      add(AdvertisementContent({
+        'title': data['title'],
+        'caption': data['caption'],
+        'details': {
+        },
+        'cryptlink': data.id,
+      }));
+    });
   }
 }

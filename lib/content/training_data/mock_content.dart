@@ -16,7 +16,7 @@ class MockContent {
   static List<Map<String, dynamic> > data = [
     {
       'type': CONTENT.TRAINING_DATA,
-      'text': 'Tables',
+      'title': 'Tables',
       'caption': 'training the model to learn different types of tables',
       'details': {
         'training_data': 'tables1saghjaehA',
@@ -30,7 +30,7 @@ class MockContent {
     },
     {
       'type': CONTENT.TRAINING_DATA,
-      'text': 'cups',
+      'title': 'cups',
       'caption': 'training the model to learn different types of cups',
       'details': {
         'training_data': 'cups1saghjaehA',
@@ -44,7 +44,7 @@ class MockContent {
     },
     {
       'type': CONTENT.TRAINING_DATA,
-      'text': 'laptops',
+      'title': 'laptops',
       'caption': 'training the model to learn different types of laptops',
       'details': {
         'training_data': 'laptops1saghjaehA',
@@ -58,7 +58,7 @@ class MockContent {
     },
     {
       'type': CONTENT.TRAINING_DATA,
-      'text': 'cups',
+      'title': 'cups',
       'caption': 'training the model to learn different types of cups',
       'details': {
         'training_data': 'cups2saghjaehA',
@@ -72,7 +72,7 @@ class MockContent {
     },
     {
       'type': CONTENT.TRAINING_DATA,
-      'text': 'Tables',
+      'title': 'Tables',
       'caption': 'training the model to learn different types of tables',
       'details': {
         'training_data': 'tables2saghjaehA',
@@ -86,7 +86,7 @@ class MockContent {
     },
     {
       'type': CONTENT.TRAINING_DATA,
-      'text': 'cups',
+      'title': 'cups',
       'caption': 'training the model to learn different types of cups',
       'details': {
         'training_data': 'cups2saghjaehA',
@@ -100,7 +100,7 @@ class MockContent {
     },
     {
       'type': CONTENT.TRAINING_DATA,
-      'text': 'laptops',
+      'title': 'laptops',
       'caption': 'training the model to learn different types of laptops',
       'details': {
         'training_data': 'laptops3saghjaehA',
@@ -114,7 +114,7 @@ class MockContent {
     },
     {
       'type': CONTENT.TRAINING_DATA,
-      'text': 'cups',
+      'title': 'cups',
       'caption': 'training the model to learn different types of cups',
       'details': {
         'training_data': 'cups3saghjaehA',
@@ -128,7 +128,7 @@ class MockContent {
     },
     {
       'type': CONTENT.TRAINING_DATA,
-      'text': 'Tables',
+      'title': 'Tables',
       'caption': 'training the model to learn different types of tables',
       'details': {
         'training_data': 'tables3saghjaehA',
@@ -142,7 +142,7 @@ class MockContent {
     },
     {
       'type': CONTENT.TRAINING_DATA,
-      'text': 'cups',
+      'title': 'cups',
       'caption': 'training the model to learn different types of cups',
       'details': {
         'training_data': 'cups4saghjaehA',
@@ -156,7 +156,7 @@ class MockContent {
     },
     {
       'type': CONTENT.TRAINING_DATA,
-      'text': 'laptops',
+      'title': 'laptops',
       'caption': 'training the model to learn different types of laptops',
       'details': {
         'training_data': 'laptops4saghjaehA',
@@ -170,7 +170,7 @@ class MockContent {
     },
     {
       'type': CONTENT.TRAINING_DATA,
-      'text': 'cups',
+      'title': 'cups',
       'caption': 'training the model to learn different types of cups',
       'details': {
         'training_data': 'cups4saghjaehA',
@@ -184,7 +184,7 @@ class MockContent {
     },
     {
       'type': CONTENT.TRAINING_DATA,
-      'text': 'Tables',
+      'title': 'Tables',
       'caption': 'training the model to learn different types of tables',
       'details': {
         'training_data': 'tables5saghjaehA',
@@ -198,7 +198,7 @@ class MockContent {
     },
     {
       'type': CONTENT.TRAINING_DATA,
-      'text': 'cups',
+      'title': 'cups',
       'caption': 'training the model to learn different types of cups',
       'details': {
         'training_data': 'cups5saghjaehA',
@@ -212,7 +212,7 @@ class MockContent {
     },
     {
       'type': CONTENT.TRAINING_DATA,
-      'text': 'laptops',
+      'title': 'laptops',
       'caption': 'training the model to learn different types of laptops',
       'details': {
         'training_data': 'laptops5saghjaehA',
@@ -226,7 +226,7 @@ class MockContent {
     },
     {
       'type': CONTENT.TRAINING_DATA,
-      'text': 'cups',
+      'title': 'cups',
       'caption': 'training the model to learn different types of cups',
       'details': {
         'training_data': 'cups6saghjaehA',
@@ -240,7 +240,7 @@ class MockContent {
     },
     {
       'type': CONTENT.TRAINING_DATA,
-      'text': 'Tables',
+      'title': 'Tables',
         'caption': 'training the model to learn different types of tables',
       'details': {
         'training_data': 'tables6saghjaehA',
@@ -254,7 +254,7 @@ class MockContent {
     },
     {
       'type': CONTENT.TRAINING_DATA,
-      'text': 'cups',
+      'title': 'cups',
       'caption': 'training the model to learn different types of cups',
       'details': {
         'training_data': 'cups6saghjaehA',

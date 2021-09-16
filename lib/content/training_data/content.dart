@@ -11,7 +11,7 @@ import '../content.dart';
 class TrainingDataContent extends DashboardContent {
   TrainingDataContent(Map<String, dynamic> input)
     : super(
-      text: input['text'],
+      title: input['title'],
       caption: input['caption'],
       details: input['details'],
       cryptlink: input['cryptlink'],

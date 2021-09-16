@@ -16,7 +16,7 @@ class MockContent {
   static List<Map<String, dynamic> > data = [
     {
       'type': CONTENT.PROFILE,
-      'text': 'Jennie',
+      'title': 'Jennie',
       'caption': 'Just a girl from the New Zealand who moved to Korea to follow my passion',
       'details': {
         'sex': 'female',
@@ -29,7 +29,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'donghee',
+      'title': 'donghee',
       'caption': 'I\'m an actor, but I will never be fake with you ;)',
       'details': {
         'sex': 'male',
@@ -42,7 +42,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Lee Ji-eun',
+      'title': 'Lee Ji-eun',
       'caption': 'Some people call me IU, but you can call me love',
       'details': {
         'sex': 'female',
@@ -55,7 +55,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Jack Black',
+      'title': 'Jack Black',
       'caption': 'We came to ROCK!',
       'details': {
         'sex': 'male',
@@ -68,7 +68,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Snoop Doggy Dog',
+      'title': 'Snoop Doggy Dog',
       'caption': 'if you dont bring some smoke to the golf course... dont worry ill bring it',
       'details': {
         'sex': 'male',
@@ -81,7 +81,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Tiger Woods',
+      'title': 'Tiger Woods',
       'caption': 'I know you know who I am',
       'details': {
         'sex': 'male',
@@ -94,7 +94,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Dorothy Oz',
+      'title': 'Dorothy Oz',
       'caption': 'I don\'t think I\'m in Kansas anymore...',
       'details': {
         'sex': 'female',
@@ -107,7 +107,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Jennie',
+      'title': 'Jennie',
       'caption': 'Just a girl from the New Zealand who moved to Korea to follow my passion',
       'details': {
         'sex': 'female',
@@ -120,7 +120,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'donghee',
+      'title': 'donghee',
       'caption': 'I\'m an actor, but I will never be fake with you ;)',
       'details': {
         'sex': 'male',
@@ -133,7 +133,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Lee Ji-eun',
+      'title': 'Lee Ji-eun',
       'caption': 'Some people call me IU, but you can call me love',
       'details': {
         'sex': 'female',
@@ -146,7 +146,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Jack Black',
+      'title': 'Jack Black',
       'caption': 'We came to ROCK!',
       'details': {
         'sex': 'male',
@@ -159,7 +159,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Snoop Doggy Dog',
+      'title': 'Snoop Doggy Dog',
       'caption': 'if you dont bring some smoke to the golf course... dont worry ill bring it',
       'details': {
         'sex': 'male',
@@ -172,7 +172,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Tiger Woods',
+      'title': 'Tiger Woods',
       'caption': 'I know you know who I am',
       'details': {
         'sex': 'male',
@@ -185,7 +185,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Dorothy Oz',
+      'title': 'Dorothy Oz',
       'caption': 'I don\'t think I\'m in Kansas anymore...',
       'details': {
         'sex': 'female',
@@ -198,7 +198,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Jennie',
+      'title': 'Jennie',
       'caption': 'Just a girl from the New Zealand who moved to Korea to follow my passion',
       'details': {
         'sex': 'female',
@@ -211,7 +211,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'donghee',
+      'title': 'donghee',
       'caption': 'I\'m an actor, but I will never be fake with you ;)',
       'details': {
         'sex': 'male',
@@ -224,7 +224,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Lee Ji-eun',
+      'title': 'Lee Ji-eun',
       'caption': 'Some people call me IU, but you can call me love',
       'details': {
         'sex': 'female',
@@ -237,7 +237,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Jack Black',
+      'title': 'Jack Black',
       'caption': 'We came to ROCK!',
       'details': {
         'sex': 'male',
@@ -250,7 +250,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Snoop Doggy Dog',
+      'title': 'Snoop Doggy Dog',
       'caption': 'if you dont bring some smoke to the golf course... dont worry ill bring it',
       'details': {
         'sex': 'male',
@@ -263,7 +263,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Tiger Woods',
+      'title': 'Tiger Woods',
       'caption': 'I know you know who I am',
       'details': {
         'sex': 'male',
@@ -276,7 +276,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Dorothy Oz',
+      'title': 'Dorothy Oz',
       'caption': 'I don\'t think I\'m in Kansas anymore...',
       'details': {
         'sex': 'female',
@@ -289,7 +289,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Jennie',
+      'title': 'Jennie',
       'caption': 'Just a girl from the New Zealand who moved to Korea to follow my passion',
       'details': {
         'sex': 'female',
@@ -302,7 +302,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'donghee',
+      'title': 'donghee',
       'caption': 'I\'m an actor, but I will never be fake with you ;)',
       'details': {
         'sex': 'male',
@@ -315,7 +315,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Lee Ji-eun',
+      'title': 'Lee Ji-eun',
       'caption': 'Some people call me IU, but you can call me love',
       'details': {
         'sex': 'female',
@@ -328,7 +328,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Jack Black',
+      'title': 'Jack Black',
       'caption': 'We came to ROCK!',
       'details': {
         'sex': 'male',
@@ -341,7 +341,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Snoop Doggy Dog',
+      'title': 'Snoop Doggy Dog',
       'caption': 'if you dont bring some smoke to the golf course... dont worry ill bring it',
       'details': {
         'sex': 'male',
@@ -354,7 +354,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Tiger Woods',
+      'title': 'Tiger Woods',
       'caption': 'I know you know who I am',
       'details': {
         'sex': 'male',
@@ -367,7 +367,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Dorothy Oz',
+      'title': 'Dorothy Oz',
       'caption': 'I don\'t think I\'m in Kansas anymore...',
       'details': {
         'sex': 'female',
@@ -380,7 +380,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Jennie',
+      'title': 'Jennie',
       'caption': 'Just a girl from the New Zealand who moved to Korea to follow my passion',
       'details': {
         'sex': 'female',
@@ -393,7 +393,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'donghee',
+      'title': 'donghee',
       'caption': 'I\'m an actor, but I will never be fake with you ;)',
       'details': {
         'sex': 'male',
@@ -406,7 +406,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Lee Ji-eun',
+      'title': 'Lee Ji-eun',
       'caption': 'Some people call me IU, but you can call me love',
       'details': {
         'sex': 'female',
@@ -419,7 +419,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Jack Black',
+      'title': 'Jack Black',
       'caption': 'We came to ROCK!',
       'details': {
         'sex': 'male',
@@ -432,7 +432,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Snoop Doggy Dog',
+      'title': 'Snoop Doggy Dog',
       'caption': 'if you dont bring some smoke to the golf course... dont worry ill bring it',
       'details': {
         'sex': 'male',
@@ -445,7 +445,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Tiger Woods',
+      'title': 'Tiger Woods',
       'caption': 'I know you know who I am',
       'details': {
         'sex': 'male',
@@ -458,7 +458,7 @@ class MockContent {
     },
     {
       'type': CONTENT.PROFILE,
-      'text': 'Dorothy Oz',
+      'title': 'Dorothy Oz',
       'caption': 'I don\'t think I\'m in Kansas anymore...',
       'details': {
         'sex': 'female',

@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class FirestoreApi {
@@ -55,6 +56,64 @@ class FirestoreApi {
 
   static void logout() async {
     await FirebaseAuth.instance.signOut();
+  }
+
+  static void download(
+    String content,
+    Map<String, dynamic> options,
+    void Function(dynamic) populate,
+  ) async {
+
+    String collection = '',
+            group = options['group'],
+            userId = options['userId'];
+
+    int limit = options['limit'] ?? 10;
+
+    switch (content) {
+      case 'training_data':
+        collection = 'training_data';
+        break;
+      case 'users':
+        collection = 'users';
+        break;
+      case 'notos':
+        collection = 'notos';
+        break;
+      case 'store':
+        collection = 'store';
+        break;
+      case 'adverts':
+        collection = 'adverts';
+        break;
+      default:
+        break;
+    }
+
+    if (group == null) return;
+    if (userId == null) return;
+    if (collection == '') return;
+
+    try {
+
+      FirebaseFirestore.instance
+        .collection(collection)
+        .doc(userId)
+        .collection(group)
+        // .where('uses', isGreaterThan: 20)
+        .limit(limit)
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+          querySnapshot.docs.forEach((doc) {
+            populate(doc);
+          });
+        });
+
+    } catch (e) {
+      print('error exception');
+      print(e);
+    }
+
   }
 }
 

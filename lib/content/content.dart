@@ -12,11 +12,11 @@ enum CONTENT {
 
 class DashboardContent {
 
-  final String text, caption, cryptlink;
+  final String title, caption, cryptlink;
   final Map<String, dynamic> details;
 
   DashboardContent({
-    required this.text,
+    required this.title,
     required this.caption,
     required this.details,
     required this.cryptlink,

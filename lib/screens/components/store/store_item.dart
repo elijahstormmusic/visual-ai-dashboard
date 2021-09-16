@@ -35,7 +35,7 @@ class StoreItem extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(defaultPadding * 0.75),
               child: Text(
-                info.text,
+                info.title,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),

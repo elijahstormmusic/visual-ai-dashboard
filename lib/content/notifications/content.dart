@@ -9,7 +9,7 @@ import '../content.dart';
 class NotificationContent extends DashboardContent {
   NotificationContent(Map<String, dynamic> input)
     : super(
-      text: input['text'],
+      title: input['title'],
       caption: input['caption'],
       details: input['details'],
       cryptlink: input['cryptlink'],

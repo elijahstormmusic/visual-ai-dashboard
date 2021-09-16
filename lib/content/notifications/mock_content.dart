@@ -16,7 +16,7 @@ class MockContent {
   static List<Map<String, dynamic> > data = [
     {
       'type': CONTENT.NOTIFICATION,
-      'text': 'New Account',
+      'title': 'New Account',
       'caption': '',
       'details': {
         'date': '25-02-2021',
@@ -27,7 +27,7 @@ class MockContent {
     },
     {
       'type': CONTENT.NOTIFICATION,
-      'text': 'Message from Admin',
+      'title': 'Message from Admin',
       'caption': '',
       'details': {
         'date': '25-02-2021',
@@ -38,7 +38,7 @@ class MockContent {
     },
     {
       'type': CONTENT.NOTIFICATION,
-      'text': 'New Task from Admin',
+      'title': 'New Task from Admin',
       'caption': 'Init Training Model',
       'details': {
         'date': '23-02-2021',
@@ -49,7 +49,7 @@ class MockContent {
     },
     {
       'type': CONTENT.NOTIFICATION,
-      'text': 'Message from Phil',
+      'title': 'Message from Phil',
       'caption': 'Imaging',
       'details': {
         'date': '21-02-2021',
@@ -60,7 +60,7 @@ class MockContent {
     },
     {
       'type': CONTENT.NOTIFICATION,
-      'text': 'Task Completed',
+      'title': 'Task Completed',
       'caption': 'Init Training Model',
       'details': {
         'date': '23-02-2021',
@@ -71,7 +71,7 @@ class MockContent {
     },
     {
       'type': CONTENT.NOTIFICATION,
-      'text': 'Reply to your Comment',
+      'title': 'Reply to your Comment',
       'caption': '[The new cameras are great...]',
       'details': {
         'date': '27-02-2021',
@@ -82,7 +82,7 @@ class MockContent {
     },
       {
       'type': CONTENT.NOTIFICATION,
-      'text': 'Activity Report Submitted',
+      'title': 'Activity Report Submitted',
       'caption': '',
       'details': {
         'date': '01-03-2021',

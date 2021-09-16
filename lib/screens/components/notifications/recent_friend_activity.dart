@@ -43,7 +43,7 @@ class RecentFriendActivities extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
                 child: Text(
-                  notoInfo.text + (
+                  notoInfo.title + (
                     notoInfo.caption == '' ? '' : ' - ${notoInfo.caption}'
                   ),
                   overflow: TextOverflow.ellipsis,

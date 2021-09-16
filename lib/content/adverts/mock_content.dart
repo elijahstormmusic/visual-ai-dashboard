@@ -16,7 +16,7 @@ class MockContent {
   static List<Map<String, dynamic> > data = [
     {
       'type': CONTENT.AD,
-      'text': 'Jennie',
+      'title': 'Jennie',
       'caption': 'Just a girl from the New Zealand who moved to Korea to follow my passion',
       'details': {
         'nothing': true,
@@ -25,7 +25,7 @@ class MockContent {
     },
     {
       'type': CONTENT.AD,
-      'text': 'donghee',
+      'title': 'donghee',
       'caption': 'I\'m an actor, but I will never be fake with you ;)',
       'details': {
         'nothing': true,
@@ -34,7 +34,7 @@ class MockContent {
     },
     {
       'type': CONTENT.AD,
-      'text': 'Lee Ji-eun',
+      'title': 'Lee Ji-eun',
       'caption': 'Some people call me IU, but you can call me love',
       'details': {
         'nothing': true,
@@ -43,7 +43,7 @@ class MockContent {
     },
     {
       'type': CONTENT.AD,
-      'text': 'Jack Black',
+      'title': 'Jack Black',
       'caption': 'We came to ROCK!',
       'details': {
         'nothing': true,
@@ -52,7 +52,7 @@ class MockContent {
     },
       {
       'type': CONTENT.AD,
-      'text': 'Snoop Doggy Dog',
+      'title': 'Snoop Doggy Dog',
       'caption': 'if you dont bring some smoke to the golf course... dont worry ill bring it',
       'details': {
         'nothing': true,
@@ -61,7 +61,7 @@ class MockContent {
     },
     {
       'type': CONTENT.AD,
-      'text': 'Tiger Woods',
+      'title': 'Tiger Woods',
       'caption': 'I know you know who I am',
       'details': {
         'nothing': true,
@@ -70,7 +70,7 @@ class MockContent {
     },
     {
       'type': CONTENT.AD,
-      'text': 'Dorothy Oz',
+      'title': 'Dorothy Oz',
       'caption': 'I don\'t think I\'m in Kansas anymore...',
       'details': {
         'nothing': true,

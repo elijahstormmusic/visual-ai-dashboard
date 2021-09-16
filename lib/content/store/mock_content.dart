@@ -16,7 +16,7 @@ class MockContent {
   static List<Map<String, dynamic> > data = [
     {
       'type': CONTENT.STORE_ITEM,
-      'text': 'New Item1',
+      'title': 'New Item1',
       'caption': 'Buy this new thing',
       'details': {
         'popular': false,
@@ -27,7 +27,7 @@ class MockContent {
     },
     {
       'type': CONTENT.STORE_ITEM,
-      'text': 'popular1',
+      'title': 'popular1',
       'caption': 'Popular stuff',
       'details': {
         'popular': true,
@@ -38,7 +38,7 @@ class MockContent {
     },
     {
       'type': CONTENT.STORE_ITEM,
-      'text': 'purcahsed1',
+      'title': 'purcahsed1',
       'caption': 'You already bought this',
       'details': {
         'popular': false,
@@ -49,7 +49,7 @@ class MockContent {
     },
     {
       'type': CONTENT.STORE_ITEM,
-      'text': 'New Item2',
+      'title': 'New Item2',
       'caption': 'Buy this new thing',
       'details': {
         'popular': false,
@@ -60,7 +60,7 @@ class MockContent {
     },
     {
       'type': CONTENT.STORE_ITEM,
-      'text': 'popular2',
+      'title': 'popular2',
       'caption': 'Popular stuff',
       'details': {
         'popular': true,
@@ -71,7 +71,7 @@ class MockContent {
     },
     {
       'type': CONTENT.STORE_ITEM,
-      'text': 'purcahsed2',
+      'title': 'purcahsed2',
       'caption': 'You already bought this',
       'details': {
         'popular': false,
@@ -82,7 +82,7 @@ class MockContent {
     },
     {
       'type': CONTENT.STORE_ITEM,
-      'text': 'New Item3',
+      'title': 'New Item3',
       'caption': 'Buy this new thing',
       'details': {
         'popular': false,
@@ -93,7 +93,7 @@ class MockContent {
     },
     {
       'type': CONTENT.STORE_ITEM,
-      'text': 'popular3',
+      'title': 'popular3',
       'caption': 'Popular stuff',
       'details': {
         'popular': true,
@@ -104,7 +104,7 @@ class MockContent {
     },
     {
       'type': CONTENT.STORE_ITEM,
-      'text': 'purcahsed3',
+      'title': 'purcahsed3',
       'caption': 'You already bought this',
       'details': {
         'popular': false,
@@ -115,7 +115,7 @@ class MockContent {
     },
     {
       'type': CONTENT.STORE_ITEM,
-      'text': 'New Item4',
+      'title': 'New Item4',
       'caption': 'Buy this new thing',
       'details': {
         'popular': false,
@@ -126,7 +126,7 @@ class MockContent {
     },
     {
       'type': CONTENT.STORE_ITEM,
-      'text': 'popular4',
+      'title': 'popular4',
       'caption': 'Popular stuff',
       'details': {
         'popular': true,
@@ -137,7 +137,7 @@ class MockContent {
     },
     {
       'type': CONTENT.STORE_ITEM,
-      'text': 'purcahsed4',
+      'title': 'purcahsed4',
       'caption': 'You already bought this',
       'details': {
         'popular': false,
@@ -148,7 +148,7 @@ class MockContent {
     },
     {
       'type': CONTENT.STORE_ITEM,
-      'text': 'New Item5',
+      'title': 'New Item5',
       'caption': 'Buy this new thing',
       'details': {
         'popular': false,
@@ -159,7 +159,7 @@ class MockContent {
     },
     {
       'type': CONTENT.STORE_ITEM,
-      'text': 'popular5',
+      'title': 'popular5',
       'caption': 'Popular stuff',
       'details': {
         'popular': true,
@@ -170,7 +170,7 @@ class MockContent {
     },
     {
       'type': CONTENT.STORE_ITEM,
-      'text': 'purcahsed5',
+      'title': 'purcahsed5',
       'caption': 'You already bought this',
       'details': {
         'popular': false,
@@ -181,7 +181,7 @@ class MockContent {
     },
     {
       'type': CONTENT.STORE_ITEM,
-      'text': 'New Item6',
+      'title': 'New Item6',
       'caption': 'Buy this new thing',
       'details': {
         'popular': false,
@@ -192,7 +192,7 @@ class MockContent {
     },
     {
       'type': CONTENT.STORE_ITEM,
-      'text': 'popular6',
+      'title': 'popular6',
       'caption': 'Popular stuff',
       'details': {
         'popular': true,
@@ -203,7 +203,7 @@ class MockContent {
     },
     {
       'type': CONTENT.STORE_ITEM,
-      'text': 'purcahsed6',
+      'title': 'purcahsed6',
       'caption': 'You already bought this',
       'details': {
         'popular': false,
@@ -214,7 +214,7 @@ class MockContent {
     },
     {
       'type': CONTENT.STORE_ITEM,
-      'text': 'New Item7',
+      'title': 'New Item7',
       'caption': 'Buy this new thing',
       'details': {
         'popular': false,
@@ -225,7 +225,7 @@ class MockContent {
       },
     {
       'type': CONTENT.STORE_ITEM,
-      'text': 'popular7',
+      'title': 'popular7',
       'caption': 'Popular stuff',
       'details': {
         'popular': true,
@@ -236,7 +236,7 @@ class MockContent {
     },
     {
       'type': CONTENT.STORE_ITEM,
-      'text': 'purcahsed7',
+      'title': 'purcahsed7',
       'caption': 'You already bought this',
       'details': {
         'popular': false,

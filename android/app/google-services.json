@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "945592075913",
+    "firebase_url": "https://visual-ai-dashboard-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "visual-ai-dashboard",
+    "storage_bucket": "visual-ai-dashboard.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:945592075913:android:1f3bb6ab82e9264cfd6858",
+        "android_client_info": {
+          "package_name": "com.visual_ai.admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "945592075913-487oh41noka08pj1s2duv5mdj6ucitnb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxdbzoAaamh3cXQCYsTMuT0Eg5JdhXVyY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "945592075913-487oh41noka08pj1s2duv5mdj6ucitnb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
