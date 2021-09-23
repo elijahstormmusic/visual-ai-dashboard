@@ -6,6 +6,8 @@ import 'package:visual_ai/responsive.dart';
 import 'components/side_menu.dart';
 
 import 'package:visual_ai/content/users/cache.dart';
+import 'package:visual_ai/content/files/cache.dart';
+import 'package:visual_ai/content/profile/cache.dart';
 import 'package:visual_ai/content/store/cache.dart';
 import 'package:visual_ai/content/notifications/cache.dart';
 import 'package:visual_ai/content/training_data/cache.dart';
@@ -86,6 +88,8 @@ class _ScreenManagerState extends State<MainScreen> {
                   return MultiProvider(
                     providers: [
                       ChangeNotifierProvider(create: (context) => UserCache()),
+                      ChangeNotifierProvider(create: (context) => FileCache()),
+                      ChangeNotifierProvider(create: (context) => ProfileCache()),
                       ChangeNotifierProvider(create: (context) => StoreCache()),
                       ChangeNotifierProvider(create: (context) => NotificationCache()),
                       ChangeNotifierProvider(create: (context) => TrainingDataCache()),

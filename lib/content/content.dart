@@ -7,6 +7,7 @@ enum CONTENT {
   STORE_ITEM,
   TRAINING_DATA,
   NOTIFICATION,
+  FILE,
   AD,
 }
 
@@ -23,4 +24,6 @@ class DashboardContent {
   });
 
   Widget get icon => Container();
+  Widget iconWidget(BuildContext context) => Container();
+  Color color(BuildContext context) => Colors.red;
 }

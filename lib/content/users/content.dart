@@ -8,13 +8,22 @@ import 'cache.dart';
 import '../content.dart';
 
 
-class ProfileContent extends DashboardContent {
-  ProfileContent(Map<String, dynamic> input)
+class UserContent extends DashboardContent {
+  UserContent(Map<String, dynamic> input)
     : super(
       title: input['title'],
       caption: input['caption'],
       details: input['details'],
       cryptlink: input['cryptlink'],
+    )
+  { }
+
+  UserContent.cast(DashboardContent content)
+    : super(
+      title: content.title,
+      caption: content.caption,
+      details: content.details,
+      cryptlink: content.cryptlink,
     )
   { }
 

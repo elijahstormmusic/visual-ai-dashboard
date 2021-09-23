@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import 'package:visual_ai/content/content.dart';
+import 'package:visual_ai/content/training_data/content.dart';
 import 'package:visual_ai/constants.dart';
 
 
 class SmallTrainingDataBlock extends StatelessWidget {
-  final DashboardContent info;
-
   const SmallTrainingDataBlock(
     this.info, {
     Key? key,
   }) : super(key: key);
+
+  final TrainingDataContent info;
 
   @override
   Widget build(BuildContext context) {

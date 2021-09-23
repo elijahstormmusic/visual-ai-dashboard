@@ -1,60 +1,55 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:visual_ai/constants.dart';
 import 'package:visual_ai/screens/components/charts/charts.dart';
+import 'package:visual_ai/content/profile/cache.dart';
 import 'storage_info_card.dart';
 
-class StarageDetails extends StatelessWidget {
-  const StarageDetails({
+
+class StorageDetails extends StatelessWidget {
+  const StorageDetails({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(defaultPadding),
-      decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Storage Details',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
+    return Consumer<ProfileCache>(
+      builder: (context, cache, child) {
+
+        var storage = cache.filter('storage', limit: 4);
+
+        return Container(
+          padding: EdgeInsets.all(defaultPadding),
+          decoration: BoxDecoration(
+            color: Theme.of(context).cardColor,
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
           ),
-          SizedBox(height: defaultPadding),
-          Chart(),
-          StorageInfoCard(
-            svgSrc: 'assets/icons/Documents.svg',
-            title: 'Documents Files',
-            amountOfFiles: '1.3GB',
-            numOfFiles: 1328,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Storage Details',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+
+              SizedBox(height: defaultPadding),
+
+              StorageChart(cache.at('storage pie')),
+
+              Column(
+                children: List.generate(
+                  storage.length,
+                  (i) => StorageInfoCard(storage[i]),
+                ),
+              ),
+            ],
           ),
-          StorageInfoCard(
-            svgSrc: 'assets/icons/media.svg',
-            title: 'Media Files',
-            amountOfFiles: '15.3GB',
-            numOfFiles: 1328,
-          ),
-          StorageInfoCard(
-            svgSrc: 'assets/icons/folder.svg',
-            title: 'Other Files',
-            amountOfFiles: '1.3GB',
-            numOfFiles: 1328,
-          ),
-          StorageInfoCard(
-            svgSrc: 'assets/icons/unknown.svg',
-            title: 'Unknown',
-            amountOfFiles: '1.3GB',
-            numOfFiles: 140,
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

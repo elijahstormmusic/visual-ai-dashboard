@@ -1,9 +1,12 @@
-import 'package:visual_ai/models/RecentFile.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:visual_ai/constants.dart';
+import 'package:visual_ai/content/files/content.dart';
+import 'package:visual_ai/content/files/cache.dart';
+
 
 class RecentFiles extends StatelessWidget {
   const RecentFiles({
@@ -27,23 +30,27 @@ class RecentFiles extends StatelessWidget {
           ),
           SizedBox(
             width: double.infinity,
-            child: DataTable2(
-              columnSpacing: defaultPadding,
-              minWidth: 600,
-              columns: [
-                DataColumn(
-                  label: Text('File Name'),
+            child: Consumer<FileCache>(
+              builder: (context, cache, child) => DataTable2(
+                columnSpacing: defaultPadding,
+                minWidth: 600,
+                columns: [
+                  DataColumn(
+                    label: Text('File Name'),
+                  ),
+                  DataColumn(
+                    label: Text('Date'),
+                  ),
+                  DataColumn(
+                    label: Text('Size'),
+                  ),
+                ],
+                rows: List.generate(
+                  cache.items.length,
+                  (index) => recentFileDataRow(
+                    FileContent.cast(cache.items[index]),
+                  ),
                 ),
-                DataColumn(
-                  label: Text('Date'),
-                ),
-                DataColumn(
-                  label: Text('Size'),
-                ),
-              ],
-              rows: List.generate(
-                demoRecentFiles.length,
-                (index) => recentFileDataRow(demoRecentFiles[index]),
               ),
             ),
           ),
@@ -53,26 +60,27 @@ class RecentFiles extends StatelessWidget {
   }
 }
 
-DataRow recentFileDataRow(RecentFile fileInfo) {
+DataRow recentFileDataRow(FileContent fileInfo) {
   return DataRow(
     cells: [
       DataCell(
         Row(
           children: [
-            SvgPicture.asset(
-              fileInfo.icon!,
+            SizedBox(
               height: 30,
               width: 30,
+              child: fileInfo.icon,
             ),
+
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-              child: Text(fileInfo.title!),
+              child: Text(fileInfo.title),
             ),
           ],
         ),
       ),
-      DataCell(Text(fileInfo.date!)),
-      DataCell(Text(fileInfo.size!)),
+      DataCell(Text(fileInfo.details['date'])),
+      DataCell(Text(fileInfo.caption)),
     ],
   );
 }

@@ -1,9 +1,11 @@
-
 import 'package:visual_ai/responsive.dart';
 import 'package:flutter/material.dart';
-import 'package:visual_ai/models/DashboardFiles.dart';
+import 'package:provider/provider.dart';
+
 import 'package:visual_ai/constants.dart';
+import 'package:visual_ai/content/profile/cache.dart';
 import 'file_info_card.dart';
+
 
 class DashboardFiles extends StatelessWidget {
   const DashboardFiles({
@@ -40,7 +42,7 @@ class DashboardFiles extends StatelessWidget {
         Responsive(
           mobile: FileInfoCardGridView(
             crossAxisCount: _size.width < 650 ? 2 : 4,
-            childAspectRatio: _size.width < 650 ? 1.3 : 1,
+            childAspectRatio: _size.width < 650 && _size.width > 350 ? 1.3 : 1,
           ),
           tablet: FileInfoCardGridView(),
           desktop: FileInfoCardGridView(
@@ -64,17 +66,24 @@ class FileInfoCardGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      physics: NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: demoDashboardFiles.length,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: crossAxisCount,
-        crossAxisSpacing: defaultPadding,
-        mainAxisSpacing: defaultPadding,
-        childAspectRatio: childAspectRatio,
-      ),
-      itemBuilder: (context, index) => FileInfoCard(info: demoDashboardFiles[index]),
+    return Consumer<ProfileCache>(
+      builder: (context, cache, child) {
+
+        var overview = cache.filter('overview');
+
+        return GridView.builder(
+          physics: NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: overview.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: crossAxisCount,
+            crossAxisSpacing: defaultPadding,
+            mainAxisSpacing: defaultPadding,
+            childAspectRatio: childAspectRatio,
+          ),
+          itemBuilder: (context, index) => FileInfoCard(info: overview[index]),
+        );
+      },
     );
   }
 }

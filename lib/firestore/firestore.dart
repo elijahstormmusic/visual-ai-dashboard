@@ -34,6 +34,7 @@ class FirestoreApi {
   }
 
   static void login(ResponseData response) async {
+
     try {
 
       UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -65,8 +66,8 @@ class FirestoreApi {
   ) async {
 
     String collection = '',
-            group = options['group'],
-            userId = options['userId'];
+            document = options['document'],
+            group = options['group'];
 
     int limit = options['limit'] ?? 10;
 
@@ -80,6 +81,12 @@ class FirestoreApi {
       case 'notos':
         collection = 'notos';
         break;
+      case 'files':
+        collection = 'files';
+        break;
+      case 'profile':
+        collection = 'profile';
+        break;
       case 'store':
         collection = 'store';
         break;
@@ -91,14 +98,14 @@ class FirestoreApi {
     }
 
     if (group == null) return;
-    if (userId == null) return;
+    if (document == null) return;
     if (collection == '') return;
 
     try {
 
       FirebaseFirestore.instance
         .collection(collection)
-        .doc(userId)
+        .doc(document)
         .collection(group)
         // .where('uses', isGreaterThan: 20)
         .limit(limit)

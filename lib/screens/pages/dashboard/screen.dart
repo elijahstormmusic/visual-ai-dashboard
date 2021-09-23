@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:visual_ai/responsive.dart';
 
 import 'package:visual_ai/screens/components/header.dart';
-import 'package:visual_ai/screens/components/database/dashboard_fields.dart';
+import 'package:visual_ai/screens/components/database/dashboard_files.dart';
 import 'package:visual_ai/screens/components/database/recent_files.dart';
 import 'package:visual_ai/screens/components/database/storage_details.dart';
 import 'package:visual_ai/constants.dart';
@@ -30,7 +30,7 @@ class DashboardScreen extends StatelessWidget {
                       RecentFiles(),
                       if (Responsive.isMobile(context))
                         SizedBox(height: defaultPadding),
-                      if (Responsive.isMobile(context)) StarageDetails(),
+                      if (Responsive.isMobile(context)) StorageDetails(),
                     ],
                   ),
                 ),
@@ -39,7 +39,7 @@ class DashboardScreen extends StatelessWidget {
                 if (!Responsive.isMobile(context))
                   Expanded(
                     flex: 2,
-                    child: StarageDetails(),
+                    child: StorageDetails(),
                   ),
               ],
             )

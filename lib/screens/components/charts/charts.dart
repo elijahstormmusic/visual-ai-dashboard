@@ -3,12 +3,46 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 
 import 'package:visual_ai/constants.dart';
+import 'package:visual_ai/content/profile/content.dart';
 
 
-class Chart extends StatelessWidget {
-  const Chart({
+class StorageChart extends StatelessWidget {
+  const StorageChart(
+    this.storage, {
     Key? key,
   }) : super(key: key);
+
+  final ProfileContent storage;
+
+  List<PieChartSectionData> _createData(BuildContext context) {
+    List<PieChartSectionData> list = [];
+    List<Color> colors = List.generate(
+      storage.details['data'].length,
+      (i) {
+        if (i == storage.details['data'].length - 1) {
+          return Theme.of(context).primaryColor.withOpacity(0.1);
+        }
+
+        return [
+          Theme.of(context).primaryColor,
+          Color(0xFF26E5FF),
+          Color(0xFFFFCF26),
+          Color(0xFFEE2727),
+        ][i % 4];
+      },
+    );
+
+    for (int i = 0; i < storage.details['data'].length; i++) {
+      list.add(PieChartSectionData(
+        value: storage.details['data'][i]['value'],
+        radius: storage.details['data'][i]['radius'],
+        color: colors[i],
+        showTitle: false,
+      ));
+    }
+
+    return list;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +55,7 @@ class Chart extends StatelessWidget {
               sectionsSpace: 0,
               centerSpaceRadius: 70,
               startDegreeOffset: -90,
-              sections: paiChartSelectionDatas,
+              sections: _createData(context),
             ),
           ),
           Positioned.fill(
@@ -30,14 +64,14 @@ class Chart extends StatelessWidget {
               children: [
                 SizedBox(height: defaultPadding),
                 Text(
-                  '29.1',
+                  storage.title,
                   style: Theme.of(context).textTheme.headline4!.copyWith(
                         fontWeight: FontWeight.w600,
                         height: 0.5,
                         color: Theme.of(context).iconTheme.color!,
                       ),
                 ),
-                Text('of 128GB')
+                Text(storage.caption),
               ],
             ),
           ),
@@ -46,39 +80,6 @@ class Chart extends StatelessWidget {
     );
   }
 }
-
-List<PieChartSectionData> paiChartSelectionDatas = [
-  PieChartSectionData(
-    color: primaryColorDark,
-    value: 25,
-    showTitle: false,
-    radius: 25,
-  ),
-  PieChartSectionData(
-    color: Color(0xFF26E5FF),
-    value: 20,
-    showTitle: false,
-    radius: 22,
-  ),
-  PieChartSectionData(
-    color: Color(0xFFFFCF26),
-    value: 10,
-    showTitle: false,
-    radius: 19,
-  ),
-  PieChartSectionData(
-    color: Color(0xFFEE2727),
-    value: 15,
-    showTitle: false,
-    radius: 16,
-  ),
-  PieChartSectionData(
-    color: primaryColorDark.withOpacity(0.1),
-    value: 25,
-    showTitle: false,
-    radius: 13,
-  ),
-];
 
 
 class PieChartSample2 extends StatefulWidget {

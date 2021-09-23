@@ -16,6 +16,15 @@ class NotificationContent extends DashboardContent {
     )
   { }
 
+  NotificationContent.cast(DashboardContent content)
+    : super(
+      title: content.title,
+      caption: content.caption,
+      details: content.details,
+      cryptlink: content.cryptlink,
+    )
+  { }
+
   NotificationContentDisplayPage navigateTo() {
     return NotificationContentDisplayPage(cryptlink);
   }
@@ -26,29 +35,29 @@ class NotificationContent extends DashboardContent {
 
     switch (details['type']) {
       case 'account':
-      asset = 'assets/icons/user.svg';
-      color = Colors.yellow;
-      break;
+        asset = 'assets/icons/user.svg';
+        color = Colors.yellow;
+        break;
       case 'message':
-      asset = 'assets/icons/email.svg';
-      color = Colors.purple;
-      break;
+        asset = 'assets/icons/email.svg';
+        color = Colors.purple;
+        break;
       case 'important':
-      asset = 'assets/icons/danger.svg';
-      color = Colors.red;
-      break;
+        asset = 'assets/icons/danger.svg';
+        color = Colors.red;
+        break;
       case 'success':
-      asset = 'assets/icons/checked.svg';
-      color = Colors.green;
-      break;
+        asset = 'assets/icons/checked.svg';
+        color = Colors.green;
+        break;
       case 'document':
-      asset = 'assets/icons/google-docs.svg';
-      color = Colors.blue;
-      break;
+        asset = 'assets/icons/google-docs.svg';
+        color = Colors.blue;
+        break;
       default:
-      asset = 'assets/icons/google-docs.svg';
-      color = Colors.blue;
-      break;
+        asset = 'assets/icons/google-docs.svg';
+        color = Colors.blue;
+        break;
     }
 
     return Container(

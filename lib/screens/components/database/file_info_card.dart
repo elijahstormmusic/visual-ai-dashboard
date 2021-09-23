@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:visual_ai/models/DashboardFiles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 import 'package:visual_ai/constants.dart';
+import 'package:visual_ai/content/profile/content.dart';
 
 
 class FileInfoCard extends StatelessWidget {
@@ -11,54 +12,7 @@ class FileInfoCard extends StatelessWidget {
     required this.info,
   }) : super(key: key);
 
-  final CloudStorageInfo info;
-
-  Color _cardInteriorColor(BuildContext context) {
-    Color color = Theme.of(context).primaryColor;
-
-    switch (info.type) {
-      case 'document':
-        color = Theme.of(context).primaryColor;
-        break;
-      case 'google':
-        color = Color(0xFFFFA113);
-        break;
-      case 'one drive':
-        color = Color(0xFFA4CDFF);
-        break;
-      case 'dropbox':
-        color = Color(0xFF007EE5);
-        break;
-      default:
-        color = Theme.of(context).primaryColor;
-        break;
-    }
-
-    return color;
-  }
-  String _cardInteriorSvg(BuildContext context) {
-    String asset = 'assets/icons/Documents.svg';
-
-    switch (info.type) {
-      case 'document':
-        asset = 'assets/icons/Documents.svg';
-        break;
-      case 'google':
-        asset = 'assets/icons/google_drive.svg';
-        break;
-      case 'one drive':
-        asset = 'assets/icons/one_drive.svg';
-        break;
-      case 'dropbox':
-        asset = 'assets/icons/drop_box.svg';
-        break;
-      default:
-        asset = 'assets/icons/Documents.svg';
-        break;
-    }
-
-    return asset;
-  }
+  final ProfileContent info;
 
   @override
   Widget build(BuildContext context) {
@@ -80,25 +34,29 @@ class FileInfoCard extends StatelessWidget {
                 height: 40,
                 width: 40,
                 decoration: BoxDecoration(
-                  color: _cardInteriorColor(context).withOpacity(0.1),
+                  color: info.color(context).withOpacity(0.1),
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
                 ),
-                child: SvgPicture.asset(
-                  _cardInteriorSvg(context),
-                  color: _cardInteriorColor(context),
+                child: Theme(
+                  data: ThemeData(
+                    iconTheme: Theme.of(context).iconTheme.copyWith(
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                  child: info.icon,
                 ),
               ),
               Icon(Icons.more_vert)
             ],
           ),
           Text(
-            info.title!,
+            info.title,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
           ProgressLine(
-            color: _cardInteriorColor(context),
-            percentage: info.percentage,
+            color: info.color(context),
+            percentage: info.details['percentage'],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -106,11 +64,11 @@ class FileInfoCard extends StatelessWidget {
               Opacity(
                 opacity: 0.8,
                 child: Text(
-                  '${info.numOfFiles} Files',
+                  '${info.details['numOfFiles']} Files',
                 ),
               ),
               Text(
-                info.totalStorage!,
+                info.details['totalStorage']!,
               ),
             ],
           )

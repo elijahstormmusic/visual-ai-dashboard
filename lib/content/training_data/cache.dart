@@ -29,7 +29,7 @@ class TrainingDataCache extends ContentCache {
     FirestoreApi.download('training_data', {
       'limit': 25,
       'group': 'group0',
-      'userId': '4ctc1i9v3NUbebM1iNzNs10hDci1',
+      'document': '4ctc1i9v3NUbebM1iNzNs10hDci1',
     }, (dynamic data) {
       add(TrainingDataContent({
         'title': data['title'],

@@ -18,6 +18,15 @@ class StoreContent extends DashboardContent {
     )
   { }
 
+  StoreContent.cast(DashboardContent content)
+    : super(
+      title: content.title,
+      caption: content.caption,
+      details: content.details,
+      cryptlink: content.cryptlink,
+    )
+  { }
+
   StoreContentDisplayPage navigateTo() {
     return StoreContentDisplayPage(cryptlink);
   }

@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:data_table_2/data_table_2.dart';
 
-import 'package:visual_ai/content/content.dart';
+import 'package:visual_ai/content/notifications/content.dart';
 import 'package:visual_ai/content/notifications/cache.dart';
 import 'package:visual_ai/constants.dart';
 
@@ -13,7 +13,7 @@ class RecentFriendActivities extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  DataRow recentNotoDataRow(DashboardContent notoInfo) {
+  DataRow recentNotoDataRow(NotificationContent notoInfo) {
     Color getColor(Set<MaterialState> states) {
       const Set<MaterialState> interactiveStates = <MaterialState>{
         MaterialState.pressed,
@@ -97,7 +97,9 @@ class RecentFriendActivities extends StatelessWidget {
                   ],
                   rows: List.generate(
                     cache.items.length,
-                    (index) => recentNotoDataRow(cache.items[index]),
+                    (index) => recentNotoDataRow(
+                      NotificationContent.cast(cache.items[index]),
+                    ),
                   ),
                 ),
               );

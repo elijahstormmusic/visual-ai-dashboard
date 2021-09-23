@@ -14,7 +14,16 @@ class AdvertisementContent extends DashboardContent {
       cryptlink: input['cryptlink'],
     )
   { }
-  
+
+  AdvertisementContent.cast(DashboardContent content)
+    : super(
+      title: content.title,
+      caption: content.caption,
+      details: content.details,
+      cryptlink: content.cryptlink,
+    )
+  { }
+
   UserContentDisplayPage navigateTo() {
     return UserContentDisplayPage(cryptlink);
   }

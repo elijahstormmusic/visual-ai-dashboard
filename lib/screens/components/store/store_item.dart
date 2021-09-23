@@ -5,16 +5,16 @@ import 'package:visual_ai/responsive.dart';
 import 'package:visual_ai/constants.dart';
 import 'package:visual_ai/screens/components/blinking_content.dart';
 
-import 'package:visual_ai/content/content.dart';
+import 'package:visual_ai/content/store/content.dart';
 
 
 class StoreItem extends StatelessWidget {
-  final DashboardContent info;
-
   const StoreItem(
     this.info, {
     Key? key,
   }) : super(key: key);
+
+  final StoreContent info;
 
   @override
   Widget build(BuildContext context) {

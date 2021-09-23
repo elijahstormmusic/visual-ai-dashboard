@@ -18,6 +18,15 @@ class TrainingDataContent extends DashboardContent {
     )
   { }
 
+  TrainingDataContent.cast(DashboardContent content)
+    : super(
+      title: content.title,
+      caption: content.caption,
+      details: content.details,
+      cryptlink: content.cryptlink,
+    )
+  { }
+
   TrainingDataContentDisplayPage navigateTo() {
     return TrainingDataContentDisplayPage(cryptlink);
   }

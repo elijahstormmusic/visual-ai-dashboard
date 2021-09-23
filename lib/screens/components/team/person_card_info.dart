@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:visual_ai/content/content.dart';
+import 'package:visual_ai/content/users/content.dart';
 import 'package:visual_ai/constants.dart';
 
 
 class PersonCardInfo extends StatelessWidget {
-  final DashboardContent info;
-
   const PersonCardInfo(
     this.info, {
     Key? key,
   }) : super(key: key);
+
+  final UserContent info;
 
   @override
   Widget build(BuildContext context) {
