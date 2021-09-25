@@ -5,13 +5,6 @@ import 'package:visual_ai/controllers/MenuController.dart';
 import 'package:visual_ai/responsive.dart';
 import 'components/side_menu.dart';
 
-import 'package:visual_ai/content/users/cache.dart';
-import 'package:visual_ai/content/files/cache.dart';
-import 'package:visual_ai/content/profile/cache.dart';
-import 'package:visual_ai/content/store/cache.dart';
-import 'package:visual_ai/content/notifications/cache.dart';
-import 'package:visual_ai/content/training_data/cache.dart';
-
 import 'package:visual_ai/screens/pages/dashboard/screen.dart';
 import 'package:visual_ai/screens/pages/performance/screen.dart';
 import 'package:visual_ai/screens/pages/training/screen.dart';
@@ -85,17 +78,7 @@ class _ScreenManagerState extends State<MainScreen> {
               child: ValueListenableBuilder<String>(
                 valueListenable: _stateIndexNotifier,
                 builder: (context, value, child) {
-                  return MultiProvider(
-                    providers: [
-                      ChangeNotifierProvider(create: (context) => UserCache()),
-                      ChangeNotifierProvider(create: (context) => FileCache()),
-                      ChangeNotifierProvider(create: (context) => ProfileCache()),
-                      ChangeNotifierProvider(create: (context) => StoreCache()),
-                      ChangeNotifierProvider(create: (context) => NotificationCache()),
-                      ChangeNotifierProvider(create: (context) => TrainingDataCache()),
-                    ],
-                    child: _decideInteriorBody(),
-                  );
+                  return _decideInteriorBody();
                 },
               ),
             ),

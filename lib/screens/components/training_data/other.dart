@@ -1,10 +1,12 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'package:visual_ai/responsive.dart';
 import 'package:visual_ai/constants.dart';
 import 'package:visual_ai/content/training_data/cache.dart';
+import 'package:visual_ai/screens/components/loading.dart';
 
 import 'small_training_data_block.dart';
 
@@ -73,13 +75,27 @@ class TrainingDataBlock extends StatelessWidget {
     return Consumer<TrainingDataCache>(
       builder: (context, cache, child) {
 
-        List filter = [];
-        var items = cache.items;
+        var filter = cache.filter('other', limit: 8);
 
-        for (int i=0;i<items.length;i++) {
-          if (items[i].details['other']) {
-            filter.add(items[i]);
-          }
+        if (filter.length == 0) {
+          return GridView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: crossAxisCount,
+              crossAxisSpacing: defaultPadding,
+              mainAxisSpacing: defaultPadding,
+              childAspectRatio: childAspectRatio,
+            ),
+            itemCount: 4,
+            itemBuilder: (context, index) => Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).cardColor,
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
+              ),
+              child: Loading(),
+            ),
+          );
         }
 
         return GridView.builder(
@@ -91,7 +107,7 @@ class TrainingDataBlock extends StatelessWidget {
             mainAxisSpacing: defaultPadding,
             childAspectRatio: childAspectRatio,
           ),
-          itemCount: min(8, filter.length),
+          itemCount: filter.length,
           itemBuilder: (context, index) => Container(
             decoration: BoxDecoration(
               color: Theme.of(context).cardColor,

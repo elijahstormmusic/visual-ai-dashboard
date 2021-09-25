@@ -28,13 +28,14 @@ class AdvertisementCache extends ContentCache {
 
     FirestoreApi.download('adverts', {
       'limit': 10,
-      'group': null,
-      'userId': '4ctc1i9v3NUbebM1iNzNs10hDci1',
+      // 'group': null,
+      // 'document': null,
     }, (dynamic data) {
       add(AdvertisementContent({
         'title': data['title'],
         'caption': data['caption'],
         'details': {
+          'link': data['link'],
         },
         'cryptlink': data.id,
       }));

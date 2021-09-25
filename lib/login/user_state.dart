@@ -82,7 +82,7 @@ class UserState extends ChangeNotifier {
 }
 
 class AppDebugLogin {
-  static bool bypass = true;
+  static bool bypass = false;
   static String username = 'elijahstormmusic@gmail.com';
   static String password = 'tester';
 }

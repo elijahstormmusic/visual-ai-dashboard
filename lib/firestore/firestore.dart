@@ -5,6 +5,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirestoreApi {
   static bool Disabled = false;
+  static const Map<String, bool> requiredDocumentAuth = {
+    'training_data': true,
+    'notos': true,
+    'files': true,
+    'profile': true,
+    'users': false,
+    'store': false,
+    'adverts': false,
+  };
 
   static void init() async {
     await Firebase.initializeApp();
@@ -66,8 +75,9 @@ class FirestoreApi {
   ) async {
 
     String collection = '',
-            document = options['document'],
-            group = options['group'];
+            document = options['document'] ?? '',
+            group = options['group'] ?? '',
+            filters = options['filters'] ?? '';
 
     int limit = options['limit'] ?? 10;
 
@@ -97,30 +107,52 @@ class FirestoreApi {
         break;
     }
 
-    if (group == null) return;
-    if (document == null) return;
     if (collection == '') return;
 
     try {
 
-      FirebaseFirestore.instance
-        .collection(collection)
-        .doc(document)
-        .collection(group)
-        // .where('uses', isGreaterThan: 20)
+      dynamic query = FirebaseFirestore.instance.collection(collection);
+
+      if (document != '' && group != '') {
+        query = query
+          .doc(document)
+          .collection(group);
+      }
+      else if (requiredDocumentAuth[collection] ?? true) {
+        print('Missing document in required DOCUMENT field');
+        return;
+      }
+
+      if (filters != '') {
+        query = query
+          .where('uses', isGreaterThan: 20);
+      }
+
+      query
         .limit(limit)
         .get()
         .then((QuerySnapshot querySnapshot) {
           querySnapshot.docs.forEach((doc) {
-            populate(doc);
+            if (doc.exists) {
+              populate(doc);
+            }
           });
         });
 
     } catch (e) {
-      print('error exception');
       print(e);
     }
 
+  }
+
+  static String? get logged_in_user_id {
+    var currentUser = FirebaseAuth.instance.currentUser;
+
+    if (currentUser != null) {
+      return currentUser.uid;
+    }
+
+    return null;
   }
 }
 

@@ -28,13 +28,17 @@ class FileCache extends ContentCache {
 
     FirestoreApi.download('files', {
       'limit': 10,
-      'group': null,
-      'userId': '4ctc1i9v3NUbebM1iNzNs10hDci1',
+      'group': 'group0',
+      'document': FirestoreApi.logged_in_user_id,
     }, (dynamic data) {
       add(FileContent({
         'title': data['title'],
         'caption': data['caption'],
         'details': {
+          'type': data['file_type'],
+          'link': data['cloud_link'],
+          'created_on': DateTime.parse(data['created_on'].toDate().toString()),
+          'last_edit': DateTime.parse(data['last_edit'].toDate().toString()),
         },
         'cryptlink': data.id,
       }));

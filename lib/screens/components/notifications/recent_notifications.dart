@@ -54,7 +54,11 @@ class RecentNotifications extends StatelessWidget {
         ),
         DataCell(Text('')),
         DataCell(Text('')),
-        DataCell(Text(notoInfo.details['date'])),
+        DataCell(
+          Text(
+            Constants.timeSinceDate(notoInfo.details['date']),
+          ),
+        ),
       ],
     );
   }

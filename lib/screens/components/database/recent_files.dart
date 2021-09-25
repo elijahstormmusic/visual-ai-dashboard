@@ -39,7 +39,7 @@ class RecentFiles extends StatelessWidget {
                     label: Text('File Name'),
                   ),
                   DataColumn(
-                    label: Text('Date'),
+                    label: Text('Last Edit'),
                   ),
                   DataColumn(
                     label: Text('Size'),
@@ -79,7 +79,11 @@ DataRow recentFileDataRow(FileContent fileInfo) {
           ],
         ),
       ),
-      DataCell(Text(fileInfo.details['date'])),
+      DataCell(
+        Text(
+          Constants.timeSinceDate(fileInfo.details['last_edit']),
+        ),
+      ),
       DataCell(Text(fileInfo.caption)),
     ],
   );

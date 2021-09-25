@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:visual_ai/responsive.dart';
 import 'package:visual_ai/constants.dart';
 import 'package:visual_ai/screens/components/blinking_content.dart';
+import 'package:visual_ai/screens/components/loading.dart';
 
 
 class NoContentPlaceholder extends StatelessWidget {
@@ -72,9 +73,7 @@ class NoContentFunSquare extends StatelessWidget {
           color: Theme.of(context).cardColor,
           borderRadius: const BorderRadius.all(Radius.circular(10)),
         ),
-        child: SpinKitDancingSquare(
-          size: 50.0,
-        ),
+        child: Loading(),
       ),
     );
   }

@@ -29,7 +29,7 @@ class TrainingDataCache extends ContentCache {
     FirestoreApi.download('training_data', {
       'limit': 25,
       'group': 'group0',
-      'document': '4ctc1i9v3NUbebM1iNzNs10hDci1',
+      'document': FirestoreApi.logged_in_user_id,
     }, (dynamic data) {
       add(TrainingDataContent({
         'title': data['title'],
@@ -38,8 +38,8 @@ class TrainingDataCache extends ContentCache {
           'training_data': data['details']['data'],
           'encoding': data['details']['encoding'],
           'approved': data['approved'],
-          'created': data['created'],
-          'edited': data['edited'],
+          'created': DateTime.parse(data['created'].toDate().toString()),
+          'edited': DateTime.parse(data['edited'].toDate().toString()),
           'uses': data['uses'],
           'author': data['author'],
 
@@ -50,5 +50,32 @@ class TrainingDataCache extends ContentCache {
         'cryptlink': data.id,
       }));
     });
+  }
+
+  List<TrainingDataContent> filter(String type, {
+    int limit = 10,
+  }) {
+    List<TrainingDataContent> content = [];
+    var list = items;
+
+    for (int i = 0; i < list.length && content.length < limit; i++) {
+      if (list[i].details['type'].contains(type)) {
+        content.add(TrainingDataContent.cast(list[i]));
+      }
+    }
+
+    return content;
+  }
+
+  TrainingDataContent at(String type) {
+    var list = items;
+
+    for (int i = 0; i < list.length; i++) {
+      if (list[i].details['type'].contains(type)) {
+        return TrainingDataContent.cast(list[i]);
+      }
+    }
+
+    return TrainingDataContent(MockContent.all[0]);
   }
 }

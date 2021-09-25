@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 
 import 'package:visual_ai/constants.dart';
 import 'package:visual_ai/content/profile/content.dart';
+import 'package:visual_ai/screens/components/loading.dart';
 
 
 class StorageChart extends StatelessWidget {
@@ -46,6 +47,14 @@ class StorageChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    if (storage.details['type'] != 'storage pie') {
+      return SizedBox(
+        height: 200.0,
+        child: Loading(),
+      );
+    }
+
     return SizedBox(
       height: 200,
       child: Stack(

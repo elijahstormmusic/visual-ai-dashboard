@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'package:visual_ai/constants.dart';
 import 'package:visual_ai/content/profile/cache.dart';
+import 'package:visual_ai/screens/components/loading.dart';
 import 'file_info_card.dart';
 
 
@@ -70,6 +71,21 @@ class FileInfoCardGridView extends StatelessWidget {
       builder: (context, cache, child) {
 
         var overview = cache.filter('overview');
+
+        if (overview.length == 0) {
+          return GridView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: overview.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: crossAxisCount,
+              crossAxisSpacing: defaultPadding,
+              mainAxisSpacing: defaultPadding,
+              childAspectRatio: childAspectRatio,
+            ),
+            itemBuilder: (context, index) => Loading(),
+          );
+        }
 
         return GridView.builder(
           physics: NeverScrollableScrollPhysics(),

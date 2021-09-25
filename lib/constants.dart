@@ -24,4 +24,48 @@ class Constants {
   static const String logo_asset = 'assets/images/logo.png';
   static const String logoTag = 'vaidash.logo';
   static const String titleTag = 'vaidash.title';
+
+  static String timeSinceDate(DateTime date) {
+    Duration timeSince = DateTime.now().difference(date);
+    String output = 'just now';
+
+    if (timeSince.inSeconds < 0) return output;
+
+    if (timeSince.inDays == 0) {
+      if (timeSince.inHours == 0) {
+        if (timeSince.inMinutes == 0) {
+          output = timeSince.inSeconds.toString() + ' second';
+          if (timeSince.inSeconds > 1) output += 's';
+          output += ' ago';
+        } else {
+          output = timeSince.inMinutes.toString() + ' minute';
+          if (timeSince.inMinutes > 1) output += 's';
+          output += ' ago';
+        }
+      } else {
+        output = timeSince.inHours.toString() + ' hour';
+        if (timeSince.inHours > 1) output += 's';
+        output += ' ago';
+      }
+    }
+    else {
+      if (timeSince.inDays >= 365) {
+        int years = timeSince.inDays ~/ 365;
+        output = years.toString() + ' year';
+        if (years > 1) output += 's';
+        output += ' ago';
+      } else if (timeSince.inDays >= 29) {
+        int months = timeSince.inDays ~/ 30;
+        output = months.toString() + ' month';
+        if (months > 1) output += 's';
+        output += ' ago';
+      } else {
+        output = timeSince.inDays.toString() + ' day';
+        if (timeSince.inDays > 1) output += 's';
+        output += ' ago';
+      }
+    }
+
+    return output;
+  }
 }

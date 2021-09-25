@@ -28,13 +28,16 @@ class NotificationCache extends ContentCache {
 
     FirestoreApi.download('notos', {
       'limit': 10,
-      'group': null,
-      'userId': '4ctc1i9v3NUbebM1iNzNs10hDci1',
+      'group': 'group0',
+      'document': FirestoreApi.logged_in_user_id,
     }, (dynamic data) {
       add(NotificationContent({
         'title': data['title'],
         'caption': data['caption'],
         'details': {
+          'date': DateTime.parse(data['date'].toDate().toString()),
+          'type': data['type'],
+          'status': data['status'],
         },
         'cryptlink': data.id,
       }));

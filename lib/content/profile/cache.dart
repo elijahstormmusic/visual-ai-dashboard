@@ -28,13 +28,18 @@ class ProfileCache extends ContentCache {
 
     FirestoreApi.download('profile', {
       'limit': 10,
-      'group': null,
-      'userId': '4ctc1i9v3NUbebM1iNzNs10hDci1',
+      'group': 'group0',
+      'document': FirestoreApi.logged_in_user_id,
     }, (dynamic data) {
       add(ProfileContent({
         'title': data['title'],
         'caption': data['caption'],
         'details': {
+          'type': data['type'],
+          'fileSource': data['fileSource'],
+          'numOfFiles': data['numOfFiles'],
+          'totalStorage': data['totalStorage'],
+          'percentage': data['percentage'],
         },
         'cryptlink': data.id,
       }));
