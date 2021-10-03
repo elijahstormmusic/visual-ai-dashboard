@@ -7,12 +7,24 @@ import '../content.dart';
 
 
 class FileContent extends DashboardContent {
-  FileContent(Map<String, dynamic> input)
-    : super(
-      title: input['title'],
-      caption: input['caption'],
-      details: input['details'],
-      cryptlink: input['cryptlink'],
+  static const String Collection_Name = 'files';
+
+  String cloud_link;
+  int file_type;
+  DateTime created_on, last_edit;
+
+  FileContent({
+    required this.cloud_link,
+    required this.file_type,
+    required this.created_on,
+    required this.last_edit,
+    required title,
+    required caption,
+    required id,
+  }) : super(
+      title: title,
+      caption: caption,
+      id: id,
     )
   { }
 
@@ -20,19 +32,39 @@ class FileContent extends DashboardContent {
     : super(
       title: content.title,
       caption: content.caption,
-      details: content.details,
-      cryptlink: content.cryptlink,
+      id: content.id,
     )
   { }
 
+  @override
+  Map<String, dynamic> toJson() => {
+    'type': CONTENT.FILE,
+    'title': title,
+    'caption': caption,
+    'cloud_link': cloud_link,
+    'file_type': file_type,
+    'created_on': Timestamp.fromDate(created_on),
+    'last_edit': Timestamp.fromDate(last_edit),
+    'id': id,
+  };
+  static FileContent fromJson(dynamic data) => FileContent(
+    title: data['title'],
+    caption: data['caption'],
+    cloud_link: data['cloud_link'],
+    file_type: data['file_type'],
+    created_on: data['created_on'].toDate(),
+    last_edit: data['last_edit'].toDate(),
+    id: data.id ?? data['id'],
+  );
+
   FileContentDisplayPage navigateTo() {
-    return FileContentDisplayPage(cryptlink);
+    return FileContentDisplayPage(id);
   }
 
   Widget get icon {
     String asset = 'assets/icons/doc_file.svg';
 
-    switch (details['type']) {
+    switch (file_type) {
       case 0:
         asset = 'assets/icons/xd_file.svg';
         break;

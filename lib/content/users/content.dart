@@ -9,12 +9,28 @@ import '../content.dart';
 
 
 class UserContent extends DashboardContent {
-  UserContent(Map<String, dynamic> input)
-    : super(
-      title: input['title'],
-      caption: input['caption'],
-      details: input['details'],
-      cryptlink: input['cryptlink'],
+  static const String Collection_Name = 'users';
+
+  String image, sex;
+  bool online, verified, team_member, friend;
+  DateTime created_on, last_login;
+
+  UserContent({
+    required this.image,
+    required this.sex,
+    required this.online,
+    required this.verified,
+    required this.team_member,
+    required this.friend,
+    required this.created_on,
+    required this.last_login,
+    required title,
+    required caption,
+    required id,
+  }) : super(
+      title: title,
+      caption: caption,
+      id: id,
     )
   { }
 
@@ -22,19 +38,45 @@ class UserContent extends DashboardContent {
     : super(
       title: content.title,
       caption: content.caption,
-      details: content.details,
-      cryptlink: content.cryptlink,
+      id: content.id,
     )
   { }
 
-  UserContentDisplayPage navigateTo() {
-    return UserContentDisplayPage(cryptlink);
-  }
+  @override
+  Map<String, dynamic> toJson() => {
+    'type': CONTENT.USER,
+    'title': title,
+    'caption': caption,
+    'image': image,
+    'sex': sex,
+    'online': online,
+    'verified': verified,
+    'created_on': Timestamp.fromDate(created_on),
+    'last_login': Timestamp.fromDate(last_login),
+    'id': id,
+  };
+  static UserContent fromJson(dynamic data) => UserContent(
+    title: data['title'],
+    caption: data['caption'],
+    image: data['image'],
+    sex: data['sex'],
+    online: data['online'],
+    verified: data['verified'],
+    team_member: true,
+    friend: true,
+    created_on: data['created_on'].toDate(),
+    last_login: data['last_login'].toDate(),
+    id: data.id ?? data['id'],
+  );
 
   Widget get icon => Container(
     child: SvgPicture.network(
-      Constants.live_svgs + cryptlink + '.svg',
+      Constants.live_svgs + id + '.svg',
       fit: BoxFit.fill,
     ),
   );
+
+  UserContentDisplayPage navigateTo() {
+    return UserContentDisplayPage(id);
+  }
 }

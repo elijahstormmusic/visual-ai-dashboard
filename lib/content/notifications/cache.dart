@@ -20,27 +20,20 @@ class NotificationCache extends ContentCache {
       var list = MockContent.all;
 
       for (int i=0;i<list.length;i++) {
-        add(NotificationContent(list[i]));
+        add(NotificationContent.fromJson(list[i]));
       }
 
       return;
     }
 
-    FirestoreApi.download('notos', {
-      'limit': 10,
-      'group': 'group0',
-      'document': FirestoreApi.logged_in_user_id,
-    }, (dynamic data) {
-      add(NotificationContent({
-        'title': data['title'],
-        'caption': data['caption'],
-        'details': {
-          'date': DateTime.parse(data['date'].toDate().toString()),
-          'type': data['type'],
-          'status': data['status'],
-        },
-        'cryptlink': data.id,
-      }));
-    });
+    FirestoreApi.download(
+      NotificationContent.Collection_Name,
+      limit: 10,
+      team_id: FirestoreApi.active_team,
+      user_id: FirestoreApi.active_user,
+      populate: (dynamic data) => add(
+        NotificationContent.fromJson(data),
+      ),
+    );
   }
 }

@@ -7,12 +7,24 @@ import '../content.dart';
 
 
 class ProfileContent extends DashboardContent {
-  ProfileContent(Map<String, dynamic> input)
-    : super(
-      title: input['title'],
-      caption: input['caption'],
-      details: input['details'],
-      cryptlink: input['cryptlink'],
+  static const String Collection_Name = 'profile';
+
+  String type, total_storage, file_source;
+  int num_of_files, percentage;
+
+  ProfileContent({
+    required this.type,
+    required this.total_storage,
+    required this.file_source,
+    required this.num_of_files,
+    required this.percentage,
+    required title,
+    required caption,
+    required id,
+  }) : super(
+      title: title,
+      caption: caption,
+      id: id,
     )
   { }
 
@@ -20,19 +32,41 @@ class ProfileContent extends DashboardContent {
     : super(
       title: content.title,
       caption: content.caption,
-      details: content.details,
-      cryptlink: content.cryptlink,
+      id: content.id,
     )
   { }
 
+  @override
+  Map<String, dynamic> toJson() => {
+    'type': CONTENT.PROFILE,
+    'title': title,
+    'caption': caption,
+    'type': type,
+    'file_source': file_source,
+    'num_of_files': num_of_files,
+    'total_storage': total_storage,
+    'percentage': percentage,
+    'id': id,
+  };
+  static ProfileContent fromJson(dynamic data) => ProfileContent(
+    title: data['title'],
+    caption: data['caption'],
+    type: data['type'],
+    file_source: data['file_source'],
+    num_of_files: data['num_of_files'],
+    total_storage: data['total_storage'],
+    percentage: data['percentage'],
+    id: data.id ?? data['id'],
+  );
+
   ProfileContentDisplayPage navigateTo() {
-    return ProfileContentDisplayPage(cryptlink);
+    return ProfileContentDisplayPage(id);
   }
 
   Color color(BuildContext context) {
     Color color = Theme.of(context).primaryColor;
 
-    switch (details['fileSource']) {
+    switch (file_source) {
       case 'document':
         color = Theme.of(context).primaryColor;
         break;
@@ -58,8 +92,8 @@ class ProfileContent extends DashboardContent {
     String asset = 'assets/icons/Documents.svg';
     Color? color;
 
-    if (details['type'] == 'overview') {
-      switch (details['fileSource']) {
+    if (type == 'overview') {
+      switch (file_source) {
         case 'document':
           asset = 'assets/icons/Documents.svg';
           break;
@@ -81,8 +115,8 @@ class ProfileContent extends DashboardContent {
       }
     }
 
-    else if (details['type'] == 'storage') {
-      switch (details['mediaType']) {
+    else if (type == 'storage') {
+      switch (type) {
         case 'document':
           asset = 'assets/icons/Documents.svg';
           break;

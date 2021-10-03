@@ -20,30 +20,21 @@ class ProfileCache extends ContentCache {
       var list = MockContent.all;
 
       for (int i=0;i<list.length;i++) {
-        add(ProfileContent(list[i]));
+        add(ProfileContent.fromJson(list[i]));
       }
 
       return;
     }
 
-    FirestoreApi.download('profile', {
-      'limit': 10,
-      'group': 'group0',
-      'document': FirestoreApi.logged_in_user_id,
-    }, (dynamic data) {
-      add(ProfileContent({
-        'title': data['title'],
-        'caption': data['caption'],
-        'details': {
-          'type': data['type'],
-          'fileSource': data['fileSource'],
-          'numOfFiles': data['numOfFiles'],
-          'totalStorage': data['totalStorage'],
-          'percentage': data['percentage'],
-        },
-        'cryptlink': data.id,
-      }));
-    });
+    FirestoreApi.download(
+      ProfileContent.Collection_Name,
+      limit: 10,
+      team_id: FirestoreApi.active_team,
+      user_id: FirestoreApi.active_user,
+      populate: (dynamic data) => add(
+        ProfileContent.fromJson(data),
+      ),
+    );
   }
 
   List<ProfileContent> filter(String type, {
@@ -53,7 +44,7 @@ class ProfileCache extends ContentCache {
     var list = items;
 
     for (int i = 0; i < list.length && content.length < limit; i++) {
-      if (list[i].details['type'] == type) {
+      if (list[i].type == type) {
         content.add(ProfileContent.cast(list[i]));
       }
     }
@@ -65,7 +56,7 @@ class ProfileCache extends ContentCache {
     var list = items;
 
     for (int i = 0; i < list.length; i++) {
-      if (list[i].details['type'] == type) {
+      if (list[i].type == type) {
         return ProfileContent.cast(list[i]);
       }
     }

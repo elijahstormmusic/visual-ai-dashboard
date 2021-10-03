@@ -20,32 +20,18 @@ class UserCache extends ContentCache {
       var list = MockContent.all;
 
       for (int i=0;i<list.length;i++) {
-        add(UserContent(list[i]));
+        add(UserContent.fromJson(list[i]));
       }
 
       return;
     }
 
-    FirestoreApi.download('users', {
-      'limit': 10,
-      // 'group': null,
-      // 'document': null,
-    }, (dynamic data) {
-      add(UserContent({
-        'title': data['title'],
-        'caption': data['caption'],
-        'details': {
-          'image': data['image'],
-          'sex': data['sex'],
-          'online': data['online'],
-          'verified': data['verified'],
-          'team_member': true,
-          'friend': true,
-          'created_on': DateTime.parse(data['created_on'].toDate().toString()),
-          'last_login': DateTime.parse(data['last_login'].toDate().toString()),
-        },
-        'cryptlink': data.id,
-      }));
-    });
+    FirestoreApi.download(
+      UserContent.Collection_Name,
+      limit: 10,
+      populate: (dynamic data) => add(
+        TrainingDataContent.fromJson(data),
+      ),
+    );
   }
 }

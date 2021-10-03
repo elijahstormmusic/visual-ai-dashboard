@@ -2,10 +2,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'package:visual_ai/content/content.dart';
+
 
 class FirestoreApi {
   static bool Disabled = false;
-  static const Map<String, bool> requiredDocumentAuth = {
+  static const Map<String, bool> userSpecificPersonalData = {
     'training_data': true,
     'notos': true,
     'files': true,
@@ -69,56 +71,25 @@ class FirestoreApi {
   }
 
   static void download(
-    String content,
-    Map<String, dynamic> options,
-    void Function(dynamic) populate,
-  ) async {
-
-    String collection = '',
-            document = options['document'] ?? '',
-            group = options['group'] ?? '',
-            filters = options['filters'] ?? '';
-
-    int limit = options['limit'] ?? 10;
-
-    switch (content) {
-      case 'training_data':
-        collection = 'training_data';
-        break;
-      case 'users':
-        collection = 'users';
-        break;
-      case 'notos':
-        collection = 'notos';
-        break;
-      case 'files':
-        collection = 'files';
-        break;
-      case 'profile':
-        collection = 'profile';
-        break;
-      case 'store':
-        collection = 'store';
-        break;
-      case 'adverts':
-        collection = 'adverts';
-        break;
-      default:
-        break;
+    String collection, {
+      required void Function(dynamic) populate,
+      String user_id = '',
+      String team_id = '',
+      String filters = '',
+      int limit = 10,
     }
-
-    if (collection == '') return;
+  ) async {
 
     try {
 
       dynamic query = FirebaseFirestore.instance.collection(collection);
 
-      if (document != '' && group != '') {
+      if (user_id != '' && team_id != '') {
         query = query
-          .doc(document)
-          .collection(group);
+          .doc(user_id)
+          .collection(team_id);
       }
-      else if (requiredDocumentAuth[collection] ?? true) {
+      else if (userSpecificPersonalData[collection] ?? true) {
         print('Missing document in required DOCUMENT field');
         return;
       }
@@ -142,14 +113,48 @@ class FirestoreApi {
     } catch (e) {
       print(e);
     }
-
   }
 
-  static String? get logged_in_user_id {
+  static bool _allowed_upload = true;
+  static void upload({
+    required String collection,
+    required DashboardContent content,
+    String? user_id = FirestoreApi.active_user,
+    String? team_id = FirestoreApi.active_team,
+  }) {
+    if (!_allowed_upload) return;
+
+    if (user_id == null || team_id == null) return;
+
+    if (!(userSpecificPersonalData[collection] ?? false)) return;
+
+    CollectionReference reference = FirebaseFirestore.instance
+      .collection(collection)
+      .doc(user_id)
+      .collection(team_id)
+      .add(content.toJson());
+      .then((value) => print('document added'))
+      .catchError((error) => print("Failed to add user: $error"));
+  }
+
+  static String? get active_user {
     var currentUser = FirebaseAuth.instance.currentUser;
 
     if (currentUser != null) {
       return currentUser.uid;
+    }
+
+    return null;
+  }
+  static Future<String?> get active_team async {
+    String? currentUser = FirestoreApi.active_user;
+
+    if (currentUser != null) {
+      return 'group0';
+      // return await FirebaseFirestore.instance
+      //   .collection('users')
+      //   .doc(currentUser!)
+      //   .get().data; // i dont know if this works
     }
 
     return null;

@@ -20,32 +20,18 @@ class StoreCache extends ContentCache {
       var list = MockContent.all;
 
       for (int i=0;i<list.length;i++) {
-        add(StoreContent(list[i]));
+        add(StoreContent.fromJson(list[i]));
       }
 
       return;
     }
 
-    FirestoreApi.download('store', {
-      'limit': 10,
-      // 'group': null,
-      // 'document': null,
-    }, (dynamic data) {
-      add(StoreContent({
-        'title': data['title'],
-        'caption': data['caption'],
-        'details': {
-          'type': data['type'],
-          'size': data['size'],
-          'keywords': data['keywords'],
-          'purchased': true,
-          'popular': data['details']['popular'],
-          'recent': data['details']['recent'],
-          'num_of_purchases': data['details']['purchases'],
-          'likes': data['details']['likes'],
-        },
-        'cryptlink': data.id,
-      }));
-    });
+    FirestoreApi.download(
+      StoreContent.Collection_Name,
+      limit: 10,
+      populate: (dynamic data) => add(
+        StoreContent.fromJson(data),
+      ),
+    );
   }
 }

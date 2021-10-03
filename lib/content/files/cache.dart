@@ -20,28 +20,20 @@ class FileCache extends ContentCache {
       var list = MockContent.all;
 
       for (int i=0;i<list.length;i++) {
-        add(FileContent(list[i]));
+        add(FileContent.fromJson(list[i]));
       }
 
       return;
     }
 
-    FirestoreApi.download('files', {
-      'limit': 10,
-      'group': 'group0',
-      'document': FirestoreApi.logged_in_user_id,
-    }, (dynamic data) {
-      add(FileContent({
-        'title': data['title'],
-        'caption': data['caption'],
-        'details': {
-          'type': data['file_type'],
-          'link': data['cloud_link'],
-          'created_on': DateTime.parse(data['created_on'].toDate().toString()),
-          'last_edit': DateTime.parse(data['last_edit'].toDate().toString()),
-        },
-        'cryptlink': data.id,
-      }));
-    });
+    FirestoreApi.download(
+      FileContent.Collection_Name,
+      limit: 10,
+      team_id: FirestoreApi.active_team,
+      user_id: FirestoreApi.active_user,
+      populate: (dynamic data) => add(
+        FileContent.fromJson(data),
+      ),
+    );
   }
 }

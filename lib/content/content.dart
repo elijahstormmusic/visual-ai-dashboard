@@ -8,20 +8,31 @@ enum CONTENT {
   TRAINING_DATA,
   NOTIFICATION,
   FILE,
+  USER,
   AD,
 }
 
 class DashboardContent {
 
-  final String title, caption, cryptlink;
-  final Map<String, dynamic> details;
+  final String title, caption, id;
 
   DashboardContent({
     required this.title,
     required this.caption,
-    required this.details,
-    required this.cryptlink,
+    required this.id,
   });
+
+  Map<String, dynamic> toJson() => {
+    'type': CONTENT.NONE,
+    'title': title,
+    'caption': caption,
+    'id': id,
+  };
+  DashboardContent fromJson(dynamic data) => DashboardContent(
+    title: data['title'],
+    caption: data['caption'],
+    id: data['id'],
+  );
 
   Widget get icon => Container();
   Widget iconWidget(BuildContext context) => Container();

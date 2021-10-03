@@ -20,25 +20,18 @@ class AdvertisementCache extends ContentCache {
       var list = MockContent.all;
 
       for (int i=0;i<list.length;i++) {
-        add(AdvertisementContent(list[i]));
+        add(AdvertisementContent.fromJson(list[i]));
       }
 
       return;
     }
 
-    FirestoreApi.download('adverts', {
-      'limit': 10,
-      // 'group': null,
-      // 'document': null,
-    }, (dynamic data) {
-      add(AdvertisementContent({
-        'title': data['title'],
-        'caption': data['caption'],
-        'details': {
-          'link': data['link'],
-        },
-        'cryptlink': data.id,
-      }));
-    });
+    FirestoreApi.download(
+      AdvertisementContent.Collection_Name,
+      limit: 10,
+      populate: (dynamic data) => add(
+        AdvertisementContent.fromJson(data),
+      ),
+    );
   }
 }

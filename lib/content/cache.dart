@@ -12,7 +12,7 @@ class ContentCache extends ChangeNotifier {
 
   void add(DashboardContent partner) {
     for (int i=0;i<_items.length;i++) {
-      if (_items[i].cryptlink==partner.cryptlink) return;
+      if (_items[i].id==partner.id) return;
     }
 
     _items.add(partner);

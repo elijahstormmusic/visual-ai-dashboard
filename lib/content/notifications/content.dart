@@ -7,12 +7,23 @@ import '../content.dart';
 
 
 class NotificationContent extends DashboardContent {
-  NotificationContent(Map<String, dynamic> input)
+  static const String Collection_Name = 'notos';
+
+  DateTime date;
+  String type, status;
+
+  NotificationContent({
+    required this.date,
+    required this.type,
+    required this.status,
+    required title,
+    required caption,
+    required id,
+  })
     : super(
-      title: input['title'],
-      caption: input['caption'],
-      details: input['details'],
-      cryptlink: input['cryptlink'],
+      title: title,
+      caption: caption,
+      id: id,
     )
   { }
 
@@ -20,20 +31,38 @@ class NotificationContent extends DashboardContent {
     : super(
       title: content.title,
       caption: content.caption,
-      details: content.details,
-      cryptlink: content.cryptlink,
+      id: content.id,
     )
   { }
 
+  @override
+  Map<String, dynamic> toJson() => {
+    'type': CONTENT.NOTIFICATION,
+    'title': title,
+    'caption': caption,
+    'date': date,
+    'type': type,
+    'status': status,
+    'id': id,
+  };
+  static NotificationContent fromJson(dynamic data) => NotificationContent(
+    title: data['title'],
+    caption: data['caption'],
+    date: data['date'],
+    type: data['type'],
+    status: data['status'],
+    id: data.id ?? data['id'],
+  );
+
   NotificationContentDisplayPage navigateTo() {
-    return NotificationContentDisplayPage(cryptlink);
+    return NotificationContentDisplayPage(id);
   }
 
   Widget get icon {
     Color color = Colors.blue;
     String asset = 'assets/icons/google-docs.svg';
 
-    switch (details['type']) {
+    switch (type) {
       case 'account':
         asset = 'assets/icons/user.svg';
         color = Colors.yellow;

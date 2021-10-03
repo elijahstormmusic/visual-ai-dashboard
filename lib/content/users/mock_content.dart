@@ -15,7 +15,7 @@ class MockContent {
 
   static List<Map<String, dynamic> > data = [
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Jennie',
       'caption': 'Just a girl from the New Zealand who moved to Korea to follow my passion',
       'details': {
@@ -28,7 +28,7 @@ class MockContent {
       'cryptlink': 'jennie1',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'donghee',
       'caption': 'I\'m an actor, but I will never be fake with you ;)',
       'details': {
@@ -41,7 +41,7 @@ class MockContent {
       'cryptlink': 'donghee1',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Lee Ji-eun',
       'caption': 'Some people call me IU, but you can call me love',
       'details': {
@@ -54,7 +54,7 @@ class MockContent {
       'cryptlink': 'iu1',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Jack Black',
       'caption': 'We came to ROCK!',
       'details': {
@@ -67,7 +67,7 @@ class MockContent {
       'cryptlink': 'jackblack1',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Snoop Doggy Dog',
       'caption': 'if you dont bring some smoke to the golf course... dont worry ill bring it',
       'details': {
@@ -80,7 +80,7 @@ class MockContent {
       'cryptlink': 'snoop1',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Tiger Woods',
       'caption': 'I know you know who I am',
       'details': {
@@ -93,7 +93,7 @@ class MockContent {
       'cryptlink': 'tigerwoods1',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Dorothy Oz',
       'caption': 'I don\'t think I\'m in Kansas anymore...',
       'details': {
@@ -106,7 +106,7 @@ class MockContent {
       'cryptlink': 'dorothy1',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Jennie',
       'caption': 'Just a girl from the New Zealand who moved to Korea to follow my passion',
       'details': {
@@ -119,7 +119,7 @@ class MockContent {
       'cryptlink': 'jennie2',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'donghee',
       'caption': 'I\'m an actor, but I will never be fake with you ;)',
       'details': {
@@ -132,7 +132,7 @@ class MockContent {
       'cryptlink': 'donghee2',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Lee Ji-eun',
       'caption': 'Some people call me IU, but you can call me love',
       'details': {
@@ -145,7 +145,7 @@ class MockContent {
       'cryptlink': 'iu2',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Jack Black',
       'caption': 'We came to ROCK!',
       'details': {
@@ -158,7 +158,7 @@ class MockContent {
       'cryptlink': 'jackblack2',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Snoop Doggy Dog',
       'caption': 'if you dont bring some smoke to the golf course... dont worry ill bring it',
       'details': {
@@ -171,7 +171,7 @@ class MockContent {
       'cryptlink': 'snoop2',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Tiger Woods',
       'caption': 'I know you know who I am',
       'details': {
@@ -184,7 +184,7 @@ class MockContent {
       'cryptlink': 'tigerwoods2',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Dorothy Oz',
       'caption': 'I don\'t think I\'m in Kansas anymore...',
       'details': {
@@ -197,7 +197,7 @@ class MockContent {
       'cryptlink': 'dorothy2',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Jennie',
       'caption': 'Just a girl from the New Zealand who moved to Korea to follow my passion',
       'details': {
@@ -210,7 +210,7 @@ class MockContent {
       'cryptlink': 'jennie3',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'donghee',
       'caption': 'I\'m an actor, but I will never be fake with you ;)',
       'details': {
@@ -223,7 +223,7 @@ class MockContent {
       'cryptlink': 'donghee3',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Lee Ji-eun',
       'caption': 'Some people call me IU, but you can call me love',
       'details': {
@@ -236,7 +236,7 @@ class MockContent {
       'cryptlink': 'iu3',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Jack Black',
       'caption': 'We came to ROCK!',
       'details': {
@@ -249,7 +249,7 @@ class MockContent {
       'cryptlink': 'jackblack3',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Snoop Doggy Dog',
       'caption': 'if you dont bring some smoke to the golf course... dont worry ill bring it',
       'details': {
@@ -262,7 +262,7 @@ class MockContent {
       'cryptlink': 'snoop3',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Tiger Woods',
       'caption': 'I know you know who I am',
       'details': {
@@ -275,7 +275,7 @@ class MockContent {
       'cryptlink': 'tigerwoods3',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Dorothy Oz',
       'caption': 'I don\'t think I\'m in Kansas anymore...',
       'details': {
@@ -288,7 +288,7 @@ class MockContent {
       'cryptlink': 'dorothy3',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Jennie',
       'caption': 'Just a girl from the New Zealand who moved to Korea to follow my passion',
       'details': {
@@ -301,7 +301,7 @@ class MockContent {
       'cryptlink': 'jennie4',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'donghee',
       'caption': 'I\'m an actor, but I will never be fake with you ;)',
       'details': {
@@ -314,7 +314,7 @@ class MockContent {
       'cryptlink': 'donghee4',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Lee Ji-eun',
       'caption': 'Some people call me IU, but you can call me love',
       'details': {
@@ -327,7 +327,7 @@ class MockContent {
       'cryptlink': 'iu4',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Jack Black',
       'caption': 'We came to ROCK!',
       'details': {
@@ -340,7 +340,7 @@ class MockContent {
       'cryptlink': 'jackblack4',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Snoop Doggy Dog',
       'caption': 'if you dont bring some smoke to the golf course... dont worry ill bring it',
       'details': {
@@ -353,7 +353,7 @@ class MockContent {
       'cryptlink': 'snoop4',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Tiger Woods',
       'caption': 'I know you know who I am',
       'details': {
@@ -366,7 +366,7 @@ class MockContent {
       'cryptlink': 'tigerwoods4',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Dorothy Oz',
       'caption': 'I don\'t think I\'m in Kansas anymore...',
       'details': {
@@ -379,7 +379,7 @@ class MockContent {
       'cryptlink': 'dorothy4',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Jennie',
       'caption': 'Just a girl from the New Zealand who moved to Korea to follow my passion',
       'details': {
@@ -392,7 +392,7 @@ class MockContent {
       'cryptlink': 'jennie5',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'donghee',
       'caption': 'I\'m an actor, but I will never be fake with you ;)',
       'details': {
@@ -405,7 +405,7 @@ class MockContent {
       'cryptlink': 'donghee5',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Lee Ji-eun',
       'caption': 'Some people call me IU, but you can call me love',
       'details': {
@@ -418,7 +418,7 @@ class MockContent {
       'cryptlink': 'iu5',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Jack Black',
       'caption': 'We came to ROCK!',
       'details': {
@@ -431,7 +431,7 @@ class MockContent {
       'cryptlink': 'jackblack5',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Snoop Doggy Dog',
       'caption': 'if you dont bring some smoke to the golf course... dont worry ill bring it',
       'details': {
@@ -444,7 +444,7 @@ class MockContent {
       'cryptlink': 'snoop5',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Tiger Woods',
       'caption': 'I know you know who I am',
       'details': {
@@ -457,7 +457,7 @@ class MockContent {
       'cryptlink': 'tigerwoods5',
     },
     {
-      'type': CONTENT.PROFILE,
+      'type': CONTENT.USER,
       'title': 'Dorothy Oz',
       'caption': 'I don\'t think I\'m in Kansas anymore...',
       'details': {

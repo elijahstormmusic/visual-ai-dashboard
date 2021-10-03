@@ -6,12 +6,19 @@ import '../content.dart';
 
 
 class AdvertisementContent extends DashboardContent {
-  AdvertisementContent(Map<String, dynamic> input)
-    : super(
-      title: input['title'],
-      caption: input['caption'],
-      details: input['details'],
-      cryptlink: input['cryptlink'],
+  static const String Collection_Name = 'adverts';
+
+  String link;
+
+  AdvertisementContent({
+    required this.link,
+    required title,
+    required caption,
+    required id,
+  }) : super(
+      title: title,
+      caption: caption,
+      id: id,
     )
   { }
 
@@ -19,12 +26,26 @@ class AdvertisementContent extends DashboardContent {
     : super(
       title: content.title,
       caption: content.caption,
-      details: content.details,
-      cryptlink: content.cryptlink,
+      id: content.id,
     )
   { }
 
+  @override
+  Map<String, dynamic> toJson() => {
+    'type': CONTENT.AD,
+    'title': title,
+    'caption': caption,
+    'link': link,
+    'id': id,
+  };
+  static AdvertisementContent fromJson(dynamic data) => AdvertisementContent(
+    title: data['title'],
+    caption: data['caption'],
+    link: data['link'],
+    id: data.id ?? data['id'],
+  );
+
   UserContentDisplayPage navigateTo() {
-    return UserContentDisplayPage(cryptlink);
+    return UserContentDisplayPage(id);
   }
 }
