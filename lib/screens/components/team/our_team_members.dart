@@ -75,7 +75,7 @@ class TeamMemberCardInfoGridView extends StatelessWidget {
         var items = cache.items;
 
         for (int i=0;i<items.length;i++) {
-          if (items[i].details['team_member']) {
+          if (items[i].team_member) {
             filter.add(items[i]);
           }
         }

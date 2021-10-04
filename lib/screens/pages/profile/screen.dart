@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:visual_ai/responsive.dart';
 import 'package:provider/provider.dart';
 
-import 'package:visual_ai/content/profile/cache.dart';
+import 'package:visual_ai/content/dashboard/cache.dart';
 import 'package:visual_ai/content/users/cache.dart';
 
 import 'package:visual_ai/screens/components/header.dart';
@@ -18,7 +18,7 @@ class ProfileScreen extends StatelessWidget {
     return SafeArea(
       child: MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (context) => ProfileCache()),
+          ChangeNotifierProvider(create: (context) => DashboardCache()),
           ChangeNotifierProvider(create: (context) => UserCache()),
         ],
         child: SingleChildScrollView(

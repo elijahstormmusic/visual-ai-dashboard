@@ -5,8 +5,9 @@ import 'cache.dart';
 import '../content.dart';
 
 
-class AdvertisementContent extends DashboardContent {
-  static const String Collection_Name = 'adverts';
+class AdvertisementContent extends ContentContainer {
+  static const String CollectionName = 'adverts';
+  String get collection => CollectionName;
 
   String link;
 
@@ -22,15 +23,13 @@ class AdvertisementContent extends DashboardContent {
     )
   { }
 
-  AdvertisementContent.cast(DashboardContent content)
-    : super(
-      title: content.title,
-      caption: content.caption,
-      id: content.id,
-    )
-  { }
+  factory AdvertisementContent.fromJson(dynamic data) => AdvertisementContent(
+    title: data['title'],
+    caption: data['caption'],
+    link: data['link'],
+    id: data.id ?? data['id'],
+  );
 
-  @override
   Map<String, dynamic> toJson() => {
     'type': CONTENT.AD,
     'title': title,
@@ -38,12 +37,6 @@ class AdvertisementContent extends DashboardContent {
     'link': link,
     'id': id,
   };
-  static AdvertisementContent fromJson(dynamic data) => AdvertisementContent(
-    title: data['title'],
-    caption: data['caption'],
-    link: data['link'],
-    id: data.id ?? data['id'],
-  );
 
   UserContentDisplayPage navigateTo() {
     return UserContentDisplayPage(id);

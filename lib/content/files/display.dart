@@ -10,13 +10,11 @@ class FileContentDisplayPage extends StatefulWidget {
 
   FileContentDisplayPage(this.cryptlink);
 
-  @override
   _UserContentDisplayPageState createState() => _UserContentDisplayPageState();
 }
 
 class _UserContentDisplayPageState extends State<FileContentDisplayPage> {
 
-  @override
   Widget build(BuildContext context) {
 
     return Scaffold(

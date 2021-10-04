@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 
 import 'package:visual_ai/constants.dart';
-import 'package:visual_ai/content/profile/content.dart';
+import 'package:visual_ai/content/dashboard/content.dart';
 import 'package:visual_ai/screens/components/loading.dart';
 
 
@@ -13,14 +13,14 @@ class StorageChart extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final ProfileContent storage;
+  final DashboardContent storage;
 
   List<PieChartSectionData> _createData(BuildContext context) {
     List<PieChartSectionData> list = [];
     List<Color> colors = List.generate(
-      storage.details['data'].length,
+      storage.data.length,
       (i) {
-        if (i == storage.details['data'].length - 1) {
+        if (i == storage.data.length - 1) {
           return Theme.of(context).primaryColor.withOpacity(0.1);
         }
 
@@ -33,10 +33,10 @@ class StorageChart extends StatelessWidget {
       },
     );
 
-    for (int i = 0; i < storage.details['data'].length; i++) {
+    for (int i = 0; i < storage.data.length; i++) {
       list.add(PieChartSectionData(
-        value: storage.details['data'][i]['value'],
-        radius: storage.details['data'][i]['radius'],
+        value: storage.data[i]['value'],
+        radius: storage.data[i]['radius'],
         color: colors[i],
         showTitle: false,
       ));
@@ -48,7 +48,7 @@ class StorageChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    if (storage.details['type'] != 'storage pie') {
+    if (storage.type != 'storage pie') {
       return SizedBox(
         height: 200.0,
         child: Loading(),

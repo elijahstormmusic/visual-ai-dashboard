@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:visual_ai/constants.dart';
 
@@ -8,8 +9,9 @@ import 'cache.dart';
 import '../content.dart';
 
 
-class UserContent extends DashboardContent {
-  static const String Collection_Name = 'users';
+class UserContent extends ContentContainer {
+  static const String CollectionName = 'users';
+  String get collection => CollectionName;
 
   String image, sex;
   bool online, verified, team_member, friend;
@@ -34,28 +36,7 @@ class UserContent extends DashboardContent {
     )
   { }
 
-  UserContent.cast(DashboardContent content)
-    : super(
-      title: content.title,
-      caption: content.caption,
-      id: content.id,
-    )
-  { }
-
-  @override
-  Map<String, dynamic> toJson() => {
-    'type': CONTENT.USER,
-    'title': title,
-    'caption': caption,
-    'image': image,
-    'sex': sex,
-    'online': online,
-    'verified': verified,
-    'created_on': Timestamp.fromDate(created_on),
-    'last_login': Timestamp.fromDate(last_login),
-    'id': id,
-  };
-  static UserContent fromJson(dynamic data) => UserContent(
+  factory UserContent.fromJson(dynamic data) => UserContent(
     title: data['title'],
     caption: data['caption'],
     image: data['image'],
@@ -68,6 +49,19 @@ class UserContent extends DashboardContent {
     last_login: data['last_login'].toDate(),
     id: data.id ?? data['id'],
   );
+
+  Map<String, dynamic> toJson() => {
+    'type': CONTENT.USER,
+    'title': title,
+    'caption': caption,
+    'image': image,
+    'sex': sex,
+    'online': online,
+    'verified': verified,
+    'created_on': Timestamp.fromDate(created_on),
+    'last_login': Timestamp.fromDate(last_login),
+    'id': id,
+  };
 
   Widget get icon => Container(
     child: SvgPicture.network(

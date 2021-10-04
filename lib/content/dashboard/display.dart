@@ -5,18 +5,16 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'content.dart';
 
 
-class ProfileContentDisplayPage extends StatefulWidget {
+class DashboardContentDisplayPage extends StatefulWidget {
   final String cryptlink;
 
-  ProfileContentDisplayPage(this.cryptlink);
+  DashboardContentDisplayPage(this.cryptlink);
 
-  @override
   _UserContentDisplayPageState createState() => _UserContentDisplayPageState();
 }
 
-class _UserContentDisplayPageState extends State<ProfileContentDisplayPage> {
+class _UserContentDisplayPageState extends State<DashboardContentDisplayPage> {
 
-  @override
   Widget build(BuildContext context) {
 
     return Scaffold(

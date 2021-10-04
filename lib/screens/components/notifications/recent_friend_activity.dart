@@ -27,7 +27,7 @@ class RecentFriendActivities extends StatelessWidget {
     }
 
     return DataRow(
-      color: notoInfo.details['status'] == 'unread' ? MaterialStateProperty.resolveWith(getColor) : null,
+      color: notoInfo.status == 'unread' ? MaterialStateProperty.resolveWith(getColor) : null,
       cells: [
         DataCell(
           Row(
@@ -56,7 +56,7 @@ class RecentFriendActivities extends StatelessWidget {
         DataCell(Text('')),
         DataCell(
           Text(
-            Constants.timeSinceDate(notoInfo.details['date']),
+            Constants.timeSinceDate(notoInfo.date),
           ),
         ),
       ],
@@ -102,7 +102,7 @@ class RecentFriendActivities extends StatelessWidget {
                   rows: List.generate(
                     cache.items.length,
                     (index) => recentNotoDataRow(
-                      NotificationContent.cast(cache.items[index]),
+                      (cache.items[index]),
                     ),
                   ),
                 ),

@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'display.dart';
 import 'cache.dart';
 import '../content.dart';
 
 
-class FileContent extends DashboardContent {
-  static const String Collection_Name = 'files';
+class FileContent extends ContentContainer {
+  static const String CollectionName = 'files';
+  String get collection => CollectionName;
 
   String cloud_link;
   int file_type;
-  DateTime created_on, last_edit;
+  DateTime created_on, edited_on;
 
   FileContent({
     required this.cloud_link,
     required this.file_type,
     required this.created_on,
-    required this.last_edit,
+    required this.edited_on,
     required title,
     required caption,
     required id,
@@ -28,15 +30,16 @@ class FileContent extends DashboardContent {
     )
   { }
 
-  FileContent.cast(DashboardContent content)
-    : super(
-      title: content.title,
-      caption: content.caption,
-      id: content.id,
-    )
-  { }
+  factory FileContent.fromJson(dynamic data) => FileContent(
+    title: data['title'],
+    caption: data['caption'],
+    cloud_link: data['cloud_link'],
+    file_type: data['file_type'],
+    created_on: data['created_on'].toDate(),
+    edited_on: data['edited_on'].toDate(),
+    id: data.id ?? data['id'],
+  );
 
-  @override
   Map<String, dynamic> toJson() => {
     'type': CONTENT.FILE,
     'title': title,
@@ -44,18 +47,9 @@ class FileContent extends DashboardContent {
     'cloud_link': cloud_link,
     'file_type': file_type,
     'created_on': Timestamp.fromDate(created_on),
-    'last_edit': Timestamp.fromDate(last_edit),
+    'edited_on': Timestamp.fromDate(edited_on),
     'id': id,
   };
-  static FileContent fromJson(dynamic data) => FileContent(
-    title: data['title'],
-    caption: data['caption'],
-    cloud_link: data['cloud_link'],
-    file_type: data['file_type'],
-    created_on: data['created_on'].toDate(),
-    last_edit: data['last_edit'].toDate(),
-    id: data.id ?? data['id'],
-  );
 
   FileContentDisplayPage navigateTo() {
     return FileContentDisplayPage(id);

@@ -12,15 +12,23 @@ enum CONTENT {
   AD,
 }
 
-class DashboardContent {
+class ContentContainer {
+  static const String CollectionName = '';
+  String get collection => CollectionName;
 
   final String title, caption, id;
 
-  DashboardContent({
+  ContentContainer({
     required this.title,
     required this.caption,
     required this.id,
   });
+
+  factory ContentContainer.fromJson(dynamic data) => ContentContainer(
+    title: data['title'],
+    caption: data['caption'],
+    id: data['id'],
+  );
 
   Map<String, dynamic> toJson() => {
     'type': CONTENT.NONE,
@@ -28,13 +36,8 @@ class DashboardContent {
     'caption': caption,
     'id': id,
   };
-  DashboardContent fromJson(dynamic data) => DashboardContent(
-    title: data['title'],
-    caption: data['caption'],
-    id: data['id'],
-  );
 
-  Widget get icon => Container();
-  Widget iconWidget(BuildContext context) => Container();
-  Color color(BuildContext context) => Colors.red;
+  bool find(String query) {
+    return title.contains(query) || caption.contains(query) || id == query;
+  }
 }

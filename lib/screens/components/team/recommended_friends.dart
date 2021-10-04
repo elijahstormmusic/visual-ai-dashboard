@@ -75,7 +75,7 @@ class PersonCardInfoGridView extends StatelessWidget {
         var items = cache.items;
 
         for (int i=0;i<items.length;i++) {
-          if (!items[i].details['friend']) {
+          if (!items[i].friend) {
             filter.add(items[i]);
           }
         }

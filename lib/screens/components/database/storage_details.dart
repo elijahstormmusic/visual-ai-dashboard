@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'package:visual_ai/constants.dart';
 import 'package:visual_ai/screens/components/charts/charts.dart';
-import 'package:visual_ai/content/profile/cache.dart';
+import 'package:visual_ai/content/dashboard/cache.dart';
 import 'storage_info_card.dart';
 
 
@@ -14,7 +14,7 @@ class StorageDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ProfileCache>(
+    return Consumer<DashboardCache>(
       builder: (context, cache, child) {
 
         var storage = cache.filter('storage', limit: 4);

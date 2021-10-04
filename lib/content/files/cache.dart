@@ -6,34 +6,17 @@ import 'mock_content.dart';
 import 'package:visual_ai/firestore/firestore.dart';
 
 
-class FileCache extends ContentCache {
-  Map<String, dynamic> empty_shell(String cryptlink) {
-    var data = MockContent.all[0];
+class FileCache extends ContentCache<FileContent> {
+  List<Map<String, dynamic> > get mockData => MockContent.all;
+  FileContent fromJson(dynamic data) => FileContent.fromJson(data);
 
-    data['cryptlink'] = cryptlink;
-
-    return data;
-  }
-
-  FileCache() {
-    if (ContentCache.Load_Mock_Data) {
-      var list = MockContent.all;
-
-      for (int i=0;i<list.length;i++) {
-        add(FileContent.fromJson(list[i]));
-      }
-
-      return;
-    }
-
-    FirestoreApi.download(
-      FileContent.Collection_Name,
-      limit: 10,
-      team_id: FirestoreApi.active_team,
-      user_id: FirestoreApi.active_user,
-      populate: (dynamic data) => add(
-        FileContent.fromJson(data),
-      ),
-    );
-  }
+  void download() async => FirestoreApi.download(
+    FileContent.CollectionName,
+    limit: 10,
+    id: FirestoreApi.active_user,
+    // id: await FirestoreApi.active_team,
+    populate: (dynamic data) => add(
+      FileContent.fromJson(data),
+    ),
+  );
 }

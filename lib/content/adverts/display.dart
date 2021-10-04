@@ -10,13 +10,11 @@ class AdvertisementContentDisplayPage extends StatefulWidget {
 
   AdvertisementContentDisplayPage(this.cryptlink);
 
-  @override
   _UserContentDisplayPageState createState() => _UserContentDisplayPageState();
 }
 
 class _UserContentDisplayPageState extends State<AdvertisementContentDisplayPage> {
 
-  @override
   Widget build(BuildContext context) {
 
     return Scaffold(

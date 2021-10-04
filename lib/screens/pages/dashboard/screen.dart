@@ -3,7 +3,7 @@ import 'package:visual_ai/responsive.dart';
 import 'package:provider/provider.dart';
 
 import 'package:visual_ai/content/files/cache.dart';
-import 'package:visual_ai/content/profile/cache.dart';
+import 'package:visual_ai/content/dashboard/cache.dart';
 
 import 'package:visual_ai/screens/components/header.dart';
 import 'package:visual_ai/screens/components/database/dashboard_files.dart';
@@ -19,7 +19,7 @@ class DashboardScreen extends StatelessWidget {
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => FileCache()),
-          ChangeNotifierProvider(create: (context) => ProfileCache()),
+          ChangeNotifierProvider(create: (context) => DashboardCache()),
         ],
         child: SingleChildScrollView(
           padding: EdgeInsets.all(defaultPadding),

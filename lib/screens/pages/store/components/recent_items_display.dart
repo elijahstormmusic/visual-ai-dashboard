@@ -77,7 +77,7 @@ class NoContentFunSquare extends StatelessWidget {
         var items = cache.items;
 
         for (int i=0;i<items.length;i++) {
-          if (items[i].details['recent']) {
+          if (items[i].recent) {
             filter.add(items[i]);
           }
         }

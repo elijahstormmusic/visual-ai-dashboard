@@ -6,17 +6,17 @@ import 'mock_content.dart';
 import 'package:visual_ai/firestore/firestore.dart';
 
 
-class NotificationCache extends ContentCache<NotificationContent> {
+class DashboardCache extends ContentCache<DashboardContent> {
   List<Map<String, dynamic> > get mockData => MockContent.all;
-  NotificationContent fromJson(dynamic data) => NotificationContent.fromJson(data);
+  DashboardContent fromJson(dynamic data) => DashboardContent.fromJson(data);
 
   void download() async => FirestoreApi.download(
-    NotificationContent.CollectionName,
+    DashboardContent.CollectionName,
     limit: 10,
     id: FirestoreApi.active_user,
     // id: await FirestoreApi.active_team,
     populate: (dynamic data) => add(
-      NotificationContent.fromJson(data),
+      DashboardContent.fromJson(data),
     ),
   );
 }

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'display.dart';
 import 'cache.dart';
 import '../content.dart';
 
 
-class NotificationContent extends DashboardContent {
-  static const String Collection_Name = 'notos';
+class NotificationContent extends ContentContainer {
+  static const String CollectionName = 'notos';
+  String get collection => CollectionName;
 
   DateTime date;
   String type, status;
@@ -27,32 +29,24 @@ class NotificationContent extends DashboardContent {
     )
   { }
 
-  NotificationContent.cast(DashboardContent content)
-    : super(
-      title: content.title,
-      caption: content.caption,
-      id: content.id,
-    )
-  { }
-
-  @override
-  Map<String, dynamic> toJson() => {
-    'type': CONTENT.NOTIFICATION,
-    'title': title,
-    'caption': caption,
-    'date': date,
-    'type': type,
-    'status': status,
-    'id': id,
-  };
-  static NotificationContent fromJson(dynamic data) => NotificationContent(
+  factory NotificationContent.fromJson(dynamic data) => NotificationContent(
     title: data['title'],
     caption: data['caption'],
-    date: data['date'],
+    date: data['date'].toDate(),
     type: data['type'],
     status: data['status'],
     id: data.id ?? data['id'],
   );
+
+  Map<String, dynamic> toJson() => {
+    'type': CONTENT.NOTIFICATION,
+    'title': title,
+    'caption': caption,
+    'date': Timestamp.fromDate(date),
+    'type': type,
+    'status': status,
+    'id': id,
+  };
 
   NotificationContentDisplayPage navigateTo() {
     return NotificationContentDisplayPage(id);

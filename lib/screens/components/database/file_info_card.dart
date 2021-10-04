@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import 'package:visual_ai/constants.dart';
-import 'package:visual_ai/content/profile/content.dart';
+import 'package:visual_ai/content/dashboard/content.dart';
 
 
 class FileInfoCard extends StatelessWidget {
@@ -12,7 +12,7 @@ class FileInfoCard extends StatelessWidget {
     required this.info,
   }) : super(key: key);
 
-  final ProfileContent info;
+  final DashboardContent info;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,7 @@ class FileInfoCard extends StatelessWidget {
           ),
           ProgressLine(
             color: info.color(context),
-            percentage: info.details['percentage'],
+            percentage: info.percentage,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -64,11 +64,11 @@ class FileInfoCard extends StatelessWidget {
               Opacity(
                 opacity: 0.8,
                 child: Text(
-                  '${info.details['numOfFiles']} Files',
+                  '${info.num_of_files} Files',
                 ),
               ),
               Text(
-                info.details['totalStorage']!,
+                info.total_storage,
               ),
             ],
           )

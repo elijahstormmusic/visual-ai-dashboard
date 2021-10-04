@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:visual_ai/constants.dart';
-import 'package:visual_ai/content/profile/content.dart';
+import 'package:visual_ai/content/dashboard/content.dart';
 
 
 class StorageInfoCard extends StatelessWidget {
@@ -11,7 +11,7 @@ class StorageInfoCard extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final ProfileContent storageDetails;
+  final DashboardContent storageDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -52,14 +52,14 @@ class StorageInfoCard extends StatelessWidget {
                   Opacity(
                     opacity: 0.8,
                     child: Text(
-                      '${storageDetails.details['numOfFiles']} Files',
+                      '${storageDetails.num_of_files} Files',
                     ),
                   )
                 ],
               ),
             ),
           ),
-          Text(storageDetails.details['size']),
+          Text(storageDetails.total_storage),
         ],
       ),
     );

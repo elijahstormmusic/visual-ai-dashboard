@@ -48,7 +48,7 @@ class RecentFiles extends StatelessWidget {
                 rows: List.generate(
                   cache.items.length,
                   (index) => recentFileDataRow(
-                    FileContent.cast(cache.items[index]),
+                    (cache.items[index]),
                   ),
                 ),
               ),
@@ -81,7 +81,7 @@ DataRow recentFileDataRow(FileContent fileInfo) {
       ),
       DataCell(
         Text(
-          Constants.timeSinceDate(fileInfo.details['last_edit']),
+          Constants.timeSinceDate(fileInfo.edited_on),
         ),
       ),
       DataCell(Text(fileInfo.caption)),

@@ -8,8 +8,9 @@ import 'cache.dart';
 import '../content.dart';
 
 
-class StoreContent extends DashboardContent {
-  static const String Collection_Name = 'store';
+class StoreContent extends ContentContainer {
+  static const String CollectionName = 'store';
+  String get collection => CollectionName;
 
   String type, keywords;
   int size, num_of_likes, num_of_purchases;
@@ -34,15 +35,20 @@ class StoreContent extends DashboardContent {
     )
   { }
 
-  StoreContent.cast(DashboardContent content)
-    : super(
-      title: content.title,
-      caption: content.caption,
-      id: content.id,
-    )
-  { }
+  factory StoreContent.fromJson(dynamic data) => StoreContent(
+    title: data['title'],
+    caption: data['caption'],
+    type: data['type'],
+    size: data['size'],
+    keywords: data['keywords'],
+    purchased: true,
+    popular: data['popular'],
+    recent: data['recent'],
+    num_of_purchases: data['num_of_purchases'],
+    num_of_likes: data['num_of_likes'],
+    id: data.id ?? data['id'],
+  );
 
-  @override
   Map<String, dynamic> toJson() => {
     'type': CONTENT.STORE_ITEM,
     'title': title,
@@ -56,19 +62,6 @@ class StoreContent extends DashboardContent {
     'num_of_likes': num_of_likes,
     'id': id,
   };
-  static StoreContent fromJson(dynamic data) => StoreContent(
-    title: data['title'],
-    caption: data['caption'],
-    type: data['type'],
-    size: data['size'],
-    keywords: data['keywords'],
-    purchased: true,
-    popular: data['popular'],
-    recent: data['recent'],
-    num_of_purchases: data['num_of_purchases'],
-    num_of_likes: data['num_of_likes'],
-    id: data.id ?? data['id'],
-  );
 
   StoreContentDisplayPage navigateTo() {
     return StoreContentDisplayPage(id);

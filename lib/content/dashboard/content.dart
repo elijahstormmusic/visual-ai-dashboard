@@ -6,13 +6,15 @@ import 'cache.dart';
 import '../content.dart';
 
 
-class ProfileContent extends DashboardContent {
-  static const String Collection_Name = 'profile';
+class DashboardContent extends ContentContainer {
+  static const String CollectionName = 'dashboard';
+  String get collection => CollectionName;
 
   String type, total_storage, file_source;
   int num_of_files, percentage;
+  List<dynamic> data = [];
 
-  ProfileContent({
+  DashboardContent({
     required this.type,
     required this.total_storage,
     required this.file_source,
@@ -28,15 +30,6 @@ class ProfileContent extends DashboardContent {
     )
   { }
 
-  ProfileContent.cast(DashboardContent content)
-    : super(
-      title: content.title,
-      caption: content.caption,
-      id: content.id,
-    )
-  { }
-
-  @override
   Map<String, dynamic> toJson() => {
     'type': CONTENT.PROFILE,
     'title': title,
@@ -48,7 +41,7 @@ class ProfileContent extends DashboardContent {
     'percentage': percentage,
     'id': id,
   };
-  static ProfileContent fromJson(dynamic data) => ProfileContent(
+  static dynamic fromJson(dynamic data) => DashboardContent(
     title: data['title'],
     caption: data['caption'],
     type: data['type'],
@@ -59,8 +52,12 @@ class ProfileContent extends DashboardContent {
     id: data.id ?? data['id'],
   );
 
-  ProfileContentDisplayPage navigateTo() {
-    return ProfileContentDisplayPage(id);
+  bool find(String query) {
+    return type == query;
+  }
+
+  DashboardContentDisplayPage navigateTo() {
+    return DashboardContentDisplayPage(id);
   }
 
   Color color(BuildContext context) {
@@ -87,7 +84,6 @@ class ProfileContent extends DashboardContent {
     return color;
   }
 
-  @override
   Widget get icon {
     String asset = 'assets/icons/Documents.svg';
     Color? color;

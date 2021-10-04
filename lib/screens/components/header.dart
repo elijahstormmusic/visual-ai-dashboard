@@ -168,7 +168,7 @@ class _HeaderState extends State<Header> with TickerProviderStateMixin {
             if (!Responsive.isMobile(context))
             Spacer(flex: Responsive.isDesktop(context) ? 2 : 1),
             Expanded(child: SearchField()),
-            ProfileCard(_openMenuOptions)
+            DashboardCard(_openMenuOptions)
           ],
         ),
 
@@ -178,11 +178,11 @@ class _HeaderState extends State<Header> with TickerProviderStateMixin {
   }
 }
 
-class ProfileCard extends StatelessWidget {
+class DashboardCard extends StatelessWidget {
 
   VoidCallback _openMenuOptionsAction;
 
-  ProfileCard(
+  DashboardCard(
     this._openMenuOptionsAction, {
     Key? key,
   }) : super(key: key);

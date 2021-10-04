@@ -10,13 +10,11 @@ class TrainingDataContentDisplayPage extends StatefulWidget {
 
   TrainingDataContentDisplayPage(this.cryptlink);
 
-  @override
   _UserContentDisplayPageState createState() => _UserContentDisplayPageState();
 }
 
 class _UserContentDisplayPageState extends State<TrainingDataContentDisplayPage> {
 
-  @override
   Widget build(BuildContext context) {
 
     return Scaffold(

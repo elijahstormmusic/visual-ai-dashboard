@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:visual_ai/constants.dart';
-import 'package:visual_ai/content/profile/cache.dart';
+import 'package:visual_ai/content/dashboard/cache.dart';
 import 'package:visual_ai/screens/components/loading.dart';
 import 'file_info_card.dart';
 
@@ -67,7 +67,7 @@ class FileInfoCardGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ProfileCache>(
+    return Consumer<DashboardCache>(
       builder: (context, cache, child) {
 
         var overview = cache.filter('overview');
