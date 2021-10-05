@@ -56,7 +56,7 @@ class FileInfoCard extends StatelessWidget {
           ),
           ProgressLine(
             color: info.color(context),
-            percentage: info.percentage,
+            percentage: info.data['percentage'],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -64,11 +64,11 @@ class FileInfoCard extends StatelessWidget {
               Opacity(
                 opacity: 0.8,
                 child: Text(
-                  '${info.num_of_files} Files',
+                  '${info.data['num_of_files']} Files',
                 ),
               ),
               Text(
-                info.total_storage,
+                info.data['total_storage'],
               ),
             ],
           )

@@ -15,112 +15,107 @@ class MockContent {
 
   static List<Map<String, dynamic> > data = [
     {
-      'type': CONTENT.PROFILE,
       'title': 'Documents',
       'caption': '',
-      'details': {
-        'type': 'overview',
-        'fileSource': 'document',
-        'numOfFiles': 1328,
-        'totalStorage': '1.9GB',
+      'type': 'overview',
+      'data': {
+        'file_source': 'document',
+        'num_of_files': 1328,
+        'total_storage': '1.9GB',
         'percentage': 35,
       },
-      'cryptlink': 'profileCryptlink0',
+      'id': 'id0',
     },
     {
-      'type': CONTENT.PROFILE,
       'title': 'Google Drive',
       'caption': '',
-      'details': {
-        'type': 'overview',
-        'fileSource': 'google',
-        'numOfFiles': 1328,
-        'totalStorage': '2.9GB',
+      'type': 'overview',
+      'data': {
+        'file_source': 'google',
+        'num_of_files': 1328,
+        'total_storage': '2.9GB',
         'percentage': 35,
       },
-      'cryptlink': 'profileCryptlink1',
+      'id': 'id1',
     },
     {
-      'type': CONTENT.PROFILE,
       'title': 'One Drive',
       'caption': '',
-      'details': {
-        'type': 'overview',
-        'fileSource': 'one drive',
-        'numOfFiles': 1328,
-        'totalStorage': '1GB',
+      'type': 'overview',
+      'data': {
+        'file_source': 'one drive',
+        'num_of_files': 1328,
+        'total_storage': '1GB',
         'percentage': 10,
       },
-      'cryptlink': 'profileCryptlink2',
+      'id': 'id2',
     },
     {
-      'type': CONTENT.PROFILE,
       'title': 'Documents',
       'caption': '',
-      'details': {
-        'type': 'overview',
-        'fileSource': 'dropbox',
-        'numOfFiles': 5328,
-        'totalStorage': '7.3GB',
+      'type': 'overview',
+      'data': {
+        'file_source': 'dropbox',
+        'num_of_files': 5328,
+        'total_storage': '7.3GB',
         'percentage': 78,
       },
-      'cryptlink': 'profileCryptlink3',
+      'id': 'id3',
     },
     {
-      'type': CONTENT.PROFILE,
       'title': 'Document Files',
       'caption': '',
-      'details': {
-        'type': 'storage',
-        'mediaType': 'document',
-        'size': '1.3GB',
-        'numOfFiles': 1328,
+      'type': 'storage',
+      'data': {
+        'file_source': 'document',
+        'num_of_files': 1328,
+        'total_storage': '1.3GB',
+        'percentage': 25,
       },
-      'cryptlink': 'profileCryptlink4',
+      'id': 'id4',
     },
     {
-      'type': CONTENT.PROFILE,
       'title': 'Media Files',
       'caption': '',
-      'details': {
-        'type': 'storage',
-        'mediaType': 'media',
-        'size': '1.3GB',
-        'numOfFiles': 1328,
+      'type': 'storage',
+      'data': {
+        'file_source': 'media',
+        'num_of_files': 1328,
+        'total_storage': '1.3GB',
+        'percentage': 25,
       },
-      'cryptlink': 'profileCryptlink5',
+      'id': 'id5',
     },
     {
-      'type': CONTENT.PROFILE,
       'title': 'Other Files',
       'caption': '',
-      'details': {
-        'type': 'storage',
-        'mediaType': 'other',
-        'size': '1.3GB',
-        'numOfFiles': 1328,
+      'type': 'storage',
+      'data': {
+        'file_source': 'other',
+        'num_of_files': 1328,
+        'total_storage': '1.3GB',
+        'percentage': 25,
       },
-      'cryptlink': 'profileCryptlink6',
+      'id': 'id6',
     },
     {
-      'type': CONTENT.PROFILE,
       'title': 'Unknown',
       'caption': '',
-      'details': {
-        'type': 'storage',
-        'mediaType': 'unknown',
-        'size': '1.3GB',
-        'numOfFiles': 140,
+      'type': 'storage',
+      'data': {
+        'file_source': 'unknown',
+        'num_of_files': 140,
+        'total_storage': '1.3GB',
+        'percentage': 25,
       },
-      'cryptlink': 'profileCryptlink7',
+      'id': 'id7',
     },
     {
-      'type': CONTENT.PROFILE,
       'title': '29.1',
       'caption': 'of 128GB',
-      'details': {
-        'type': 'storage pie',
-        'data': [
+      'type': 'storage pie',
+      'data': {
+        'pie': [
           {
             'value': 25,
             'radius': 25,
@@ -143,7 +138,7 @@ class MockContent {
           },
         ],
       },
-      'cryptlink': 'profileCryptlink8',
+      'id': 'id8',
     },
   ];
 }

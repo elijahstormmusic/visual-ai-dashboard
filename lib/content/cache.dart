@@ -5,21 +5,24 @@ import 'content.dart';
 
 class ContentCache<T extends ContentContainer> extends ChangeNotifier {
   static bool Load_Mock_Data = false;
-  List<Map<String, dynamic> > get mockData => [{}];
+  List<Map<String, dynamic> > get mockData => [{
+    'title': '',
+    'caption': '',
+    'id': '',
+  }];
 
 
   List<T> _items = [];
   List<T> get items => List.unmodifiable(_items);
   void download() {}
-  ContentContainer fromJson(dynamic data) => ContentContainer.fromJson(data);
-
+  T? fromJson(dynamic data) => null;
 
   ContentCache() {
     if (ContentCache.Load_Mock_Data) {
       var list = mockData;
 
       for (int i=0;i<list.length;i++) {
-        add(fromJson(list[i]));
+        add(fromJson(list[i])!);
       }
 
       return;
@@ -68,6 +71,6 @@ class ContentCache<T extends ContentContainer> extends ChangeNotifier {
       }
     }
 
-    return fromJson(mockData[0]);
+    return fromJson(mockData[0])!;
   }
 }

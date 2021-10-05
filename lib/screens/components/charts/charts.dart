@@ -18,9 +18,9 @@ class StorageChart extends StatelessWidget {
   List<PieChartSectionData> _createData(BuildContext context) {
     List<PieChartSectionData> list = [];
     List<Color> colors = List.generate(
-      storage.data.length,
+      storage.data['pie'].length,
       (i) {
-        if (i == storage.data.length - 1) {
+        if (i == storage.data['pie'].length - 1) {
           return Theme.of(context).primaryColor.withOpacity(0.1);
         }
 
@@ -33,10 +33,10 @@ class StorageChart extends StatelessWidget {
       },
     );
 
-    for (int i = 0; i < storage.data.length; i++) {
+    for (int i = 0; i < storage.data['pie'].length; i++) {
       list.add(PieChartSectionData(
-        value: storage.data[i]['value'],
-        radius: storage.data[i]['radius'],
+        value: storage.data['pie'][i]['value'],
+        radius: storage.data['pie'][i]['radius'],
         color: colors[i],
         showTitle: false,
       ));

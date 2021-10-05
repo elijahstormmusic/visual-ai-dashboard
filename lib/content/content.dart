@@ -24,11 +24,10 @@ class ContentContainer {
     required this.id,
   });
 
-  factory ContentContainer.fromJson(dynamic data) => ContentContainer(
-    title: data['title'],
-    caption: data['caption'],
-    id: data['id'],
-  );
+  ContentContainer.fromJson(dynamic data) :
+    title = data['title'],
+    caption = data['caption'],
+    id = data['id'];
 
   Map<String, dynamic> toJson() => {
     'type': CONTENT.NONE,

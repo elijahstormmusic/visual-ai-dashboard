@@ -14,7 +14,6 @@ class StoreContent extends ContentContainer {
 
   String type, keywords;
   int size, num_of_likes, num_of_purchases;
-  bool purchased, popular, recent;
 
   StoreContent({
     required this.type,
@@ -22,9 +21,6 @@ class StoreContent extends ContentContainer {
     required this.size,
     required this.num_of_likes,
     required this.num_of_purchases,
-    required this.purchased,
-    required this.popular,
-    required this.recent,
     required title,
     required caption,
     required id,
@@ -41,9 +37,6 @@ class StoreContent extends ContentContainer {
     type: data['type'],
     size: data['size'],
     keywords: data['keywords'],
-    purchased: true,
-    popular: data['popular'],
-    recent: data['recent'],
     num_of_purchases: data['num_of_purchases'],
     num_of_likes: data['num_of_likes'],
     id: data.id ?? data['id'],
@@ -66,6 +59,12 @@ class StoreContent extends ContentContainer {
   StoreContentDisplayPage navigateTo() {
     return StoreContentDisplayPage(id);
   }
+
+
+  bool get purchased => true;
+  bool get popular => true;
+  bool get recent => true;
+
 
   Widget get icon => Container(
     child: SvgPicture.network(

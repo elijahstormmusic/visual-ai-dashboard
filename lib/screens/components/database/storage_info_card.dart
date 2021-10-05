@@ -52,14 +52,14 @@ class StorageInfoCard extends StatelessWidget {
                   Opacity(
                     opacity: 0.8,
                     child: Text(
-                      '${storageDetails.num_of_files} Files',
+                      '${storageDetails.data['num_of_files']} Files',
                     ),
                   )
                 ],
               ),
             ),
           ),
-          Text(storageDetails.total_storage),
+          Text(storageDetails.data['total_storage']),
         ],
       ),
     );

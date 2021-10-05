@@ -17,7 +17,7 @@ class TrainingDataContent extends ContentContainer {
   String encoding_type, author, image_link; // encoding type ->
   DateTime created_on, edited_on;
   int uses;
-  bool approved, important, recent;
+  bool approved;
 
   TrainingDataContent({
     required this.training_data,
@@ -28,8 +28,6 @@ class TrainingDataContent extends ContentContainer {
     required this.edited_on,
     required this.uses,
     required this.approved,
-    required this.important,
-    required this.recent,
     required title,
     required caption,
     required id,
@@ -51,10 +49,6 @@ class TrainingDataContent extends ContentContainer {
     created_on: DateTime.parse(data['created_on'].toDate().toString()),
     edited_on: DateTime.parse(data['edited_on'].toDate().toString()),
     uses: data['uses'],
-    important: data['uses'] >= 100,
-    recent: DateTime.now().subtract(Duration(days: 30)).isBefore(
-      DateTime.parse(data['edited_on'].toDate().toString()),
-    ),
     id: data.id ?? data['id'],
   );
 
@@ -77,6 +71,9 @@ class TrainingDataContent extends ContentContainer {
   TrainingDataContentDisplayPage navigateTo() {
     return TrainingDataContentDisplayPage(id);
   }
+
+  bool get important => uses > 100;
+  bool get recent => true;
 
   bool find(String query) {
     return encoding_type.contains(query);

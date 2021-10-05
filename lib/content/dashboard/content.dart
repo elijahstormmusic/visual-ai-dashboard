@@ -10,16 +10,12 @@ class DashboardContent extends ContentContainer {
   static const String CollectionName = 'dashboard';
   String get collection => CollectionName;
 
-  String type, total_storage, file_source;
-  int num_of_files, percentage;
-  List<dynamic> data = [];
+  String type;
+  Map<String, dynamic> data;
 
   DashboardContent({
     required this.type,
-    required this.total_storage,
-    required this.file_source,
-    required this.num_of_files,
-    required this.percentage,
+    required this.data,
     required title,
     required caption,
     required id,
@@ -35,20 +31,14 @@ class DashboardContent extends ContentContainer {
     'title': title,
     'caption': caption,
     'type': type,
-    'file_source': file_source,
-    'num_of_files': num_of_files,
-    'total_storage': total_storage,
-    'percentage': percentage,
+    'data': data,
     'id': id,
   };
   static dynamic fromJson(dynamic data) => DashboardContent(
     title: data['title'],
     caption: data['caption'],
     type: data['type'],
-    file_source: data['file_source'],
-    num_of_files: data['num_of_files'],
-    total_storage: data['total_storage'],
-    percentage: data['percentage'],
+    data: data['data'],
     id: data.id ?? data['id'],
   );
 
@@ -63,7 +53,7 @@ class DashboardContent extends ContentContainer {
   Color color(BuildContext context) {
     Color color = Theme.of(context).primaryColor;
 
-    switch (file_source) {
+    switch (data['file_source']) {
       case 'document':
         color = Theme.of(context).primaryColor;
         break;
@@ -89,7 +79,7 @@ class DashboardContent extends ContentContainer {
     Color? color;
 
     if (type == 'overview') {
-      switch (file_source) {
+      switch (data['file_source']) {
         case 'document':
           asset = 'assets/icons/Documents.svg';
           break;
@@ -112,7 +102,7 @@ class DashboardContent extends ContentContainer {
     }
 
     else if (type == 'storage') {
-      switch (type) {
+      switch (data['file_source']) {
         case 'document':
           asset = 'assets/icons/Documents.svg';
           break;

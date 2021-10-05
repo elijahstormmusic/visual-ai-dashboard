@@ -14,7 +14,7 @@ class UserContent extends ContentContainer {
   String get collection => CollectionName;
 
   String image, sex;
-  bool online, verified, team_member, friend;
+  bool online, verified;
   DateTime created_on, last_login;
 
   UserContent({
@@ -22,8 +22,6 @@ class UserContent extends ContentContainer {
     required this.sex,
     required this.online,
     required this.verified,
-    required this.team_member,
-    required this.friend,
     required this.created_on,
     required this.last_login,
     required title,
@@ -43,8 +41,6 @@ class UserContent extends ContentContainer {
     sex: data['sex'],
     online: data['online'],
     verified: data['verified'],
-    team_member: true,
-    friend: true,
     created_on: data['created_on'].toDate(),
     last_login: data['last_login'].toDate(),
     id: data.id ?? data['id'],
@@ -62,6 +58,9 @@ class UserContent extends ContentContainer {
     'last_login': Timestamp.fromDate(last_login),
     'id': id,
   };
+
+  bool get friend => true;
+  bool get team_member => true;
 
   Widget get icon => Container(
     child: SvgPicture.network(
