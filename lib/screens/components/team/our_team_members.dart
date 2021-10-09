@@ -23,7 +23,7 @@ class OurTeamMembers extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Our Team',
+              'Your Team',
               style: Theme.of(context).textTheme.subtitle1,
             ),
             ElevatedButton.icon(

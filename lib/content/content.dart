@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 enum CONTENT {
   NONE,
-  PROFILE,
+  DASHBOARD,
   STORE_ITEM,
   TRAINING_DATA,
   NOTIFICATION,

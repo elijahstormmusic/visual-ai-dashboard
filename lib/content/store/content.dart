@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:visual_ai/constants.dart';
 
@@ -11,9 +12,11 @@ import '../content.dart';
 class StoreContent extends ContentContainer {
   static const String CollectionName = 'store';
   String get collection => CollectionName;
+  final CONTENT = CONTENT.STORE_ITEM;
 
   String type, keywords;
   int size, num_of_likes, num_of_purchases;
+  DateTime released;
 
   StoreContent({
     required this.type,
@@ -21,6 +24,7 @@ class StoreContent extends ContentContainer {
     required this.size,
     required this.num_of_likes,
     required this.num_of_purchases,
+    required this.released,
     required title,
     required caption,
     required id,
@@ -37,23 +41,21 @@ class StoreContent extends ContentContainer {
     type: data['type'],
     size: data['size'],
     keywords: data['keywords'],
-    num_of_purchases: data['num_of_purchases'],
     num_of_likes: data['num_of_likes'],
-    id: data.id ?? data['id'],
+    num_of_purchases: data['num_of_purchases'],
+    released: DateTime.parse(data['released'].toDate().toString()),
+    id: data['id'],
   );
 
   Map<String, dynamic> toJson() => {
-    'type': CONTENT.STORE_ITEM,
     'title': title,
     'caption': caption,
     'type': type,
     'size': size,
     'keywords': keywords,
-    'popular': popular,
-    'recent': recent,
-    'num_of_purchases': num_of_purchases,
     'num_of_likes': num_of_likes,
-    'id': id,
+    'num_of_purchases': num_of_purchases,
+    'released': Timestamp.fromDate(released),
   };
 
   StoreContentDisplayPage navigateTo() {
@@ -63,7 +65,7 @@ class StoreContent extends ContentContainer {
 
   bool get purchased => true;
   bool get popular => true;
-  bool get recent => true;
+  bool get recent => released.isAfter(DateTime.now().subtract(Duration(days: 14)));
 
 
   Widget get icon => Container(

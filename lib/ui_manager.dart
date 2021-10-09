@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:visual_ai/controllers/MenuController.dart';
 import 'package:visual_ai/screens/main/screen.dart';
 import 'package:visual_ai/screens/components/loading.dart';
+import 'package:visual_ai/screens/components/error.dart';
 import 'package:visual_ai/login/user_state.dart';
 import 'package:visual_ai/login/login_screen.dart';
 
@@ -28,9 +29,9 @@ class _UI_ManagerState extends State<UI_Manager> {
     child: Consumer<UserState>(
       builder: (context, userstate, child) {
 
-        return userstate.data.name == ''
-          ? LoginScreen()
-          : MainScreen();
+        return userstate.data.exists
+          ? MainScreen()
+          : LoginScreen();
       },
     ),
   );
@@ -40,13 +41,7 @@ class _UI_ManagerState extends State<UI_Manager> {
     future: _initialization,
     builder: (context, snapshot) {
       if (snapshot.hasError) {
-        return Container(
-          child: Text('''
-          Something went wrong.
-
-          ${snapshot.error.toString()}
-          '''),
-        );
+        return ErrorDisplay(snapshot.error.toString());
       }
 
       if (snapshot.connectionState == ConnectionState.done) {

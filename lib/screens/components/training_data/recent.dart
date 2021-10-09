@@ -29,7 +29,7 @@ class RecentTrainingData extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Recent Training Data',
+                'Recent',
                 style: Theme.of(context).textTheme.subtitle1,
               ),
               ElevatedButton.icon(
@@ -81,7 +81,7 @@ class TrainingDataBlock extends StatelessWidget {
     return Consumer<TrainingDataCache>(
       builder: (context, cache, child) {
 
-        var filter = cache.filter('storage', limit: 8);
+        var filter = cache.filter('recent', limit: 8);
 
         if (filter.length == 0) {
           return GridView.builder(

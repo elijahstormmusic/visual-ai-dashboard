@@ -1,10 +1,11 @@
 import '../content.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class MockContent {
 
-  static List<Map<String, dynamic> > get all {
-    List<Map<String, dynamic> > list = [];
+  static List<Map<String, dynamic>> get all {
+    List<Map<String, dynamic>> list = [];
 
     for (int i=0;i<data.length;i++) {
       list.add(data[i]);
@@ -13,12 +14,12 @@ class MockContent {
     return list;
   }
 
-  static List<Map<String, dynamic> > data = [
+  static List<Map<String, dynamic>> data = [
     {
       'title': 'New Account',
       'caption': '',
       'type': 'account',
-      'date': DateTime.parse('20210225'),
+      'date': Timestamp.fromDate(DateTime.parse('20210225')),
       'status': 'read',
       'id': 'jennie',
     },
@@ -26,7 +27,7 @@ class MockContent {
       'title': 'Message from Admin',
       'caption': '',
       'type': 'message',
-      'date': DateTime.parse('20210225'),
+      'date': Timestamp.fromDate(DateTime.parse('20210225')),
       'status': 'read',
       'id': 'linkMessage',
     },
@@ -34,7 +35,7 @@ class MockContent {
       'title': 'New Task from Admin',
       'caption': 'Init Training Model',
       'type': 'important',
-      'date': DateTime.parse('20210223'),
+      'date': Timestamp.fromDate(DateTime.parse('20210223')),
       'status': 'read',
       'id': 'linkNew',
     },
@@ -42,7 +43,7 @@ class MockContent {
       'title': 'Message from Phil',
       'caption': 'Imaging',
       'type': 'message',
-      'date': DateTime.parse('20210221'),
+      'date': Timestamp.fromDate(DateTime.parse('20210221')),
       'status': 'unread',
       'id': 'linkMessage2',
     },
@@ -50,7 +51,7 @@ class MockContent {
       'title': 'Task Completed',
       'caption': 'Init Training Model',
       'type': 'success',
-      'date': DateTime.parse('20210223'),
+      'date': Timestamp.fromDate(DateTime.parse('20210223')),
       'status': 'unread',
       'id': 'linkTask',
     },
@@ -58,7 +59,7 @@ class MockContent {
       'title': 'Reply to your Comment',
       'caption': '[The new cameras are great...]',
       'type': 'message',
-      'date': DateTime.parse('20210227'),
+      'date': Timestamp.fromDate(DateTime.parse('20210227')),
       'status': 'unread',
       'id': 'linkReply',
     },
@@ -66,7 +67,7 @@ class MockContent {
       'title': 'Activity Report Submitted',
       'caption': '',
       'type': 'document',
-      'date': DateTime.parse('20210301'),
+      'date': Timestamp.fromDate(DateTime.parse('20210301')),
       'status': 'read',
       'id': 'linkActivity',
     },

@@ -1,10 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:redux/redux.dart';
 
 import 'package:visual_ai/firestore/firestore.dart';
@@ -20,19 +19,12 @@ import 'package:visual_ai/content/cache.dart';
 
 
 void main() async {
-  // SystemChrome.setSystemUIOverlayStyle(
-  //   SystemUiOverlayStyle(
-  //     systemNavigationBarColor:
-  //         SystemUiOverlayStyle.dark.systemNavigationBarColor,
-  //   ),
-  // );
-  //
-  await Firebase.initializeApp();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
 
   final store = Store<AppState>(
     reducer,
     distinct: true,
-    initialState: AppState(enableDarkMode: false),
+    initialState: AppState(enableDarkMode: await prefs.getBool('darkMode') ?? false),
   );
 
   runApp(StoreProvider<AppState>(
@@ -60,7 +52,6 @@ class DashboardApp extends StatelessWidget {
       converter: (store) => store.state.enableDarkMode,
       builder: (_, bool enableDarkMode) {
         return MaterialApp(
-          // unknownRoute: GetPage(name: '/not-found', page: () => PageNotFound(), transition: Transition.fadeIn),
           debugShowCheckedModeBanner: false,
           title: '${Constants.appName} | ${Constants.appTitleDesc}',
           theme: ThemeData.light().copyWith(
@@ -81,6 +72,12 @@ class DashboardApp extends StatelessWidget {
           initialRoute: UI_Manager.routeName,
           routes: {
             UI_Manager.routeName: (context) => UI_Manager(),
+          },
+          onUnknownRoute: (RouteSettings settings) {
+            return MaterialPageRoute<void>(
+              settings: settings,
+              builder: (BuildContext context) => PageNotFound(),
+            );
           },
         );
       },

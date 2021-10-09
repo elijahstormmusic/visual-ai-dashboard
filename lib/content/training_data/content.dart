@@ -12,9 +12,10 @@ import '../content.dart';
 class TrainingDataContent extends ContentContainer {
   static const String CollectionName = 'training_data';
   String get collection => CollectionName;
+  final CONTENT = CONTENT.TRAINING_DATA;
 
   dynamic training_data;
-  String encoding_type, author, image_link; // encoding type ->
+  String encoding_type, author, image_link;
   DateTime created_on, edited_on;
   int uses;
   bool approved;
@@ -49,11 +50,10 @@ class TrainingDataContent extends ContentContainer {
     created_on: DateTime.parse(data['created_on'].toDate().toString()),
     edited_on: DateTime.parse(data['edited_on'].toDate().toString()),
     uses: data['uses'],
-    id: data.id ?? data['id'],
+    id: data['id'],
   );
 
   Map<String, dynamic> toJson() => {
-    'type': CONTENT.TRAINING_DATA,
     'title': title,
     'caption': caption,
     'training_data': training_data,
@@ -64,7 +64,6 @@ class TrainingDataContent extends ContentContainer {
     'created_on': Timestamp.fromDate(created_on),
     'edited_on': Timestamp.fromDate(edited_on),
     'uses': uses,
-    'id': id,
   };
 
 
@@ -72,10 +71,14 @@ class TrainingDataContent extends ContentContainer {
     return TrainingDataContentDisplayPage(id);
   }
 
-  bool get important => uses > 100;
-  bool get recent => true;
+  bool get important => uses >= 100;
+  bool get recent => edited_on.isAfter(DateTime.now().subtract(Duration(days: 14)));
 
   bool find(String query) {
+    if (query.contains('important') && important)
+      return true;
+    if (query.contains('recent') && recent)
+      return true;
     return encoding_type.contains(query);
   }
 

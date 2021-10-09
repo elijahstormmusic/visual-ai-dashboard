@@ -7,7 +7,7 @@ import 'package:visual_ai/firestore/firestore.dart';
 
 
 class DashboardCache extends ContentCache<DashboardContent> {
-  List<Map<String, dynamic> > get mockData => MockContent.all;
+  List<Map<String, dynamic>> get mockData => MockContent.all;
   DashboardContent fromJson(dynamic data) => DashboardContent.fromJson(data);
 
   void download() async => FirestoreApi.download(

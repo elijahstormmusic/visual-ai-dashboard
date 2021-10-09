@@ -3,8 +3,8 @@ import '../content.dart';
 
 class MockContent {
 
-  static List<Map<String, dynamic> > get all {
-    List<Map<String, dynamic> > list = [];
+  static List<Map<String, dynamic>> get all {
+    List<Map<String, dynamic>> list = [];
 
     for (int i=0;i<data.length;i++) {
       list.add(data[i]);
@@ -13,7 +13,7 @@ class MockContent {
     return list;
   }
 
-  static List<Map<String, dynamic> > data = [
+  static List<Map<String, dynamic>> data = [
     {
       'title': 'Jennie',
       'caption': 'Just a girl from the New Zealand who moved to Korea to follow my passion',

@@ -10,6 +10,7 @@ import '../content.dart';
 class FileContent extends ContentContainer {
   static const String CollectionName = 'files';
   String get collection => CollectionName;
+  final CONTENT = CONTENT.FILE;
 
   String cloud_link;
   int file_type;
@@ -37,18 +38,16 @@ class FileContent extends ContentContainer {
     file_type: data['file_type'],
     created_on: data['created_on'].toDate(),
     edited_on: data['edited_on'].toDate(),
-    id: data.id ?? data['id'],
+    id: data['id'],
   );
 
   Map<String, dynamic> toJson() => {
-    'type': CONTENT.FILE,
     'title': title,
     'caption': caption,
     'cloud_link': cloud_link,
     'file_type': file_type,
     'created_on': Timestamp.fromDate(created_on),
     'edited_on': Timestamp.fromDate(edited_on),
-    'id': id,
   };
 
   FileContentDisplayPage navigateTo() {

@@ -23,7 +23,7 @@ class RecommendedFriends extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'New Friends',
+              'In Your Circle',
               style: Theme.of(context).textTheme.subtitle1,
             ),
             ElevatedButton.icon(

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'package:visual_ai/content/notifications/cache.dart';
 import 'package:visual_ai/content/users/cache.dart';
+import 'package:visual_ai/firestore/firestore.dart';
 
 import 'package:visual_ai/screens/components/header.dart';
 import 'package:visual_ai/screens/components/team/recommended_friends.dart';
@@ -19,7 +20,7 @@ class NotificationScreen extends StatelessWidget {
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => NotificationCache()),
-          ChangeNotifierProvider(create: (context) => UserCache()),
+          ChangeNotifierProvider(create: (context) => UserCache.non_friends(FirestoreApi.active_user ?? '')),
         ],
         child: SingleChildScrollView(
           padding: EdgeInsets.all(defaultPadding),

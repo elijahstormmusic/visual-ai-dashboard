@@ -9,6 +9,7 @@ import '../content.dart';
 class DashboardContent extends ContentContainer {
   static const String CollectionName = 'dashboard';
   String get collection => CollectionName;
+  final CONTENT = CONTENT.DASHBOARD;
 
   String type;
   Map<String, dynamic> data;
@@ -27,7 +28,7 @@ class DashboardContent extends ContentContainer {
   { }
 
   Map<String, dynamic> toJson() => {
-    'type': CONTENT.PROFILE,
+    '.dashboard.type': CONTENT.PROFILE,
     'title': title,
     'caption': caption,
     'type': type,
@@ -39,7 +40,6 @@ class DashboardContent extends ContentContainer {
     caption: data['caption'],
     type: data['type'],
     data: data['data'],
-    id: data.id ?? data['id'],
   );
 
   bool find(String query) {

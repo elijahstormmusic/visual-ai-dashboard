@@ -1,18 +1,19 @@
 import 'package:flutter/foundation.dart';
-import 'package:visual_ai/constants.dart';
 
+import 'package:visual_ai/constants.dart';
 import 'package:visual_ai/firestore/firestore.dart';
 
 
 class User {
-  String name;
-  String auth;
-  String icon;
+  String name, id, icon, email;
+  bool exists;
 
   User({
     this.name = '',
-    this.auth = '',
+    this.id = '',
     this.icon = '',
+    this.email = '',
+    this.exists = true,
   });
 }
 
@@ -20,21 +21,42 @@ class UserState extends ChangeNotifier {
   static bool Load_Mock_Data = false;
   final int _delayTime = 250;
 
-  User data = User();
+  User data = User(exists: false);
 
   UserState() {
+    var currentUser = FirestoreApi.active_user_information;
+
+    if (currentUser != null) {
+      _login(
+        id: currentUser.uid,
+        name: currentUser.displayName ?? '',
+        email: currentUser.email ?? '',
+        icon: currentUser.photoURL ?? Constants.live_svgs + currentUser.uid + '.svg',
+      );
+      return;
+    }
+
     if (!UserState.Load_Mock_Data) return;
 
-    _login(AppDebugLogin.username, AppDebugLogin.password);
+    _login(
+      name: AppDebugLogin.username,
+      email: AppDebugLogin.email,
+      id: AppDebugLogin.id,
+      icon: AppDebugLogin.icon,
+    );
   }
 
-  void _login(String name, String auth) {
+  void _login({
+    String id = '',
+    String email = '',
+    String name = '',
+    String icon = AppDebugLogin.icon,
+  }) {
     data = User(
       name: name,
-      auth: auth,
-      icon: '''${Constants.live_svgs}${
-        name.substring(0, name.indexOf('@'))
-      }.svg''',
+      id: id,
+      icon: icon,
+      email: email,
     );
   }
 
@@ -61,7 +83,16 @@ class UserState extends ChangeNotifier {
     }
 
     if (response.failure == null) {
-      _login(_name, _auth);
+      var currentUser = FirestoreApi.active_user_information;
+
+      if (currentUser != null) {
+        _login(
+          id: currentUser.uid,
+          name: currentUser.displayName ?? '',
+          email: currentUser.email ?? '',
+          icon: currentUser.photoURL ?? Constants.live_svgs + currentUser.uid + '.svg',
+        );
+      }
     }
 
     return response.failure;
@@ -82,7 +113,9 @@ class UserState extends ChangeNotifier {
 }
 
 class AppDebugLogin {
-  static bool bypass = false;
-  static String username = 'elijahstormmusic@gmail.com';
-  static String password = 'tester';
+  static const bool bypass = false;
+  static const String username = 'fake user';
+  static const String email = 'fake_email@gmail.com';
+  static const String id = 'fake_id';
+  static const String icon = '''${Constants.live_svgs}fake_icon.svg''';
 }

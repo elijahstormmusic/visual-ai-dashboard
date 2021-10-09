@@ -37,6 +37,30 @@ class FirestoreApi {
     }
   }
 
+  static void updateUserProfile({
+    String? displayName,
+    String? photoURL,
+    String? email,
+  }) async {
+    User? active = FirestoreApi.active_user_information;
+
+    if (active == null) return;
+
+    if (photoURL != null) {
+      await active.updatePhotoURL(photoURL);
+    }
+
+    if (email != null) {
+      await active.updateEmail(email);
+    }
+
+    if (displayName != null) {
+      await active.updateDisplayName(displayName);
+    }
+
+    await active.reload();
+  }
+
   static void login(ResponseData response) async {
 
     try {
@@ -65,7 +89,7 @@ class FirestoreApi {
 
 
 
-  static bool _restrict_uploads = true;
+  static bool _restrict_uploads = false;
   static bool _deny_upload() {
     return Disabled || _restrict_uploads;
   }
@@ -78,10 +102,22 @@ class FirestoreApi {
     query
       .limit(limit)
       .get()
-      .then((QuerySnapshot querySnapshot) {
-        querySnapshot.docs.forEach((doc) {
-          if (doc.exists) {
-            populate(doc);
+      .then((QuerySnapshot<Map<String, dynamic>> querySnapshot) {
+        querySnapshot.docs.forEach((DocumentSnapshot<Map<String, dynamic>> doc) {
+          if (!doc.exists) return;
+
+          Map<String, dynamic> data = doc.data()!;
+          try {
+            data['id'] = doc.id;
+          } catch (e) {}
+
+          if (data['id'] == 'info') return;
+
+          try {
+            populate(data);
+          }
+          catch (e) {
+            print(e);
           }
         });
       });
@@ -163,6 +199,19 @@ class FirestoreApi {
     }
   }
 
+  static Stream<DocumentSnapshot> stream(
+    String collection, {
+      String? id,
+      String? document,
+      bool is_team = false,
+  }) {
+    var database = FirebaseFirestore.instance
+      .collection(collection)
+      .doc(id);
+
+    return database.snapshots();
+  }
+
   static void upload(
     ContentContainer content, {
       String? id,
@@ -171,26 +220,49 @@ class FirestoreApi {
       void Function(String, ContentContainer)? onError,
     }
   ) async {
-    if (_deny_upload()) return;
+    if (_deny_upload()) {
+      if (onError != null) {
+        onError('Upload denied by FirebaseAPI', content);
+      }
+      return;
+    }
 
     if (id == null) {
       if (is_team) {
-        id = FirestoreApi.active_user;
-      }
-      else {
         id = await FirestoreApi.active_team;
       }
-      if (id == null) return;
+      else {
+        id = FirestoreApi.active_user;
+      }
+
+      if (id == null) {
+        if (onError != null) {
+          onError('Uploader ID could not be auto-generated', content);
+        }
+        return;
+      }
     }
 
-    FirebaseFirestore.instance
+    Map<String, dynamic> _uploadable_data = content.toJson();
+    _uploadable_data['.dashboard.type'] = null;
+    _uploadable_data['id'] = null;
+
+
+    await FirebaseFirestore.instance
       .collection(is_team ? 'teams' : 'users')
       .doc(id)
       .collection(content.collection)
-      .add(content.toJson())
+      .add(_uploadable_data)
       .then(
         (value) {
           if (onComplete != null) onComplete(content);
+
+          FirebaseFirestore.instance
+            .collection(is_team ? 'teams' : 'users')
+            .doc(id)
+            .collection(content.collection)
+            .doc('info')
+            .update({'numOfDocs': FieldValue.increment(1)});
         }
       )
       .catchError(
@@ -200,6 +272,9 @@ class FirestoreApi {
       );
   }
 
+  static User? get active_user_information {
+    return FirebaseAuth.instance.currentUser;
+  }
   static String? get active_user {
     var currentUser = FirebaseAuth.instance.currentUser;
 
@@ -228,7 +303,6 @@ class FirestoreApi {
     return null;
   }
 }
-
 
 class ResponseData {
 

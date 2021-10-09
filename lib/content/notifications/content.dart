@@ -10,6 +10,7 @@ import '../content.dart';
 class NotificationContent extends ContentContainer {
   static const String CollectionName = 'notos';
   String get collection => CollectionName;
+  final CONTENT = CONTENT.NOTIFICATION;
 
   DateTime date;
   String type, status;
@@ -35,17 +36,15 @@ class NotificationContent extends ContentContainer {
     date: data['date'].toDate(),
     type: data['type'],
     status: data['status'],
-    id: data.id ?? data['id'],
+    id: data['id'],
   );
 
   Map<String, dynamic> toJson() => {
-    'type': CONTENT.NOTIFICATION,
     'title': title,
     'caption': caption,
     'date': Timestamp.fromDate(date),
     'type': type,
     'status': status,
-    'id': id,
   };
 
   NotificationContentDisplayPage navigateTo() {

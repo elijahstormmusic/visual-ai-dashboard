@@ -1,10 +1,11 @@
 import '../content.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class MockContent {
 
-  static List<Map<String, dynamic> > get all {
-    List<Map<String, dynamic> > list = [];
+  static List<Map<String, dynamic>> get all {
+    List<Map<String, dynamic>> list = [];
 
     for (int i=0;i<data.length;i++) {
       list.add(data[i]);
@@ -13,7 +14,7 @@ class MockContent {
     return list;
   }
 
-  static List<Map<String, dynamic> > data = [
+  static List<Map<String, dynamic>> data = [
     {
       'title': 'New Item1',
       'caption': 'Buy this new thing',
@@ -22,6 +23,7 @@ class MockContent {
       'size': 100,
       'num_of_likes': 100,
       'num_of_purchases': 100,
+      'released': Timestamp.fromDate(DateTime.parse('20200106')),
       'id': 'newitem1',
     },
     {
@@ -32,6 +34,7 @@ class MockContent {
       'size': 100,
       'num_of_likes': 100,
       'num_of_purchases': 100,
+      'released': Timestamp.fromDate(DateTime.parse('20200106')),
       'id': 'popular1',
     },
     {
@@ -42,6 +45,7 @@ class MockContent {
       'size': 100,
       'num_of_likes': 100,
       'num_of_purchases': 100,
+      'released': Timestamp.fromDate(DateTime.parse('20200106')),
       'id': 'purcahsed1',
     },
     {
@@ -52,6 +56,7 @@ class MockContent {
       'size': 100,
       'num_of_likes': 100,
       'num_of_purchases': 100,
+      'released': Timestamp.fromDate(DateTime.parse('20200106')),
       'id': 'newitem2',
     },
     {
@@ -62,6 +67,7 @@ class MockContent {
       'size': 100,
       'num_of_likes': 100,
       'num_of_purchases': 100,
+      'released': Timestamp.fromDate(DateTime.parse('20200106')),
       'id': 'popular2',
     },
     {
@@ -72,6 +78,7 @@ class MockContent {
       'size': 100,
       'num_of_likes': 100,
       'num_of_purchases': 100,
+      'released': Timestamp.fromDate(DateTime.parse('20200106')),
       'id': 'purcahsed2',
     },
     {
@@ -82,6 +89,7 @@ class MockContent {
       'size': 100,
       'num_of_likes': 100,
       'num_of_purchases': 100,
+      'released': Timestamp.fromDate(DateTime.parse('20200106')),
       'id': 'newitem3',
     },
     {
@@ -92,6 +100,7 @@ class MockContent {
       'size': 100,
       'num_of_likes': 100,
       'num_of_purchases': 100,
+      'released': Timestamp.fromDate(DateTime.parse('20200106')),
       'id': 'popular3',
     },
     {
@@ -102,6 +111,7 @@ class MockContent {
       'size': 100,
       'num_of_likes': 100,
       'num_of_purchases': 100,
+      'released': Timestamp.fromDate(DateTime.parse('20200106')),
       'id': 'purcahsed3',
     },
     {
@@ -112,6 +122,7 @@ class MockContent {
       'size': 100,
       'num_of_likes': 100,
       'num_of_purchases': 100,
+      'released': Timestamp.fromDate(DateTime.parse('20200106')),
       'id': 'newitem4',
     },
     {
@@ -122,6 +133,7 @@ class MockContent {
       'size': 100,
       'num_of_likes': 100,
       'num_of_purchases': 100,
+      'released': Timestamp.fromDate(DateTime.parse('20200106')),
       'id': 'popular4',
     },
     {
@@ -132,6 +144,7 @@ class MockContent {
       'size': 100,
       'num_of_likes': 100,
       'num_of_purchases': 100,
+      'released': Timestamp.fromDate(DateTime.parse('20200106')),
       'id': 'purcahsed4',
     },
     {
@@ -142,6 +155,7 @@ class MockContent {
       'size': 100,
       'num_of_likes': 100,
       'num_of_purchases': 100,
+      'released': Timestamp.fromDate(DateTime.parse('20200106')),
       'id': 'newitem5',
     },
     {
@@ -152,6 +166,7 @@ class MockContent {
       'size': 100,
       'num_of_likes': 100,
       'num_of_purchases': 100,
+      'released': Timestamp.fromDate(DateTime.parse('20200106')),
       'id': 'popular5',
     },
     {
@@ -162,6 +177,7 @@ class MockContent {
       'size': 100,
       'num_of_likes': 100,
       'num_of_purchases': 100,
+      'released': Timestamp.fromDate(DateTime.parse('20200106')),
       'id': 'purcahsed5',
     },
     {
@@ -172,6 +188,7 @@ class MockContent {
       'size': 100,
       'num_of_likes': 100,
       'num_of_purchases': 100,
+      'released': Timestamp.fromDate(DateTime.parse('20200106')),
       'id': 'newitem6',
     },
     {
@@ -182,6 +199,7 @@ class MockContent {
       'size': 100,
       'num_of_likes': 100,
       'num_of_purchases': 100,
+      'released': Timestamp.fromDate(DateTime.parse('20200106')),
       'id': 'popular6',
     },
     {
@@ -192,6 +210,7 @@ class MockContent {
       'size': 100,
       'num_of_likes': 100,
       'num_of_purchases': 100,
+      'released': Timestamp.fromDate(DateTime.parse('20200106')),
       'id': 'purcahsed6',
     },
     {
@@ -202,6 +221,7 @@ class MockContent {
       'size': 100,
       'num_of_likes': 100,
       'num_of_purchases': 100,
+      'released': Timestamp.fromDate(DateTime.parse('20200106')),
       'id': 'newitem7',
     },
     {
@@ -212,6 +232,7 @@ class MockContent {
       'size': 100,
       'num_of_likes': 100,
       'num_of_purchases': 100,
+      'released': Timestamp.fromDate(DateTime.parse('20200106')),
       'id': 'popular7',
     },
     {
@@ -222,6 +243,7 @@ class MockContent {
       'size': 100,
       'num_of_likes': 100,
       'num_of_purchases': 100,
+      'released': Timestamp.fromDate(DateTime.parse('20200106')),
       'id': 'purcahsed7',
     },
   ];

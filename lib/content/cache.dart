@@ -5,7 +5,7 @@ import 'content.dart';
 
 class ContentCache<T extends ContentContainer> extends ChangeNotifier {
   static bool Load_Mock_Data = false;
-  List<Map<String, dynamic> > get mockData => [{
+  List<Map<String, dynamic>> get mockData => [{
     'title': '',
     'caption': '',
     'id': '',
@@ -32,7 +32,7 @@ class ContentCache<T extends ContentContainer> extends ChangeNotifier {
   }
 
   void add(T partner) {
-    for (int i=0;i<_items.length;i++) {
+    for (int i = 0; i < _items.length; i++) {
       if (_items[i].id==partner.id) return;
     }
 
@@ -72,5 +72,17 @@ class ContentCache<T extends ContentContainer> extends ChangeNotifier {
     }
 
     return fromJson(mockData[0])!;
+  }
+
+  List<T> getMockData() {
+    List<T> mocks = [];
+
+    var list = mockData;
+
+    for (int i=0;i<list.length;i++) {
+      mocks.add(fromJson(list[i])!);
+    }
+
+    return mocks;
   }
 }

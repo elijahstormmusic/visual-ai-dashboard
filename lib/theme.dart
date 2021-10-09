@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:visual_ai/constants.dart';
 
@@ -15,7 +16,7 @@ class ThemeSwitcher extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StoreBuilder( // Would use a StoreConnector & ViewModel in the real world
+    return StoreBuilder(
       builder: (BuildContext context, Store<AppState> store) {
         final state = store.state;
         return GestureDetector(
@@ -34,8 +35,16 @@ class AppState {
 }
 
 class UpdateDarkMode {
-  UpdateDarkMode({required this.enable});
   final bool enable;
+
+  UpdateDarkMode({required this.enable}) {
+    _persistTheme();
+  }
+
+  void _persistTheme() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('darkMode', enable);
+  }
 }
 
 AppState reducer(AppState state, dynamic action) {

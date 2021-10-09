@@ -1,10 +1,11 @@
 import '../content.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class MockContent {
 
-  static List<Map<String, dynamic> > get all {
-    List<Map<String, dynamic> > list = [];
+  static List<Map<String, dynamic>> get all {
+    List<Map<String, dynamic>> list = [];
 
     for (int i=0;i<data.length;i++) {
       list.add(data[i]);
@@ -13,14 +14,14 @@ class MockContent {
     return list;
   }
 
-  static List<Map<String, dynamic> > data = [
+  static List<Map<String, dynamic>> data = [
     {
       'title': 'XD File',
       'caption': '3.5mb',
       'file_type': 0,
       'cloud_link': '/',
-      'created_on': DateTime.parse('20210301'),
-      'edited_on': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210301')),
+      'edited_on': Timestamp.fromDate(DateTime.now()),
       'id': 'id0',
     },
     {
@@ -28,8 +29,8 @@ class MockContent {
       'caption': '19.0mb',
       'file_type': 1,
       'cloud_link': '/',
-      'created_on': DateTime.parse('20210227'),
-      'edited_on': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210227')),
+      'edited_on': Timestamp.fromDate(DateTime.now()),
       'id': 'id1',
     },
     {
@@ -37,8 +38,8 @@ class MockContent {
       'caption': '32.5mb',
       'file_type': 2,
       'cloud_link': '/',
-      'created_on': DateTime.parse('20210223'),
-      'edited_on': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210223')),
+      'edited_on': Timestamp.fromDate(DateTime.now()),
       'id': 'id2',
     },
     {
@@ -46,8 +47,8 @@ class MockContent {
       'caption': '3.5mb',
       'file_type': 3,
       'cloud_link': '/',
-      'created_on': DateTime.parse('20210221'),
-      'edited_on': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210221')),
+      'edited_on': Timestamp.fromDate(DateTime.now()),
       'id': 'id3',
     },
     {
@@ -55,8 +56,8 @@ class MockContent {
       'caption': '2.5gb',
       'file_type': 4,
       'cloud_link': '/',
-      'created_on': DateTime.parse('20210223'),
-      'edited_on': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210223')),
+      'edited_on': Timestamp.fromDate(DateTime.now()),
       'id': 'id4',
     },
     {
@@ -64,8 +65,8 @@ class MockContent {
       'caption': '3.5mb',
       'file_type': 5,
       'cloud_link': '/',
-      'created_on': DateTime.parse('20210225'),
-      'edited_on': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210225')),
+      'edited_on': Timestamp.fromDate(DateTime.now()),
       'id': 'id5',
     },
         {
@@ -73,8 +74,8 @@ class MockContent {
       'caption': '34.5mb',
       'file_type': 6,
       'cloud_link': '/',
-      'created_on': DateTime.parse('20210225'),
-      'edited_on': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210225')),
+      'edited_on': Timestamp.fromDate(DateTime.now()),
       'id': 'id6',
     },
   ];

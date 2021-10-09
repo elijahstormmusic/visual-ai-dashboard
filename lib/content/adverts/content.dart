@@ -8,6 +8,7 @@ import '../content.dart';
 class AdvertisementContent extends ContentContainer {
   static const String CollectionName = 'adverts';
   String get collection => CollectionName;
+  final CONTENT = CONTENT.AD;
 
   String link;
 
@@ -27,15 +28,13 @@ class AdvertisementContent extends ContentContainer {
     title: data['title'],
     caption: data['caption'],
     link: data['link'],
-    id: data.id ?? data['id'],
+    id: data['id'],
   );
 
   Map<String, dynamic> toJson() => {
-    'type': CONTENT.AD,
     'title': title,
     'caption': caption,
     'link': link,
-    'id': id,
   };
 
   UserContentDisplayPage navigateTo() {

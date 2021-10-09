@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:visual_ai/login/user_state.dart';
 import 'package:visual_ai/constants.dart';
 
+
 class Header extends StatefulWidget {
 
   String title;

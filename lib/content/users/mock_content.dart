@@ -1,10 +1,11 @@
 import '../content.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class MockContent {
 
-  static List<Map<String, dynamic> > get all {
-    List<Map<String, dynamic> > list = [];
+  static List<Map<String, dynamic>> get all {
+    List<Map<String, dynamic>> list = [];
 
     for (int i=0;i<data.length;i++) {
       list.add(data[i]);
@@ -13,7 +14,7 @@ class MockContent {
     return list;
   }
 
-  static List<Map<String, dynamic> > data = [
+  static List<Map<String, dynamic>> data = [
     {
       'title': 'Jennie',
       'caption': 'Just a girl from the New Zealand who moved to Korea to follow my passion',
@@ -21,8 +22,8 @@ class MockContent {
       'sex': 'female',
       'online': true,
       'verified': true,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'jennie1',
     },
     {
@@ -32,8 +33,8 @@ class MockContent {
       'sex': 'male',
       'online': false,
       'verified': true,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'donghee1',
     },
     {
@@ -43,8 +44,8 @@ class MockContent {
       'sex': 'female',
       'online': true,
       'verified': true,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'iu1',
     },
     {
@@ -54,8 +55,8 @@ class MockContent {
       'sex': 'male',
       'online': true,
       'verified': true,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'jackblack1',
     },
     {
@@ -65,8 +66,8 @@ class MockContent {
       'sex': 'male',
       'online': false,
       'verified': true,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'snoop1',
     },
     {
@@ -76,8 +77,8 @@ class MockContent {
       'sex': 'male',
       'online': true,
       'verified': false,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'tigerwoods1',
     },
     {
@@ -87,8 +88,8 @@ class MockContent {
       'sex': 'female',
       'online': false,
       'verified': false,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'dorothy1',
     },
     {
@@ -98,8 +99,8 @@ class MockContent {
       'sex': 'female',
       'online': true,
       'verified': true,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'jennie2',
     },
     {
@@ -109,8 +110,8 @@ class MockContent {
       'sex': 'male',
       'online': false,
       'verified': true,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'donghee2',
     },
     {
@@ -120,8 +121,8 @@ class MockContent {
       'sex': 'female',
       'online': true,
       'verified': true,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'iu2',
     },
     {
@@ -131,8 +132,8 @@ class MockContent {
       'sex': 'male',
       'online': true,
       'verified': true,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'jackblack2',
     },
     {
@@ -142,8 +143,8 @@ class MockContent {
       'sex': 'male',
       'online': false,
       'verified': true,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'snoop2',
     },
     {
@@ -153,8 +154,8 @@ class MockContent {
       'sex': 'male',
       'online': true,
       'verified': false,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'tigerwoods2',
     },
     {
@@ -164,8 +165,8 @@ class MockContent {
       'sex': 'female',
       'online': false,
       'verified': false,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'dorothy2',
     },
     {
@@ -175,8 +176,8 @@ class MockContent {
       'sex': 'female',
       'online': true,
       'verified': true,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'jennie3',
     },
     {
@@ -186,8 +187,8 @@ class MockContent {
       'sex': 'male',
       'online': false,
       'verified': true,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'donghee3',
     },
     {
@@ -197,8 +198,8 @@ class MockContent {
       'sex': 'female',
       'online': true,
       'verified': true,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'iu3',
     },
     {
@@ -208,8 +209,8 @@ class MockContent {
       'sex': 'male',
       'online': true,
       'verified': true,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'jackblack3',
     },
     {
@@ -219,8 +220,8 @@ class MockContent {
       'sex': 'male',
       'online': false,
       'verified': true,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'snoop3',
     },
     {
@@ -230,8 +231,8 @@ class MockContent {
       'sex': 'male',
       'online': true,
       'verified': false,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'tigerwoods3',
     },
     {
@@ -241,8 +242,8 @@ class MockContent {
       'sex': 'female',
       'online': false,
       'verified': false,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'dorothy3',
     },
     {
@@ -252,8 +253,8 @@ class MockContent {
       'sex': 'female',
       'online': true,
       'verified': true,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'jennie4',
     },
     {
@@ -263,8 +264,8 @@ class MockContent {
       'sex': 'male',
       'online': false,
       'verified': true,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'donghee4',
     },
     {
@@ -274,8 +275,8 @@ class MockContent {
       'sex': 'female',
       'online': true,
       'verified': true,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'iu4',
     },
     {
@@ -285,8 +286,8 @@ class MockContent {
       'sex': 'male',
       'online': true,
       'verified': true,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'jackblack4',
     },
     {
@@ -296,8 +297,8 @@ class MockContent {
       'sex': 'male',
       'online': false,
       'verified': true,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'snoop4',
     },
     {
@@ -307,8 +308,8 @@ class MockContent {
       'sex': 'male',
       'online': true,
       'verified': false,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'tigerwoods4',
     },
     {
@@ -318,8 +319,8 @@ class MockContent {
       'sex': 'female',
       'online': false,
       'verified': false,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'dorothy4',
     },
     {
@@ -329,8 +330,8 @@ class MockContent {
       'sex': 'female',
       'online': true,
       'verified': true,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'jennie5',
     },
     {
@@ -340,8 +341,8 @@ class MockContent {
       'sex': 'male',
       'online': false,
       'verified': true,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'donghee5',
     },
     {
@@ -351,8 +352,8 @@ class MockContent {
       'sex': 'female',
       'online': true,
       'verified': true,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'iu5',
     },
     {
@@ -362,8 +363,8 @@ class MockContent {
       'sex': 'male',
       'online': true,
       'verified': true,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'jackblack5',
     },
     {
@@ -373,8 +374,8 @@ class MockContent {
       'sex': 'male',
       'online': false,
       'verified': true,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'snoop5',
     },
     {
@@ -384,8 +385,8 @@ class MockContent {
       'sex': 'male',
       'online': true,
       'verified': false,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'tigerwoods5',
     },
     {
@@ -395,8 +396,8 @@ class MockContent {
       'sex': 'female',
       'online': false,
       'verified': false,
-      'created_on': DateTime.parse('20210102'),
-      'last_login': DateTime.now(),
+      'created_on': Timestamp.fromDate(DateTime.parse('20210102')),
+      'last_login': Timestamp.fromDate(DateTime.now()),
       'id': 'dorothy5',
     },
   ];

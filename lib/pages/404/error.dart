@@ -8,8 +8,8 @@ class PageNotFound extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset('assets/images/error.png', width: 350,),
-          SizedBox(height: 10,),
+          Image.asset('assets/images/error.png', width: 350),
+          SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

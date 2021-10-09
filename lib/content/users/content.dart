@@ -12,13 +12,13 @@ import '../content.dart';
 class UserContent extends ContentContainer {
   static const String CollectionName = 'users';
   String get collection => CollectionName;
+  final CONTENT = CONTENT.USER;
 
-  String image, sex;
+  String sex;
   bool online, verified;
   DateTime created_on, last_login;
 
   UserContent({
-    required this.image,
     required this.sex,
     required this.online,
     required this.verified,
@@ -37,26 +37,22 @@ class UserContent extends ContentContainer {
   factory UserContent.fromJson(dynamic data) => UserContent(
     title: data['title'],
     caption: data['caption'],
-    image: data['image'],
     sex: data['sex'],
     online: data['online'],
     verified: data['verified'],
     created_on: data['created_on'].toDate(),
     last_login: data['last_login'].toDate(),
-    id: data.id ?? data['id'],
+    id:  data['id'],
   );
 
   Map<String, dynamic> toJson() => {
-    'type': CONTENT.USER,
     'title': title,
     'caption': caption,
-    'image': image,
     'sex': sex,
     'online': online,
     'verified': verified,
     'created_on': Timestamp.fromDate(created_on),
     'last_login': Timestamp.fromDate(last_login),
-    'id': id,
   };
 
   bool get friend => true;

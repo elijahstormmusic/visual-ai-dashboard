@@ -7,7 +7,7 @@ import 'package:visual_ai/firestore/firestore.dart';
 
 
 class TrainingDataCache extends ContentCache<TrainingDataContent> {
-  List<Map<String, dynamic> > get mockData => MockContent.all;
+  List<Map<String, dynamic>> get mockData => MockContent.all;
   TrainingDataContent fromJson(dynamic data) => TrainingDataContent.fromJson(data);
 
   void download() async => FirestoreApi.download(
