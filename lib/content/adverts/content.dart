@@ -8,7 +8,7 @@ import '../content.dart';
 class AdvertisementContent extends ContentContainer {
   static const String CollectionName = 'adverts';
   String get collection => CollectionName;
-  final CONTENT = CONTENT.AD;
+  final content_type = CONTENT.AD;
 
   String link;
 

@@ -10,7 +10,7 @@ import '../content.dart';
 class FileContent extends ContentContainer {
   static const String CollectionName = 'files';
   String get collection => CollectionName;
-  final CONTENT = CONTENT.FILE;
+  final content_type = CONTENT.FILE;
 
   String cloud_link;
   int file_type;

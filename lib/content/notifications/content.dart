@@ -10,7 +10,7 @@ import '../content.dart';
 class NotificationContent extends ContentContainer {
   static const String CollectionName = 'notos';
   String get collection => CollectionName;
-  final CONTENT = CONTENT.NOTIFICATION;
+  final content_type = CONTENT.NOTIFICATION;
 
   DateTime date;
   String type, status;

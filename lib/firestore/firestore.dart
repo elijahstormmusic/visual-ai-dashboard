@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -199,6 +200,57 @@ class FirestoreApi {
     }
   }
 
+  static Widget future({
+    required String field,
+    required String id,
+    String? collection,
+    String? document,
+    bool is_team = false,
+    required Widget Function(BuildContext, dynamic) builder,
+    required Widget Function(String) onError,
+  }) {
+    return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+      future: FirestoreApi.get(
+        field: field,
+        id: id,
+        collection: collection,
+        document: document,
+        is_team: is_team,
+      ),
+      builder: (context, snapshot) {
+        if (snapshot.hasError || !snapshot.hasData) {
+          return onError('FirestoreApi->future Error: ${snapshot.error}');
+        }
+
+        if (!snapshot.data!.exists || snapshot.data!.data()![field] == null) {
+          return onError('FirestoreApi->future Error: data does not exist');
+        }
+
+        return builder(context, snapshot.data!.data()![field]);
+      },
+    );
+  }
+
+  static Future<DocumentSnapshot<Map<String, dynamic>>> get({
+    required String field,
+    required String id,
+    String? collection,
+    String? document,
+    bool is_team = false,
+  }) async {
+    var query = await FirebaseFirestore.instance
+      .collection(is_team ? 'teams' : 'users')
+      .doc(id);
+
+    if (collection != null && document != null) {
+      query = query
+        .collection(collection)
+        .doc(document);
+    }
+
+    return query.get();
+  }
+
   static Stream<DocumentSnapshot> stream(
     String collection, {
       String? id,
@@ -244,9 +296,6 @@ class FirestoreApi {
     }
 
     Map<String, dynamic> _uploadable_data = content.toJson();
-    _uploadable_data['.dashboard.type'] = null;
-    _uploadable_data['id'] = null;
-
 
     await FirebaseFirestore.instance
       .collection(is_team ? 'teams' : 'users')
@@ -257,12 +306,25 @@ class FirestoreApi {
         (value) {
           if (onComplete != null) onComplete(content);
 
-          FirebaseFirestore.instance
+          var doc_counting = FirebaseFirestore.instance
             .collection(is_team ? 'teams' : 'users')
             .doc(id)
             .collection(content.collection)
-            .doc('info')
-            .update({'numOfDocs': FieldValue.increment(1)});
+            .doc('info');
+
+          doc_counting
+            .update({'numOfDocs': FieldValue.increment(1)})
+            .catchError(
+              (error) {
+                doc_counting
+                  .set({'numOfDocs': 1}, SetOptions(merge: true))
+                  .catchError(
+                    (error) {
+                      if (onError != null) onError('$error', content);
+                    }
+                  );
+              }
+            );
         }
       )
       .catchError(

@@ -12,7 +12,7 @@ import '../content.dart';
 class TrainingDataContent extends ContentContainer {
   static const String CollectionName = 'training_data';
   String get collection => CollectionName;
-  final CONTENT = CONTENT.TRAINING_DATA;
+  final content_type = CONTENT.TRAINING_DATA;
 
   dynamic training_data;
   String encoding_type, author, image_link;

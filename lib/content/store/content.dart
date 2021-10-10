@@ -12,7 +12,7 @@ import '../content.dart';
 class StoreContent extends ContentContainer {
   static const String CollectionName = 'store';
   String get collection => CollectionName;
-  final CONTENT = CONTENT.STORE_ITEM;
+  final content_type = CONTENT.STORE_ITEM;
 
   String type, keywords;
   int size, num_of_likes, num_of_purchases;

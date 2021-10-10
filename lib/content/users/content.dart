@@ -12,7 +12,7 @@ import '../content.dart';
 class UserContent extends ContentContainer {
   static const String CollectionName = 'users';
   String get collection => CollectionName;
-  final CONTENT = CONTENT.USER;
+  final content_type = CONTENT.USER;
 
   String sex;
   bool online, verified;

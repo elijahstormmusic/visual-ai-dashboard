@@ -16,9 +16,11 @@ import 'package:visual_ai/screens/components/error.dart';
 
 
 import 'package:visual_ai/content/training_data/cache.dart';
+import 'package:visual_ai/content/training_data/content.dart';
 import 'package:visual_ai/content/notifications/cache.dart';
 import 'package:visual_ai/content/dashboard/cache.dart';
 import 'package:visual_ai/content/files/cache.dart';
+import 'package:visual_ai/content/files/content.dart';
 
 
 
@@ -27,12 +29,13 @@ class _DrawSnapshot extends StatelessWidget {
 
   _DrawSnapshot(this.user);
 
+
+
+
   void upload_next(List<dynamic> list, int i) {
     if (i >= list.length) {
-      print('finishing traindin data upload');
       return;
     }
-    print('uploading ${i}');
 
     FirestoreApi.upload(list[i],
       onComplete: (_) {
@@ -41,6 +44,90 @@ class _DrawSnapshot extends StatelessWidget {
       onError: (e, _) {
         print('error: ${e}');
       }
+    );
+  }
+
+
+  Widget _rowWithData({
+    required String label,
+    required String field,
+    required String collection,
+  }) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(label),
+
+        FirestoreApi.future(
+          field: field,
+          id: FirestoreApi.active_user!,
+          collection: collection,
+          document: 'info',
+          builder: (context, data) {
+
+            try {
+              String str = data.toString();
+
+              int position = 0;
+              for (; position < str.length; position++) {
+                try {
+                  int.parse(str[position]);
+                }
+                catch (e) {
+                  break;
+                }
+              }
+
+              if (position == str.length) {
+                return NumberSlideAnimation(
+                  number: str,
+                  duration: const Duration(seconds: 1),
+                  curve: Curves.bounceIn,
+                  textStyle: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                );
+              }
+
+              return Row(
+                children: [
+                  NumberSlideAnimation(
+                    number: str.substring(0, position),
+                    duration: const Duration(seconds: 1),
+                    curve: Curves.bounceIn,
+                    textStyle: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  Text(
+                    str.substring(position),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              );
+            }
+            catch (e) {
+              return Text(
+                data,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              );
+            }
+          },
+          onError: (e) {
+            return Text(
+              'No data',
+              style: TextStyle(
+                fontStyle: FontStyle.italic,
+              ),
+            );
+          },
+        ),
+      ],
     );
   }
 
@@ -108,20 +195,33 @@ class _DrawSnapshot extends StatelessWidget {
 
       Text(user.caption),
 
-      ElevatedButton(
-        onPressed: () => upload_next(TrainingDataCache().getMockData(), 0),
-        child: Text('Upload Mock Data'),
+      _rowWithData(
+        label: 'Training Data Documents',
+        collection: TrainingDataContent.CollectionName,
+        field: 'numOfDocs',
       ),
 
-      // NumberSlideAnimation(
-      //   number: Random().nextInt(1000).toString(),
-      //   duration: const Duration(seconds: 1),
-      //   curve: Curves.bounceIn,
-      //   textStyle: TextStyle(
-      //     fontSize: 20.0,
-      //     fontWeight: FontWeight.bold
-      //   ),
-      // ),
+      _rowWithData(
+        label: 'Amount of Files',
+        collection: FileContent.CollectionName,
+        field: 'numOfDocs',
+      ),
+
+      _rowWithData(
+        label: 'Total File Size',
+        collection: FileContent.CollectionName,
+        field: 'totalFileSize',
+      ),
+
+      ElevatedButton(
+        onPressed: () => upload_next(
+          <dynamic>[]
+            + TrainingDataCache().getMockData()
+            + NotificationCache().getMockData()
+            + FileCache().getMockData()
+            + DashboardCache().getMockData(), 0),
+        child: Text('Upload Mock Data'),
+      ),
     ];
 
     return AnimationLimiter(
