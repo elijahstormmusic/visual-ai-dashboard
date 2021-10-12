@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
+import 'package:visual_ai/pages/search/page.dart';
+import 'package:visual_ai/pages/billing/page.dart';
+import 'package:visual_ai/pages/permissions/page.dart';
+import 'package:visual_ai/pages/settings/page.dart';
 import 'package:visual_ai/login/user_state.dart';
 import 'package:visual_ai/constants.dart';
 
@@ -48,67 +52,76 @@ class _HeaderState extends State<Header> with TickerProviderStateMixin {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
 
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: defaultPadding * 1.5,
-                    vertical:
-                    defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
-                  ),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).cardColor,
-                    borderRadius: const BorderRadius.all(Radius.circular(10)),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text('Account Permissions'),
-                      SizedBox(width: defaultPadding),
-                      Icon(Icons.add),
-                    ],
-                  ),
-                ),
-
-                SizedBox(height: defaultPadding),
-
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: defaultPadding * 1.5,
-                    vertical:
-                    defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
-                  ),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).cardColor,
-                    borderRadius: const BorderRadius.all(Radius.circular(10)),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text('Billing'),
-                      SizedBox(width: defaultPadding),
-                      Icon(Icons.attach_money),
-                    ],
+                GestureDetector(
+                  onTap: () => Navigator.pushNamed(context, PermissionsPage.routeName),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: defaultPadding * 1.5,
+                      vertical:
+                      defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
+                    ),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text('Account Permissions'),
+                        SizedBox(width: defaultPadding),
+                        Icon(Icons.add),
+                      ],
+                    ),
                   ),
                 ),
 
                 SizedBox(height: defaultPadding),
 
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: defaultPadding * 1.5,
-                    vertical:
-                    defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
+                GestureDetector(
+                  onTap: () => Navigator.pushNamed(context, BillingPage.routeName),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: defaultPadding * 1.5,
+                      vertical:
+                      defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
+                    ),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text('Billing'),
+                        SizedBox(width: defaultPadding),
+                        Icon(Icons.attach_money),
+                      ],
+                    ),
                   ),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).cardColor,
-                    borderRadius: const BorderRadius.all(Radius.circular(10)),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text('Account Settings'),
-                      SizedBox(width: defaultPadding),
-                      Icon(Icons.settings),
-                    ],
+                ),
+
+                SizedBox(height: defaultPadding),
+
+                GestureDetector(
+                  onTap: () => Navigator.pushNamed(context, AccountSettingsPage.routeName),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: defaultPadding * 1.5,
+                      vertical:
+                      defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
+                    ),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text('Account Settings'),
+                        SizedBox(width: defaultPadding),
+                        Icon(Icons.settings),
+                      ],
+                    ),
                   ),
                 ),
 
@@ -227,14 +240,29 @@ class DashboardCard extends StatelessWidget {
   }
 }
 
-class SearchField extends StatelessWidget {
+class SearchField extends StatefulWidget {
   const SearchField({
     Key? key,
   }) : super(key: key);
 
   @override
+  _StateSearchField createState() => _StateSearchField();
+}
+
+class _StateSearchField extends State<SearchField> {
+
+  TextEditingController _controller = TextEditingController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: _controller,
       decoration: InputDecoration(
         hintText: 'Search',
         fillColor: Theme.of(context).cardColor,
@@ -244,7 +272,10 @@ class SearchField extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(10)),
         ),
         suffixIcon: InkWell(
-          onTap: () {},
+          onTap: () {
+            print(_controller.value);
+            Navigator.pushNamed(context, SearchPage.routeName);
+          },
           child: Container(
             padding: EdgeInsets.all(defaultPadding * 0.75),
             margin: EdgeInsets.symmetric(horizontal: defaultPadding / 2),

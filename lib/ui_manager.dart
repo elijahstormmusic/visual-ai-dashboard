@@ -28,7 +28,6 @@ class _UI_ManagerState extends State<UI_Manager> {
     ],
     child: Consumer<UserState>(
       builder: (context, userstate, child) {
-
         return userstate.data.exists
           ? MainScreen()
           : LoginScreen();

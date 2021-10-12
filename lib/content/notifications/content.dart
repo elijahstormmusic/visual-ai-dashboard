@@ -48,7 +48,7 @@ class NotificationContent extends ContentContainer {
   };
 
   NotificationContentDisplayPage navigateTo() {
-    return NotificationContentDisplayPage(id);
+    return NotificationContentDisplayPage(this);
   }
 
   Widget get icon {

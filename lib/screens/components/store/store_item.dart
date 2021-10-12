@@ -20,27 +20,33 @@ class StoreItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: const BorderRadius.all(Radius.circular(10)),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
-          borderRadius: const BorderRadius.all(Radius.circular(10)),
+      child: GestureDetector(
+        onTap: () => Navigator.push(
+          context, 
+          MaterialPageRoute(builder: (context) => info.navigateTo()),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: info.icon,
-            ),
-            Container(
-              padding: EdgeInsets.all(defaultPadding * 0.75),
-              child: Text(
-                info.title,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+        child: Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).cardColor,
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: info.icon,
               ),
-            ),
-          ],
+              Container(
+                padding: EdgeInsets.all(defaultPadding * 0.75),
+                child: Text(
+                  info.title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

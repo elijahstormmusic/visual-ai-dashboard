@@ -94,6 +94,10 @@ class FirestoreApi {
   static bool _deny_upload() {
     return Disabled || _restrict_uploads;
   }
+  static bool _deny_download() {
+    return Disabled;
+  }
+
 
   static void _grab(
     dynamic query,
@@ -180,6 +184,8 @@ class FirestoreApi {
       int limit = 10,
     }
   ) {
+    if (_deny_download()) return;
+
     if (id != null) {
       _getPersonalData(
         type: is_team ? 'teams' : 'users',
@@ -209,7 +215,11 @@ class FirestoreApi {
     required Widget Function(BuildContext, dynamic) builder,
     required Widget Function(String) onError,
   }) {
-    return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+    if (_deny_download()) {
+      return onError('downloads currently disabled');
+    }
+
+    return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>?>(
       future: FirestoreApi.get(
         field: field,
         id: id,
@@ -231,13 +241,15 @@ class FirestoreApi {
     );
   }
 
-  static Future<DocumentSnapshot<Map<String, dynamic>>> get({
+  static Future<DocumentSnapshot<Map<String, dynamic>>?> get({
     required String field,
     required String id,
     String? collection,
     String? document,
     bool is_team = false,
   }) async {
+    if (_deny_download()) return null;
+
     var query = await FirebaseFirestore.instance
       .collection(is_team ? 'teams' : 'users')
       .doc(id);
@@ -251,17 +263,18 @@ class FirestoreApi {
     return query.get();
   }
 
-  static Stream<DocumentSnapshot> stream(
+  static Stream<DocumentSnapshot>? stream(
     String collection, {
       String? id,
       String? document,
       bool is_team = false,
   }) {
-    var database = FirebaseFirestore.instance
-      .collection(collection)
-      .doc(id);
+    if (_deny_download()) return null;
 
-    return database.snapshots();
+    return FirebaseFirestore.instance
+      .collection(collection)
+      .doc(id)
+      .snapshots();
   }
 
   static void upload(

@@ -65,25 +65,23 @@ class _ScreenManagerState extends State<MainScreen> {
     return Scaffold(
       key: context.read<MenuController>().scaffoldKey,
       drawer: Responsive.isDesktop(context) ? null : SideMenu(_stateIndexNotifier),
-      body: SafeArea(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (Responsive.isDesktop(context))
-              Expanded(
-                child: SideMenu(_stateIndexNotifier),
-              ),
+      body: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (Responsive.isDesktop(context))
             Expanded(
-              flex: 5,
-              child: ValueListenableBuilder<String>(
-                valueListenable: _stateIndexNotifier,
-                builder: (context, value, child) {
-                  return _decideInteriorBody();
-                },
-              ),
+              child: SideMenu(_stateIndexNotifier),
             ),
-          ],
-        ),
+          Expanded(
+            flex: 5,
+            child: ValueListenableBuilder<String>(
+              valueListenable: _stateIndexNotifier,
+              builder: (context, value, child) {
+                return _decideInteriorBody();
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

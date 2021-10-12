@@ -62,7 +62,7 @@ class UserState extends ChangeNotifier {
 
   void logout() {
     FirestoreApi.logout();
-    data = User();
+    data = User(exists: false);
     notify();
   }
 

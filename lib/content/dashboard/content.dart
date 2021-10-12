@@ -46,7 +46,7 @@ class DashboardContent extends ContentContainer {
   }
 
   DashboardContentDisplayPage navigateTo() {
-    return DashboardContentDisplayPage(id);
+    return DashboardContentDisplayPage(this);
   }
 
   Color color(BuildContext context) {

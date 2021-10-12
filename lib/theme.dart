@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -20,12 +21,48 @@ class ThemeSwitcher extends StatelessWidget {
       builder: (BuildContext context, Store<AppState> store) {
         final state = store.state;
         return GestureDetector(
-          onTap: () => store.dispatch(UpdateDarkMode(enable: !state.enableDarkMode)),
+          onTap: () => store.dispatch(
+            UpdateDarkMode(enable: !state.enableDarkMode),
+          ),
           child: child,
         );
       },
     );
   }
+}
+
+class Themes {
+  static Future<StoreProvider<AppState>> init(Widget mainApp) async {
+    return StoreProvider<AppState>(
+      store: Store<AppState>(
+        reducer,
+        distinct: true,
+        initialState: AppState(
+          enableDarkMode: (
+             await (
+              await SharedPreferences.getInstance()
+            ).getBool('darkMode')
+          ) ?? false,
+        ),
+      ),
+      child: mainApp,
+    );
+  }
+
+  static ThemeData mainLightThem(BuildContext context) => ThemeData.light().copyWith(
+    textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
+      .apply(bodyColor: Colors.black),
+    cardColor: cardColorLight,
+    scaffoldBackgroundColor: bgColorLight,
+    primaryColor: primaryColorLight,
+  );
+  static ThemeData mainDarkThem(BuildContext context) => ThemeData.dark().copyWith(
+    textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
+      .apply(bodyColor: Colors.white),
+    cardColor: cardColorDark,
+    scaffoldBackgroundColor: bgColorDark,
+    primaryColor: primaryColorDark,
+  );
 }
 
   // redux
@@ -43,7 +80,7 @@ class UpdateDarkMode {
 
   void _persistTheme() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('darkMode', enable);
+    prefs.setBool('darkMode', enable);
   }
 }
 

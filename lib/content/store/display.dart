@@ -1,29 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:flutter_redux/flutter_redux.dart';
+
+import 'package:visual_ai/pages/backable_page.dart';
 
 import 'content.dart';
 
+import 'components/main.dart';
 
-class StoreContentDisplayPage extends StatefulWidget {
-  final String cryptlink;
 
-  StoreContentDisplayPage(this.cryptlink);
+class StoreContentDisplayPage extends StatelessWidget {
+  final StoreContent content;
 
-  _UserContentDisplayPageState createState() => _UserContentDisplayPageState();
-}
-
-class _UserContentDisplayPageState extends State<StoreContentDisplayPage> {
+  StoreContentDisplayPage(this.content);
 
   Widget build(BuildContext context) {
 
-    return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
+    print(content.title);
+    print(content.caption);
+    print(content.id);
 
-          ],
-        ),
+    return BackablePage(
+      child: Center(
+        child: HomePage(),
       ),
     );
   }

@@ -51,7 +51,7 @@ class FileContent extends ContentContainer {
   };
 
   FileContentDisplayPage navigateTo() {
-    return FileContentDisplayPage(id);
+    return FileContentDisplayPage(this);
   }
 
   Widget get icon {

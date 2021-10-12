@@ -59,7 +59,7 @@ class StoreContent extends ContentContainer {
   };
 
   StoreContentDisplayPage navigateTo() {
-    return StoreContentDisplayPage(id);
+    return StoreContentDisplayPage(this);
   }
 
 

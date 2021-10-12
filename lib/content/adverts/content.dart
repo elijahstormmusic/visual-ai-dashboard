@@ -37,7 +37,7 @@ class AdvertisementContent extends ContentContainer {
     'link': link,
   };
 
-  UserContentDisplayPage navigateTo() {
-    return UserContentDisplayPage(id);
+  AdvertisementContentDisplayPage navigateTo() {
+    return AdvertisementContentDisplayPage(this);
   }
 }

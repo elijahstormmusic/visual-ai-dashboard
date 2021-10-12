@@ -68,7 +68,7 @@ class TrainingDataContent extends ContentContainer {
 
 
   TrainingDataContentDisplayPage navigateTo() {
-    return TrainingDataContentDisplayPage(id);
+    return TrainingDataContentDisplayPage(this);
   }
 
   bool get important => uses >= 100;
