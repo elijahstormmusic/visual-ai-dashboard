@@ -7,13 +7,17 @@ import 'package:visual_ai/constants.dart';
 class BackablePage extends StatelessWidget {
 
   Widget _child;
+  AppBar? _appBar;
 
   BackablePage({
     required child,
-  }) : _child = child;
+    appBar,
+  }) : _child = child,
+      _appBar = appBar;
 
   @override
   Widget build(BuildContext context) => Scaffold(
+    appBar: _appBar,
     body: Stack(
       children: [
         Positioned.fill(
@@ -24,7 +28,6 @@ class BackablePage extends StatelessWidget {
           top: defaultPadding,
           left: defaultPadding,
           child: CloseButton(
-            // onPressed: () => Navigator.pushReplacementNamed(context, UI_Manager.routeName),
             onPressed: () => Navigator.pop(context),
           ),
         ),

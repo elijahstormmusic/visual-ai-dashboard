@@ -11,7 +11,7 @@ import 'package:visual_ai/content/users/content.dart';
 import 'package:visual_ai/login/user_state.dart';
 import 'package:visual_ai/constants.dart';
 
-import 'package:visual_ai/screens/components/loading.dart';
+import 'package:visual_ai/screens/components/animations/loading.dart';
 import 'package:visual_ai/screens/components/error.dart';
 
 

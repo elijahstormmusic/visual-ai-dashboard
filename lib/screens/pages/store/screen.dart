@@ -7,6 +7,7 @@ import 'package:visual_ai/content/store/cache.dart';
 import 'package:visual_ai/screens/components/header.dart';
 import 'package:visual_ai/constants.dart';
 
+import 'components/for_you_store.dart';
 import 'components/popular_items_display.dart';
 import 'components/recent_items_display.dart';
 import 'components/purchased_items_display.dart';
@@ -50,7 +51,7 @@ class StoreScreen extends StatelessWidget {
                       child: PurchasedStoreItems(),
                     ),
                 ],
-              )
+              ),
             ],
           ),
         ),

@@ -35,10 +35,10 @@ class DatabaseScreen extends StatelessWidget {
                       children: [
                         MostImportantTrainingData(),
                         SizedBox(height: defaultPadding),
-                        RecentTrainingData(),
+                        OtherTrainingData(),
                         if (Responsive.isMobile(context))
                           SizedBox(height: defaultPadding),
-                        if (Responsive.isMobile(context)) OtherTrainingData(),
+                        if (Responsive.isMobile(context)) RecentTrainingData(),
                       ],
                     ),
                   ),
@@ -47,7 +47,9 @@ class DatabaseScreen extends StatelessWidget {
                   if (!Responsive.isMobile(context))
                     Expanded(
                       flex: 2,
-                      child: OtherTrainingData(),
+                      child: RecentTrainingData(
+                        force_width: 1,
+                      ),
                     ),
                 ],
               )

@@ -13,7 +13,6 @@ dependencies:
     sdk: flutter
 
     # dash shell
-  cupertino_icons: ^1.0.3
   google_fonts: ^2.1.0
   flutter_svg: ^0.22.0
   iconsax: ^0.0.8
@@ -27,10 +26,8 @@ dependencies:
   flutter_staggered_animations: ^1.0.0
   simple_animations: ^4.0.1
   page_transition: ^2.0.4
-  # animate_do: ^2.0.0
-  # pattern_formatter: ^2.0.0
-  # align_positioned: ^3.0.0
-  # flutter_slidable: ^0.6.0
+  flutter_slidable: ^0.6.0
+  dotted_border: ^2.0.0+1
 
     # data management
   provider: ^5.0.0

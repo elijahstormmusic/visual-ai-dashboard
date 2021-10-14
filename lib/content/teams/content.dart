@@ -9,16 +9,16 @@ import 'cache.dart';
 import '../content.dart';
 
 
-class UserContent extends ContentContainer {
-  static const String CollectionName = 'users';
+class TeamContent extends ContentContainer {
+  static const String CollectionName = 'teams';
   String get collection => CollectionName;
-  final content_type = CONTENT.USER;
+  final content_type = CONTENT.TEAM;
 
   String sex;
   bool online, verified;
   DateTime created_on, last_login;
 
-  UserContent({
+  TeamContent({
     required this.sex,
     required this.online,
     required this.verified,
@@ -34,7 +34,7 @@ class UserContent extends ContentContainer {
     )
   { }
 
-  factory UserContent.fromJson(dynamic data) => UserContent(
+  factory TeamContent.fromJson(dynamic data) => TeamContent(
     title: data['title'],
     caption: data['caption'],
     sex: data['sex'],
@@ -65,7 +65,7 @@ class UserContent extends ContentContainer {
     ),
   );
 
-  UserContentDisplayPage navigateTo() {
-    return UserContentDisplayPage(this);
+  TeamContentDisplayPage navigateTo() {
+    return TeamContentDisplayPage(this);
   }
 }

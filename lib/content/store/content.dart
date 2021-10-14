@@ -15,12 +15,14 @@ class StoreContent extends ContentContainer {
   final content_type = CONTENT.STORE_ITEM;
 
   String type, keywords;
+  double price;
   int size, num_of_likes, num_of_purchases;
   DateTime released;
 
   StoreContent({
     required this.type,
     required this.keywords,
+    required this.price,
     required this.size,
     required this.num_of_likes,
     required this.num_of_purchases,
@@ -39,8 +41,9 @@ class StoreContent extends ContentContainer {
     title: data['title'],
     caption: data['caption'],
     type: data['type'],
-    size: data['size'],
     keywords: data['keywords'],
+    price: data['price'],
+    size: data['size'],
     num_of_likes: data['num_of_likes'],
     num_of_purchases: data['num_of_purchases'],
     released: DateTime.parse(data['released'].toDate().toString()),
@@ -51,8 +54,9 @@ class StoreContent extends ContentContainer {
     'title': title,
     'caption': caption,
     'type': type,
-    'size': size,
     'keywords': keywords,
+    'price': price,
+    'size': size,
     'num_of_likes': num_of_likes,
     'num_of_purchases': num_of_purchases,
     'released': Timestamp.fromDate(released),
@@ -67,7 +71,8 @@ class StoreContent extends ContentContainer {
   bool get popular => true;
   bool get recent => released.isAfter(DateTime.now().subtract(Duration(days: 14)));
 
-
+  String get released_str => Constants.timeSinceDate(released);
+  String get price_str => '\$${((price*100.0).floor().toDouble()/100.0).toString()}';
   Widget get icon => Container(
     child: SvgPicture.network(
       Constants.store_items_svgs + id + '.svg',

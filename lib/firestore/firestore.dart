@@ -18,8 +18,8 @@ class FirestoreApi {
   static void createNewUser() async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: "barry.allen@example.com",
-        password: "SuperSecretPassword!"
+        email: 'barry.allen@example.com',
+        password: 'SuperSecretPassword!'
       );
 
       User? user = FirebaseAuth.instance.currentUser;

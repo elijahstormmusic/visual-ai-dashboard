@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
   List<dynamic> notifications = [];
 
   Future<void> readJson() async {
-    final String response = await rootBundle.loadString('assets/notifications.json');
+    final String response = await rootBundle.loadString('assets/imports/notifications.json');
     final data = await json.decode(response);
 
     setState(() {
@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        title: Text("Activity", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
+        title: Text('Activity', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
         centerTitle: false,
       ),
       body: ListView.builder(

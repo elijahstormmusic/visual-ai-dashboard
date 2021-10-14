@@ -8,6 +8,7 @@ enum CONTENT {
   TRAINING_DATA,
   NOTIFICATION,
   FILE,
+  TEAM,
   USER,
   AD,
 }

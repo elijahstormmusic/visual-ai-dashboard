@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'package:visual_ai/constants.dart';
 import 'package:visual_ai/content/dashboard/cache.dart';
-import 'package:visual_ai/screens/components/loading.dart';
+import 'package:visual_ai/screens/components/animations/loading.dart';
 import 'file_info_card.dart';
 
 

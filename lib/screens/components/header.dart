@@ -1,4 +1,4 @@
-import 'package:visual_ai/controllers/MenuController.dart';
+import 'package:visual_ai/controllers/menu_controller.dart';
 import 'package:visual_ai/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -10,6 +10,8 @@ import 'package:visual_ai/pages/permissions/page.dart';
 import 'package:visual_ai/pages/settings/page.dart';
 import 'package:visual_ai/login/user_state.dart';
 import 'package:visual_ai/constants.dart';
+
+import 'package:visual_ai/pages/search/page.dart';
 
 
 class Header extends StatefulWidget {
@@ -254,36 +256,62 @@ class _StateSearchField extends State<SearchField> {
   TextEditingController _controller = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    _last_interaction = DateTime.now().subtract(Duration(seconds: _timeout));
+  }
+  @override
   void dispose() {
     _controller.dispose();
     super.dispose();
   }
 
+  final int _timeout = 5;
+  DateTime _last_interaction = DateTime.now();
+  bool get _reject_change_state {
+    Duration timeSince = DateTime.now().difference(_last_interaction);
+
+    return timeSince.inSeconds < _timeout;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: _controller,
-      decoration: InputDecoration(
-        hintText: 'Search',
-        fillColor: Theme.of(context).cardColor,
-        filled: true,
-        border: OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: const BorderRadius.all(Radius.circular(10)),
-        ),
-        suffixIcon: InkWell(
-          onTap: () {
-            print(_controller.value);
-            Navigator.pushNamed(context, SearchPage.routeName);
-          },
-          child: Container(
-            padding: EdgeInsets.all(defaultPadding * 0.75),
-            margin: EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-            decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
+    return Hero(
+      tag: 'searchBar',
+      child: TextField(
+        onChanged: (value) {
+          if (_reject_change_state) return;
+
+          _last_interaction = DateTime.now();
+
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SearchPage()),
+          );
+        },
+        controller: _controller,
+        decoration: InputDecoration(
+          hintText: 'Search',
+          fillColor: Theme.of(context).cardColor,
+          filled: true,
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
+          ),
+          suffixIcon: InkWell(
+            onTap: () {
+              print(_controller.value);
+              Navigator.pushNamed(context, SearchPage.routeName);
+            },
+            child: Container(
+              padding: EdgeInsets.all(defaultPadding * 0.75),
+              margin: EdgeInsets.symmetric(horizontal: defaultPadding / 2),
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
+              ),
+              child: SvgPicture.asset('assets/icons/Search.svg'),
             ),
-            child: SvgPicture.asset('assets/icons/Search.svg'),
           ),
         ),
       ),

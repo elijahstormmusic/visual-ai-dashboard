@@ -45,7 +45,7 @@ class TrainingScreen extends StatelessWidget {
                     Expanded(
                       flex: 2,
                       child: RecentTrainingData(
-                        force_width: 2,
+                        force_width: 1,
                       ),
                     ),
                 ],

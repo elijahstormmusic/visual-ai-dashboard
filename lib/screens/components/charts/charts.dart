@@ -4,7 +4,7 @@ import 'package:flutter/gestures.dart';
 
 import 'package:visual_ai/constants.dart';
 import 'package:visual_ai/content/dashboard/content.dart';
-import 'package:visual_ai/screens/components/loading.dart';
+import 'package:visual_ai/screens/components/animations/loading.dart';
 
 
 class StorageChart extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:visual_ai/controllers/MenuController.dart';
+import 'package:visual_ai/controllers/menu_controller.dart';
 import 'package:visual_ai/responsive.dart';
 import 'components/side_menu.dart';
 

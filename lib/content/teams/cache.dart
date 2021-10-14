@@ -5,28 +5,19 @@ import 'mock_content.dart';
 import 'package:visual_ai/firestore/firestore.dart';
 
 
-class UserCache extends ContentCache<UserContent> {
+class TeamCache extends ContentCache<TeamContent> {
   List<Map<String, dynamic>> get mockData => MockContent.all;
-  UserContent fromJson(dynamic data) => UserContent.fromJson(data);
+  TeamContent fromJson(dynamic data) => TeamContent.fromJson(data);
 
   String _filter = '';
 
   void download() => FirestoreApi.download(
-    UserContent.CollectionName,
+    TeamContent.CollectionName,
     limit: 10,
     filters: _filter,
+    is_team: true,
     populate: (dynamic data) => add(
-      UserContent.fromJson(data),
+      TeamContent.fromJson(data),
     ),
   );
-
-  UserCache.friends(String id) {
-    _filter = 'id=${id},friends';
-  }
-  UserCache.non_friends(String id) {
-    _filter = 'id=${id},!friends';
-  }
-  UserCache.team(String id) {
-    _filter = 'id=${id},team';
-  }
 }

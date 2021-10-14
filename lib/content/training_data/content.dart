@@ -85,7 +85,12 @@ class TrainingDataContent extends ContentContainer {
   Widget get icon => Container(
     child: SvgPicture.network(
       Constants.training_data_svgs + id + '.svg',
-      fit: BoxFit.fill,
+      fit: BoxFit.cover,
     ),
   );
+
+  String get author_name => 'name';
+  String get encoding => 'encoding_type';
+  String get edited => Constants.timeSinceDate(edited_on);
+  String get created => Constants.timeSinceDate(created_on);
 }

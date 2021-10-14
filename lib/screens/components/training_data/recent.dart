@@ -6,7 +6,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:visual_ai/responsive.dart';
 import 'package:visual_ai/constants.dart';
 import 'package:visual_ai/content/training_data/cache.dart';
-import 'package:visual_ai/screens/components/loading.dart';
+import 'package:visual_ai/screens/components/animations/loading.dart';
 
 import 'small_training_data_block.dart';
 
@@ -49,7 +49,7 @@ class RecentTrainingData extends StatelessWidget {
           SizedBox(height: defaultPadding),
           Responsive(
             mobile: TrainingDataBlock(
-              crossAxisCount: _size.width < 650 ? 2 : 2,
+              crossAxisCount: _size.width < 650 ? 1 : 1,
               childAspectRatio: _size.width < 650 ? 1.3 : 1,
             ),
             tablet: TrainingDataBlock(

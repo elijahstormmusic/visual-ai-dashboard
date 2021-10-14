@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-import 'package:visual_ai/controllers/MenuController.dart';
+import 'package:visual_ai/controllers/menu_controller.dart';
 import 'package:visual_ai/screens/main/screen.dart';
-import 'package:visual_ai/screens/components/loading.dart';
+import 'package:visual_ai/screens/components/animations/loading.dart';
 import 'package:visual_ai/screens/components/error.dart';
 import 'package:visual_ai/login/user_state.dart';
 import 'package:visual_ai/login/login_screen.dart';
