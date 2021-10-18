@@ -14,9 +14,9 @@ class UserContent extends ContentContainer {
   String get collection => CollectionName;
   final content_type = CONTENT.USER;
 
-  String sex;
-  bool online, verified;
-  DateTime created_on, last_login;
+  final String sex;
+  final bool online, verified;
+  final DateTime created_on, last_login;
 
   UserContent({
     required this.sex,
@@ -58,10 +58,13 @@ class UserContent extends ContentContainer {
   bool get friend => true;
   bool get team_member => true;
 
-  Widget get icon => Container(
-    child: SvgPicture.network(
-      Constants.live_svgs + id + '.svg',
-      fit: BoxFit.fill,
+  Widget get icon => Hero(
+    tag: id,
+    child: Container(
+      child: SvgPicture.network(
+        Constants.live_svgs + id + '.svg',
+        fit: BoxFit.fill,
+      ),
     ),
   );
 

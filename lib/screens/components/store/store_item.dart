@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:visual_ai/responsive.dart';
 import 'package:visual_ai/constants.dart';
-import 'package:visual_ai/screens/components/animations/blinking_content.dart';
 
 import 'package:visual_ai/content/store/content.dart';
 

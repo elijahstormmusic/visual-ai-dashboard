@@ -57,8 +57,9 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
         Container(
           padding: EdgeInsets.symmetric(horizontal: 20),
           height: MediaQuery.of(context).size.height * 0.53,
-          child: cartItems.length > 0 ? FadeAnimation(1.4,
-            AnimatedList(
+          child: cartItems.length > 0 ? FadeAnimation(
+            delay: 1.4,
+            child: AnimatedList(
               scrollDirection: Axis.vertical,
               initialItemCount: cartItems.length,
               itemBuilder: (context, index, animation) {
@@ -88,13 +89,14 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
                   ],
                   child: cartItem(cartItems[index], index, animation),
                 );
-              }
+              },
             ),
           ) : Container(),
         ),
         SizedBox(height: 30),
-        FadeAnimation(1.2,
-          Container(
+        FadeAnimation(
+          delay: 1.2,
+          child: Container(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,45 +107,54 @@ class _CartPageState extends State<CartPage> with TickerProviderStateMixin {
             ),
           ),
         ),
-        FadeAnimation(1.3, Padding(
-          padding: EdgeInsets.all(20.0),
-          child: DottedBorder(
-            color: Colors.grey.shade400,
-            dashPattern: [10, 10],
-            padding: EdgeInsets.all(0),
-            child: Container()
+        FadeAnimation(
+          delay: 1.3,
+          child: Padding(
+            padding: EdgeInsets.all(20.0),
+            child: DottedBorder(
+              color: Colors.grey.shade400,
+              dashPattern: [10, 10],
+              padding: EdgeInsets.all(0),
+              child: Container()
+            ),
           ),
-        )),
-        FadeAnimation(1.3, Container(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text('Total', style: TextStyle(fontSize: 20)),
-              Text('\$${totalPrice + 5.99}', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
-            ],
+        ),
+        FadeAnimation(
+          delay: 1.3,
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text('Total', style: TextStyle(fontSize: 20)),
+                Text('\$${totalPrice + 5.99}', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
+              ],
+            ),
           ),
-        )),
+        ),
         SizedBox(height: 10),
-        FadeAnimation(1.4, Padding(
-          padding: EdgeInsets.all(20.0),
-          child: MaterialButton(
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => PaymentPage()));
-            },
-            height: 50,
-            elevation: 0,
-            splashColor: Colors.yellow[700],
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10)
-            ),
-            color: Colors.yellow[800],
-            child: Center(
-              child: Text('Checkout', style: TextStyle(color: Colors.white, fontSize: 18),),
+        FadeAnimation(
+          delay: 1.4,
+          child: Padding(
+            padding: EdgeInsets.all(20.0),
+            child: MaterialButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => PaymentPage()));
+              },
+              height: 50,
+              elevation: 0,
+              splashColor: Colors.yellow[700],
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+              ),
+              color: Colors.yellow[800],
+              child: Center(
+                child: Text('Checkout', style: TextStyle(color: Colors.white, fontSize: 18),),
+              ),
             ),
           ),
-        ))
-      ]
+        ),
+      ],
     );
   }
 

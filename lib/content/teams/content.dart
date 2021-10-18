@@ -14,9 +14,9 @@ class TeamContent extends ContentContainer {
   String get collection => CollectionName;
   final content_type = CONTENT.TEAM;
 
-  String sex;
-  bool online, verified;
-  DateTime created_on, last_login;
+  final String sex;
+  final bool online, verified;
+  final DateTime created_on, last_login;
 
   TeamContent({
     required this.sex,

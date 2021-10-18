@@ -1,10 +1,12 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 import 'package:visual_ai/responsive.dart';
 import 'package:visual_ai/constants.dart';
-import 'package:visual_ai/screens/components/store/store_item.dart';
+
+import 'package:visual_ai/screens/components/store/cart_item.dart';
 
 import 'package:visual_ai/content/store/cache.dart';
 
@@ -82,18 +84,29 @@ class NoContentFunSquare extends StatelessWidget {
           }
         }
 
-        return GridView.builder(
-          physics: NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: crossAxisCount,
-            crossAxisSpacing: defaultPadding,
-            mainAxisSpacing: defaultPadding,
-            childAspectRatio: childAspectRatio,
-          ),
-          itemCount: min(9, filter.length),
-          itemBuilder: (context, index) => StoreItem(
-              filter[index],
+        return AnimationLimiter(
+          child: GridView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: crossAxisCount,
+              crossAxisSpacing: defaultPadding,
+              mainAxisSpacing: defaultPadding,
+              childAspectRatio: childAspectRatio,
+            ),
+            itemCount: min(9, filter.length),
+            itemBuilder: (context, index) => AnimationConfiguration.staggeredList(
+              position: index,
+              duration: const Duration(milliseconds: 375),
+              child: SlideAnimation(
+                verticalOffset: 50.0,
+                child: FadeInAnimation(
+                  child: CartItem(
+                    filter[index],
+                  ),
+                ),
+              ),
+            ),
           ),
         );
       },

@@ -11,8 +11,8 @@ class DashboardContent extends ContentContainer {
   String get collection => CollectionName;
   final content_type = CONTENT.DASHBOARD;
 
-  String type;
-  Map<String, dynamic> data;
+  final String type;
+  final Map<String, dynamic> data;
 
   DashboardContent({
     required this.type,

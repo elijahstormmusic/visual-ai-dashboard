@@ -1,9 +1,11 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 import 'package:visual_ai/responsive.dart';
 import 'package:visual_ai/constants.dart';
+
 import 'package:visual_ai/screens/components/store/store_item.dart';
 import 'package:visual_ai/screens/components/store/promotion_item.dart';
 import 'package:visual_ai/screens/components/store/cart_item.dart';
@@ -19,6 +21,7 @@ class ForYouStore extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size _size = MediaQuery.of(context).size;
+
     return Container(
       child: Column(
         children: [
@@ -46,13 +49,10 @@ class ForYouStore extends StatelessWidget {
           SizedBox(height: defaultPadding),
           Responsive(
             mobile: NoContentFunSquare(
-              crossAxisCount: _size.width < 650 ? 2 : 2,
-              childAspectRatio: _size.width < 650 ? 1.3 : 1,
+              crossAxisCount: _size.width < 500 ? 1 : 2,
             ),
             tablet: NoContentFunSquare(),
-            desktop: NoContentFunSquare(
-              childAspectRatio: _size.width < 1400 ? 1.1 : 1.4,
-            ),
+            desktop: NoContentFunSquare(),
           ),
         ],
       ),
@@ -84,18 +84,29 @@ class NoContentFunSquare extends StatelessWidget {
           }
         }
 
-        return GridView.builder(
-          physics: NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: crossAxisCount,
-            crossAxisSpacing: defaultPadding,
-            mainAxisSpacing: defaultPadding,
-            childAspectRatio: childAspectRatio,
-          ),
-          itemCount: min(9, filter.length),
-          itemBuilder: (context, index) => StoreItem(
-            filter[index],
+        return AnimationLimiter(
+          child: GridView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: crossAxisCount,
+              crossAxisSpacing: defaultPadding,
+              mainAxisSpacing: defaultPadding,
+              childAspectRatio: childAspectRatio,
+            ),
+            itemCount: min(9, filter.length),
+            itemBuilder: (context, index) => AnimationConfiguration.staggeredList(
+              position: index,
+              duration: const Duration(milliseconds: 375),
+              child: SlideAnimation(
+                verticalOffset: 50.0,
+                child: FadeInAnimation(
+                  child: CartItem(
+                    filter[index],
+                  ),
+                ),
+              ),
+            ),
           ),
         );
       },

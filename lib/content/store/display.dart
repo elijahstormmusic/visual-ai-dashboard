@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:visual_ai/pages/backable_page.dart';
+import 'package:visual_ai/responsive.dart';
+import 'package:visual_ai/constants.dart';
 
 import 'content.dart';
 
@@ -45,9 +47,10 @@ class _StoreContentDisplayPageState extends State<StoreContentDisplayPage> {
             expandedHeight: MediaQuery.of(context).size.height * 0.6,
             elevation: 0,
             snap: true,
+            automaticallyImplyLeading: false,
             floating: true,
             stretch: true,
-            backgroundColor: Colors.grey.shade50,
+            backgroundColor: Theme.of(context).cardColor,
             flexibleSpace: FlexibleSpaceBar(
               stretchModes: [
                 StretchMode.zoomBackground,
@@ -61,7 +64,6 @@ class _StoreContentDisplayPageState extends State<StoreContentDisplayPage> {
                 child: Container(
                   height: 45,
                   decoration: BoxDecoration(
-                    color: Colors.white,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30),
@@ -72,7 +74,7 @@ class _StoreContentDisplayPageState extends State<StoreContentDisplayPage> {
                       width: 50,
                       height: 8,
                       decoration: BoxDecoration(
-                        color: Colors.grey.shade300,
+                        color: Theme.of(context).cardColor,
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
@@ -85,7 +87,6 @@ class _StoreContentDisplayPageState extends State<StoreContentDisplayPage> {
             delegate: SliverChildListDelegate([
               Container(
                 height: MediaQuery.of(context).size.height * 0.55,
-                color: Colors.white,
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,24 +98,37 @@ class _StoreContentDisplayPageState extends State<StoreContentDisplayPage> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(widget.content.title,
-                              style: TextStyle(color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold),
+                            Text(
+                              widget.content.title,
+                              style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                             SizedBox(height: 5),
-                            Text(widget.content.released_str, style: TextStyle(color: Colors.orange.shade400, fontSize: 14)),
+                            Text(
+                              widget.content.released_str,
+                              style: TextStyle(
+                                color: Theme.of(context).accentColor,
+                                fontSize: 14,
+                              ),
+                            ),
                           ],
                         ),
-                        Text(widget.content.price_str,
-                          style: TextStyle(color: Colors.black, fontSize: 16),
+                        Text(
+                          widget.content.price_str,
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
                         ),
                       ],
                     ),
                     SizedBox(height: 20),
                     Text('Take a break from jeans with the parker long straight pant. These lightweight, pleat front pants feature a flattering high waist and loose, straight legs.',
-                      style: TextStyle(height: 1.5, color: Colors.grey.shade800, fontSize: 15),
+                      style: TextStyle(height: 1.5, color: Theme.of(context).cardColor, fontSize: 15),
                     ),
                     SizedBox(height: 30),
-                    Text('Color', style: TextStyle(color: Colors.grey.shade400, fontSize: 18)),
+                    Text('Color', style: TextStyle(color: Theme.of(context).cardColor, fontSize: 18)),
                     SizedBox(height: 10),
                     Container(
                       height: 60,
@@ -138,7 +152,12 @@ class _StoreContentDisplayPageState extends State<StoreContentDisplayPage> {
                               width: 40,
                               height: 40,
                               child: Center(
-                                child: _selectedColor == index ? Icon(Icons.check, color: Colors.white) : Container(),
+                                child: _selectedColor == index
+                                  ? Icon(
+                                    Icons.check,
+                                    color: Theme.of(context).scaffoldBackgroundColor,
+                                  )
+                                  : Container(),
                               ),
                             ),
                           );
@@ -146,7 +165,7 @@ class _StoreContentDisplayPageState extends State<StoreContentDisplayPage> {
                       ),
                     ),
                     SizedBox(height: 20),
-                    Text('Size', style: TextStyle(color: Colors.grey.shade400, fontSize: 18)),
+                    Text('Size', style: TextStyle(color: Theme.of(context).cardColor, fontSize: 18)),
                     SizedBox(height: 10),
                     Container(
                       height: 60,
@@ -164,13 +183,23 @@ class _StoreContentDisplayPageState extends State<StoreContentDisplayPage> {
                               duration: Duration(milliseconds: 500),
                               margin: EdgeInsets.only(right: 10),
                               decoration: BoxDecoration(
-                                color: _selectedSize == index ? Colors.yellow[800] : Colors.grey.shade200,
+                                color: _selectedSize == index
+                                  ? Theme.of(context).accentColor
+                                  : Theme.of(context).cardColor,
                                 shape: BoxShape.circle
                               ),
                               width: 40,
                               height: 40,
                               child: Center(
-                                child: Text(size[index], style: TextStyle(color: _selectedSize == index ? Colors.white : Colors.black, fontSize: 15)),
+                                child: Text(
+                                  size[index],
+                                  style: TextStyle(
+                                    color: _selectedSize == index
+                                      ? Theme.of(context).scaffoldBackgroundColor
+                                      : null,
+                                    fontSize: 15,
+                                  ),
+                                ),
                               ),
                             ),
                           );
@@ -178,19 +207,25 @@ class _StoreContentDisplayPageState extends State<StoreContentDisplayPage> {
                       ),
                     ),
                     SizedBox(height: 20),
-                    MaterialButton(
+                    ElevatedButton(
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      height: 50,
-                      elevation: 0,
-                      splashColor: Colors.yellow[700],
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: defaultPadding * 1.5,
+                          vertical:
+                              defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
+                        ),
                       ),
-                      color: Colors.yellow[800],
                       child: Center(
-                        child: Text('Add to Cart', style: TextStyle(color: Colors.white, fontSize: 18)),
+                        child: Text(
+                          'Add to Cart',
+                          style: TextStyle(
+                            color: Theme.of(context).scaffoldBackgroundColor,
+                            fontSize: 18,
+                          ),
+                        ),
                       ),
                     ),
                   ],

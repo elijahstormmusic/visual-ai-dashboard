@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
-const primaryColorDark = Color(0xFF2697FF);
-const cardColorDark = Color(0xFF2A2D3E);
-const bgColorDark = Color(0xFF212332);
-const primaryColorLight = Color(0xFF2697FF);
-const cardColorLight = Color(0xFFECF2F9);
-const bgColorLight = Color(0xFFf8f9fa);
+const Color primaryColorDark = Color(0xFF2697FF);
+const Color cardColorDark = Color(0xFF2A2D3E);
+const Color bgColorDark = Color(0xFF212332);
+const Color primaryColorLight = Color(0xFF2697FF);
+const Color cardColorLight = Color(0xFFECF2F9);
+const Color bgColorLight = Color(0xFFf8f9fa);
 
-const defaultPadding = 16.0;
+const double defaultPadding = 16.0;
+const double defaultCardRadius = 15.0;
 
 class Constants {
   static const String demo_source = 'assets/demo/';

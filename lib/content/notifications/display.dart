@@ -14,7 +14,7 @@ class NotificationContentDisplayPage extends StatelessWidget {
     return BackablePage(
       child: Column(
         children: [
-
+          Text('hey hey heys'),
         ],
       ),
     );

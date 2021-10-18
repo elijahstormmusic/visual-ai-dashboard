@@ -14,10 +14,10 @@ class StoreContent extends ContentContainer {
   String get collection => CollectionName;
   final content_type = CONTENT.STORE_ITEM;
 
-  String type, keywords;
-  double price;
-  int size, num_of_likes, num_of_purchases;
-  DateTime released;
+  final String type, keywords;
+  final double price;
+  final int size, num_of_likes, num_of_purchases;
+  final DateTime released;
 
   StoreContent({
     required this.type,
@@ -73,10 +73,13 @@ class StoreContent extends ContentContainer {
 
   String get released_str => Constants.timeSinceDate(released);
   String get price_str => '\$${((price*100.0).floor().toDouble()/100.0).toString()}';
-  Widget get icon => Container(
-    child: SvgPicture.network(
-      Constants.store_items_svgs + id + '.svg',
-      fit: BoxFit.fill,
+  Widget get icon => Hero(
+    tag: id,
+    child: Container(
+      child: SvgPicture.network(
+        Constants.store_items_svgs + id + '.svg',
+        fit: BoxFit.fill,
+      ),
     ),
   );
 }

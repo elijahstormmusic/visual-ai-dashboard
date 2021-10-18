@@ -1,7 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:data_table_2/data_table_2.dart';
+// import 'package:flutter/services.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 import 'package:visual_ai/content/notifications/content.dart';
 import 'package:visual_ai/content/notifications/cache.dart';
@@ -13,102 +15,120 @@ class RecentFriendActivities extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  DataRow recentNotoDataRow(NotificationContent notoInfo) {
-    Color getColor(Set<MaterialState> states) {
-      const Set<MaterialState> interactiveStates = <MaterialState>{
-        MaterialState.pressed,
-        MaterialState.hovered,
-        MaterialState.focused,
-      };
-      if (states.any(interactiveStates.contains)) {
-        return Colors.blue.withOpacity(0.1);
-      }
-      return Colors.red.withOpacity(0.1);
-    }
-
-    return DataRow(
-      color: notoInfo.status == 'unread' ? MaterialStateProperty.resolveWith(getColor) : null,
-      cells: [
-        DataCell(
-          Row(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                child: Container(
-                  height: 30,
-                  width: 30,
-                  child: notoInfo.icon,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-                child: Text(
-                  notoInfo.title + (
-                    notoInfo.caption == '' ? '' : ' - ${notoInfo.caption}'
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-            ],
-          ),
-        ),
-        DataCell(Text('')),
-        DataCell(Text('')),
-        DataCell(
-          Text(
-            Constants.timeSinceDate(notoInfo.date),
-          ),
-        ),
-      ],
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(defaultPadding),
-      decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
-        borderRadius: const BorderRadius.all(Radius.circular(6)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Recent Friend Activity',
-            style: Theme.of(context).textTheme.subtitle1,
-          ),
-          Consumer<NotificationCache>(
-            builder: (context, cache, child) {
-              return SizedBox(
-                width: double.infinity,
-                child: DataTable2(
-                  columnSpacing: defaultPadding,
-                  minWidth: 600,
-                  columns: [
-                    DataColumn(
-                      label: Text('Title'),
-                    ),
-                    DataColumn(
-                      label: Text(''),
-                    ),
-                    DataColumn(
-                      label: Text(''),
-                    ),
-                    DataColumn(
-                      label: Text('Date'),
-                    ),
-                  ],
-                  rows: List.generate(
-                    cache.items.length,
-                    (index) => recentNotoDataRow(
-                      (cache.items[index]),
-                    ),
+    return  Consumer<NotificationCache>(
+      builder: (context, cache, child) {
+        return Container(
+          height: 500,
+          child: ListView.builder(
+            itemCount: cache.items.length,
+            itemBuilder: (context, index) {
+              return Slidable(
+                actionPane: SlidableDrawerActionPane(),
+                actionExtentRatio: 0.25,
+                child: notificationItem(cache.items[index]),
+                secondaryActions: <Widget>[
+                  Container(
+                    height: 60,
+                    color: Colors.grey.shade500,
+                    child: Icon(Icons.info_outline, color: Colors.white,)
                   ),
-                ),
+                  Container(
+                    height: 60,
+                    color: Colors.red,
+                    child: Icon(Icons.delete_outline_sharp, color: Colors.white,)
+                  ),
+                ],
               );
             },
           ),
+        );
+      },
+    );
+  }
+
+  Widget notificationItem(NotificationContent notification) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Row(
+              children: [
+                notification.hasStory
+                  ? Container(
+                    width: 50,
+                    height: 50,
+                    padding: EdgeInsets.all(2),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [Colors.red, Colors.orangeAccent],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomLeft
+                      ),
+                      // border: Border.all(color: Colors.red),
+                      shape: BoxShape.circle
+                    ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.white, width: 3)
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: Image.network(notification.profilePic)
+                      ),
+                    ),
+                  )
+                  : Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.grey.shade300, width: 1)
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Image.network(notification.profilePic)
+                    ),
+                  ),
+                SizedBox(width: 10,),
+                Flexible(
+                  child: RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(text: notification.name, style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                        TextSpan(text: notification.content, style: TextStyle(color: Colors.black)),
+                        TextSpan(text: notification.timeAgo, style: TextStyle(color: Colors.grey.shade500),)
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          notification.postImage != ''
+            ? Container(
+                width: 50,
+                height: 50,
+                child: ClipRRect(
+                  child: Image.network(notification.postImage)
+                ),
+              )
+            : Container(
+                height: 35,
+                width: 110,
+                decoration: BoxDecoration(
+                  color: Colors.blue[700],
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: Center(
+                  child: Text('Follow', style: TextStyle(color: Colors.white))
+                ),
+              ),
         ],
       ),
     );

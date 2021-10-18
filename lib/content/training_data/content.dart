@@ -14,11 +14,11 @@ class TrainingDataContent extends ContentContainer {
   String get collection => CollectionName;
   final content_type = CONTENT.TRAINING_DATA;
 
-  dynamic training_data;
-  String encoding_type, author, image_link;
-  DateTime created_on, edited_on;
-  int uses;
-  bool approved;
+  final dynamic training_data;
+  final String encoding_type, author, image_link;
+  final DateTime created_on, edited_on;
+  final int uses;
+  final bool approved;
 
   TrainingDataContent({
     required this.training_data,

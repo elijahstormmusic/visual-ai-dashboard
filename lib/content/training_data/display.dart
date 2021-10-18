@@ -74,9 +74,9 @@ class _TrainingDataContentDisplayPageState extends State<TrainingDataContentDisp
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                      color: Theme.of(context).textTheme.subtitle1!.color!.withOpacity(.4),
-                      blurRadius: 10,
-                      offset: Offset(0, 10),
+                      color: Theme.of(context).textTheme.subtitle1!.color!.withOpacity(.35),
+                      blurRadius: 20,
+                      offset: Offset(0, 30),
                     ),
                   ],
                 ),
@@ -88,8 +88,8 @@ class _TrainingDataContentDisplayPageState extends State<TrainingDataContentDisp
                       width: MediaQuery.of(context).size.width,
                       height: 500,
                       child: FadeAnimation(
-                        1,
-                        Container(
+                        delay: 1,
+                        child: Container(
                           padding: EdgeInsets.all(20),
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
@@ -105,8 +105,8 @@ class _TrainingDataContentDisplayPageState extends State<TrainingDataContentDisp
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
                               FadeAnimation(
-                                1.2,
-                                Row(
+                                delay: 1.2,
+                                child: Row(
                                   children: [
                                     Text(
                                       widget.content.title,
@@ -124,6 +124,7 @@ class _TrainingDataContentDisplayPageState extends State<TrainingDataContentDisp
                                     if (widget.content.approved)
                                       Icon(
                                         Icons.verified,
+                                        color: Theme.of(context).scaffoldBackgroundColor,
                                         size: 30,
                                       ),
                                   ],
@@ -131,8 +132,8 @@ class _TrainingDataContentDisplayPageState extends State<TrainingDataContentDisp
                               ),
                               SizedBox(height: defaultPadding * 1.5),
                               FadeAnimation(
-                                1.3,
-                                Text(
+                                delay: 1.3,
+                                child: Text(
                                   'by: ${widget.content.author_name}',
                                   style: TextStyle(
                                     color: Theme.of(context).scaffoldBackgroundColor,
@@ -142,8 +143,8 @@ class _TrainingDataContentDisplayPageState extends State<TrainingDataContentDisp
                               ),
                               SizedBox(height: defaultPadding),
                               FadeAnimation(
-                                1.35,
-                                Text(
+                                delay: 1.35,
+                                child: Text(
                                   widget.content.caption,
                                   maxLines: 2,
                                   style: TextStyle(
@@ -155,30 +156,30 @@ class _TrainingDataContentDisplayPageState extends State<TrainingDataContentDisp
                               Row(
                                 children: [
                                   FadeAnimation(
-                                    1.45,
-                                    _headerInfoColumn('uses', widget.content.uses.toString()),
+                                    delay: 1.45,
+                                    child: _headerInfoColumn('uses', widget.content.uses.toString()),
                                   ),
                                   SizedBox(width: defaultPadding / 2),
                                   FadeAnimation(
-                                    1.46,
-                                    _headerInfoColumn('encoding', widget.content.encoding),
+                                    delay: 1.46,
+                                    child: _headerInfoColumn('encoding', widget.content.encoding),
                                   ),
                                   SizedBox(width: defaultPadding / 2),
                                   FadeAnimation(
-                                    1.47,
-                                    _headerInfoColumn('created', widget.content.created),
+                                    delay: 1.47,
+                                    child: _headerInfoColumn('created', widget.content.created),
                                   ),
                                   SizedBox(width: defaultPadding / 2),
                                   FadeAnimation(
-                                    1.48,
-                                    _headerInfoColumn('edited', widget.content.edited),
+                                    delay: 1.48,
+                                    child: _headerInfoColumn('edited', widget.content.edited),
                                   ),
                                 ],
                               ),
                               SizedBox(height: defaultPadding),
                               FadeAnimation(
-                                1.5,
-                                Container(
+                                delay: 1.5,
+                                child: Container(
                                   height: 50,
                                   decoration: BoxDecoration(
                                     color: Theme.of(context).scaffoldBackgroundColor,
@@ -186,7 +187,7 @@ class _TrainingDataContentDisplayPageState extends State<TrainingDataContentDisp
                                   ),
                                   child: Center(
                                     child: Text(
-                                      'Buy Now',
+                                      'Edit Data',
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                       ),

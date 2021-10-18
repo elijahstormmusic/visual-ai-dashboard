@@ -34,9 +34,9 @@ class StoreScreen extends StatelessWidget {
                     flex: 5,
                     child: Column(
                       children: [
-                        PopularItems(),
+                        ForYouStore(),
                         SizedBox(height: defaultPadding),
-                        RecentItems(),
+                        PopularItems(),
                         if (Responsive.isMobile(context))
                           SizedBox(height: defaultPadding),
                         if (Responsive.isMobile(context)) PurchasedStoreItems(),

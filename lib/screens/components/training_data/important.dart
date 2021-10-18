@@ -28,6 +28,7 @@ class MostImportantTrainingData extends StatelessWidget {
             children: [
               Text(
                 'Most Used Training Data',
+                overflow: TextOverflow.fade,
                 style: Theme.of(context).textTheme.subtitle1,
               ),
               ElevatedButton.icon(
@@ -47,12 +48,14 @@ class MostImportantTrainingData extends StatelessWidget {
           SizedBox(height: defaultPadding),
           Responsive(
             mobile: TrainingDataBlock(
-              crossAxisCount: _size.width < 650 ? 2 : 2,
-              childAspectRatio: _size.width < 650 ? 1.3 : 1,
+              crossAxisCount: _size.width < 400 ? 1 : 2,
             ),
-            tablet: TrainingDataBlock(),
+            tablet: TrainingDataBlock(
+              crossAxisCount: 2,
+            ),
             desktop: TrainingDataBlock(
               childAspectRatio: _size.width < 1400 ? 1.1 : 1.4,
+              crossAxisCount: _size.width < 1400 ? 2 : 4,
             ),
           ),
         ],

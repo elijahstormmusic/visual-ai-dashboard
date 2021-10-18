@@ -12,9 +12,9 @@ class FileContent extends ContentContainer {
   String get collection => CollectionName;
   final content_type = CONTENT.FILE;
 
-  String cloud_link;
-  int file_type;
-  DateTime created_on, edited_on;
+  final String cloud_link;
+  final int file_type;
+  final DateTime created_on, edited_on;
 
   FileContent({
     required this.cloud_link,

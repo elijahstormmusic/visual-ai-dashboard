@@ -12,6 +12,8 @@ class PaymentSuccess extends StatefulWidget {
 }
 
 class _PaymentSuccessState extends State<PaymentSuccess> {
+  final String IMAGE_BACKGROUND = 'https://ouch-cdn2.icons8.com/7fkWk5J2YcodnqGn62xOYYfkl6qhmsCfT2033W-FjaA/rs:fit:784:784/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvMjU5/LzRkM2MyNzJlLWFh/MmQtNDA3Ni04YzU0/LTY0YjNiMzQ4NzQw/OS5zdmc.png';
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,15 +23,40 @@ class _PaymentSuccessState extends State<PaymentSuccess> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          FadeAnimation(1, Image.network('https://ouch-cdn2.icons8.com/7fkWk5J2YcodnqGn62xOYYfkl6qhmsCfT2033W-FjaA/rs:fit:784:784/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvMjU5/LzRkM2MyNzJlLWFh/MmQtNDA3Ni04YzU0/LTY0YjNiMzQ4NzQw/OS5zdmc.png',
-            width: 250,)),
+          FadeAnimation(
+            delay: 1,
+            child: Image.network(
+              IMAGE_BACKGROUND,
+              width: 250,
+            ),
+          ),
           SizedBox(height: 50.0,),
-          FadeAnimation(1.2, Text('Payment Success! 🥳', style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),)),
+          FadeAnimation(
+            delay: 1.2,
+            child: Text(
+              'Payment Success! 🥳',
+              style: TextStyle(
+                fontSize: 25.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
           SizedBox(height: 20.0,),
-          FadeAnimation(1.3, Text('Hooray! Your payment proccess has \n been completed successfully..', textAlign: TextAlign.center, style: TextStyle(fontSize: 16.0, color: Colors.grey.shade700),)),
+          FadeAnimation(
+            delay: 1.3,
+            child: Text(
+              'Hooray! Your payment proccess has \n been completed successfully..',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 16.0,
+                color: Colors.grey.shade700,
+              ),
+            ),
+          ),
           SizedBox(height: 140.0,),
-          FadeAnimation(1.4,
-            MaterialButton(
+          FadeAnimation(
+            delay: 1.4,
+            child: MaterialButton(
               onPressed: () {
                 // Navigator.push(context, MaterialPageRoute(builder: (context) => StoreDisplay()));
               },
@@ -46,7 +73,16 @@ class _PaymentSuccessState extends State<PaymentSuccess> {
             ),
           ),
           SizedBox(height: 20.0,),
-          FadeAnimation(1.4, Text('Thank you for shopping with us.', style: TextStyle(fontSize: 14.0, color: Colors.grey),)),
+          FadeAnimation(
+            delay: 1.4,
+            child: Text(
+              'Thank you for shopping with us.',
+              style: TextStyle(
+                fontSize: 14.0,
+                color: Colors.grey,
+              ),
+            ),
+          ),
         ],
       ),
     );

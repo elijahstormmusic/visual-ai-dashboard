@@ -10,7 +10,7 @@ class AdvertisementContent extends ContentContainer {
   String get collection => CollectionName;
   final content_type = CONTENT.AD;
 
-  String link;
+  final String link;
 
   AdvertisementContent({
     required this.link,
