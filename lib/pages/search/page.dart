@@ -97,12 +97,14 @@ class _SearchPageState extends State<SearchPage> {
                   new IconSlideAction(
                     caption: 'Archive',
                     color: Colors.transparent,
+                    foregroundColor: Theme.of(context).iconTheme.color,
                     icon: Icons.archive,
-                    onTap: () => print('archive'),
+                    onTap: () => print('Archive'),
                   ),
                   new IconSlideAction(
                     caption: 'Share',
                     color: Colors.transparent,
+                    foregroundColor: Theme.of(context).iconTheme.color,
                     icon: Icons.share,
                     onTap: () => print('Share'),
                   ),
@@ -111,12 +113,14 @@ class _SearchPageState extends State<SearchPage> {
                   new IconSlideAction(
                     caption: 'More',
                     color: Colors.transparent,
+                    foregroundColor: Theme.of(context).iconTheme.color,
                     icon: Icons.more_horiz,
                     onTap: () => print('More'),
                   ),
                   new IconSlideAction(
                     caption: 'Delete',
                     color: Colors.transparent,
+                    foregroundColor: Theme.of(context).iconTheme.color,
                     icon: Icons.delete,
                     onTap: () => print('Delete'),
                   ),
